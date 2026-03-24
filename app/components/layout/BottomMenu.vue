@@ -40,7 +40,7 @@ const itemsBase: MenuItem[] = [
   { route: 'QuizList',   label: 'Quiz',       icon: '~/assets/icons/quiz.png' }
 ]
 
-// Computed items avec profil/login dynamique
+// Computed items with dynamic profil/login
 const computedItems = computed(() => {
   const extra: MenuItem = authStore.isAuthenticated
     ? { route: 'UserProfile', label: 'Profil', icon: '~/assets/icons/user.png' }
@@ -68,7 +68,7 @@ function itemStyle(_route: string) {
 }
 
 function iconStyle(route: string) {
-  // Vert par défaut, assombri si actif
+  // Green by default
   const color = currentRoute.value === route ? 'rgba(0,128,0,0.6)' : '#008000'
   return { width: 32, height: 32, marginBottom: 2, tintColor: color }
 }

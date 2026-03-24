@@ -1,6 +1,6 @@
 <template>
   <GridLayout rows="auto" columns="auto, *, auto" :style="barStyle">
-    <!-- Bouton retour -->
+    <!-- Return button -->
     <Button
       v-if="showBack"
       col="0"
@@ -12,7 +12,7 @@
     />
     <Label v-else col="0" text="" width="40" />
 
-    <!-- Titre -->
+    <!-- Title -->
     <Label
       col="1"
       :text="title"
@@ -21,7 +21,7 @@
       accessibilityRole="header"
     />
 
-    <!-- Slot action droite -->
+    <!-- Slot right action -->
     <Button
       v-if="actionIcon"
       col="2"

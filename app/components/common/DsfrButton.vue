@@ -31,20 +31,20 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{ tap: [] }>()
 
-// ✅ Label avec loading
+// Label with loading
 const displayLabel = computed(() => {
   return props.loading ? 'Chargement…' : props.label
 })
 
-// ✅ Gestion du tap safe
+// Manage tap safe
 const onTap = () => {
   if (props.disabled || props.loading) return
   emit('tap')
 }
 
-// 🎨 Couleurs (vert foncé ajouté)
-const GREEN_DARK = '#1B5E20'     // vert foncé
-const GREEN_LIGHT = '#2E7D32'    // hover / actif
+// Colors (green added)
+const GREEN_DARK = '#1B5E20'   
+const GREEN_LIGHT = '#2E7D32' 
 
 const buttonStyle = computed(() => {
   const base = {
@@ -69,7 +69,7 @@ const buttonStyle = computed(() => {
       color: DSFR.colors.white
     },
 
-    // ✅ NOUVEAU : bouton vert foncé
+    // New: button green
     success: {
       backgroundColor: props.disabled
         ? DSFR.colors.grey425
