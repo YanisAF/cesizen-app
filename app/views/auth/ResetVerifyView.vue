@@ -52,8 +52,14 @@ import AlertBanner from '../../components/common/AlertBanner.vue'
 
 
 const { navigateTo } = useNavigation()
-const identifier = ref((route.query.identifier as string) ?? '')
-const channel = ref((route.query.channel as string) ?? 'email')
+const props = defineProps<{
+  identifier?: string
+  channel?: string
+}>()
+
+const identifier = ref(props.identifier ?? '')
+const channel = ref(props.channel ?? 'email')
+
 const channelLabel = computed(() => channel.value === 'email' ? 'e-mail' : 'SMS')
 
 const pin = ref('')

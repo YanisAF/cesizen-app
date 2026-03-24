@@ -14,7 +14,7 @@
           @dismiss="userStore.clearError()"
         />
 
-        <!-- Infos compte -->
+        <!-- account infos -->
         <StackLayout class="section" marginBottom="20">
           <Label text="Informations du compte" class="section-title" accessibilityRole="header" />
           <GridLayout columns="120, *" class="info-row">
@@ -35,7 +35,7 @@
           </GridLayout>
         </StackLayout>
 
-        <!-- Modifier le mot de passe -->
+        <!-- update password -->
         <StackLayout class="section" marginBottom="20">
           <Label text="Sécurité" class="section-title" accessibilityRole="header" />
           <DsfrButton
@@ -45,7 +45,7 @@
           />
         </StackLayout>
 
-        <!-- Mes diagnostics -->
+        <!-- our diagnosis -->
         <StackLayout class="section" marginBottom="20">
           <Label text="Mes diagnostics" class="section-title" accessibilityRole="header" />
           <DsfrButton
@@ -55,7 +55,7 @@
           />
         </StackLayout>
 
-        <!-- RGPD — Droits -->
+        <!-- RGPD -->
         <StackLayout class="section rgpd-section" marginBottom="20">
           <Label text="Vos droits (RGPD)" class="section-title" accessibilityRole="header" />
           <Label
@@ -65,7 +65,7 @@
             marginBottom="16"
           />
 
-          <!-- Désactiver -->
+          <!-- desactived -->
           <DsfrButton
             label="Désactiver mon compte"
             variant="secondary"
@@ -74,7 +74,7 @@
             @tap="confirmDeactivate"
           />
 
-          <!-- Supprimer -->
+          <!-- delete -->
           <DsfrButton
             label="Supprimer définitivement mon compte"
             variant="danger"
@@ -83,7 +83,7 @@
           />
         </StackLayout>
 
-        <!-- Déconnexion -->
+        <!-- deconnexion -->
         <DsfrButton
           label="Se déconnecter"
           variant="tertiary"
@@ -101,7 +101,6 @@ import { useNavigation } from '../../composables/useNavigation'
 
 import { useAuthStore } from '../../stores/auth'
 import { useUserStore } from '../../stores/user'
-import { DSFR } from '../../utils/design'
 import AppBar from '../../components/layout/AppBar.vue'
 import DsfrButton from '../../components/common/DsfrButton.vue'
 import AlertBanner from '../../components/common/AlertBanner.vue'

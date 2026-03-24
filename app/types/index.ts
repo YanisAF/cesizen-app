@@ -4,7 +4,7 @@
 
 // --- Auth ---
 export interface LoginRequest {
-  username: string
+  identifier: string
   password: string
 }
 
@@ -17,6 +17,12 @@ export interface RegisterRequest {
 
 export interface JwtResponse {
   token: string
+}
+
+export interface JwtResponseLogin {
+  type: string
+  token: string
+  user: User
 }
 
 export interface ResultDtoResponse {
@@ -44,7 +50,7 @@ export interface User {
 export type ResetChannel = 'email' | 'sms'
 
 export interface ResetRequest {
-  identifier: string   // email ou téléphone
+  identifier: string   // email or phone
   channel: ResetChannel
 }
 

@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { DSFR } from '../../utils/design'
+import { marginTopProperty } from '@nativescript/core';
 
 const props = withDefaults(defineProps<{
   label: string
@@ -51,8 +52,9 @@ const buttonStyle = computed(() => {
     borderRadius: DSFR.radius.sm,
     fontWeight: DSFR.typography.weightBold,
     textTransform: 'none' as const,
-    width: props.fullWidth ? '100%' : 'auto',
-    opacity: props.disabled ? 0.6 : 1
+    width: props.fullWidth ? '100%' : 'auto', // reste le même
+    opacity: props.disabled ? 0.6 : 1,
+    marginTop: 12
   }
 
   const sizes = {

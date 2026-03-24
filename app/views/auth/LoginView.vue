@@ -67,7 +67,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import { useNavigation } from '../../composables/useNavigation'
 
 import { useAuthStore } from '../../stores/auth'
@@ -105,7 +105,7 @@ async function submit() {
   if (!isFormValid()) return
   authStore.clearError()
   try {
-    await authStore.login({ username: form.username, password: form.password })
+    await authStore.login({ identifier: form.username, password: form.password })
     // Chargement user profil after login
     navigateTo('Home')
   } catch (_) { /* error in the store */ }
