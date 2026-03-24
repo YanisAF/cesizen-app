@@ -19,7 +19,7 @@ const viewMap: Record<string, () => Promise<any>> = {
   Contact:          () => import('../views/support/ContactView.vue'),
 }
 
-// ref globale pour la route actuelle
+// global ref 
 const currentRoute = ref('Home')
 
 export function useNavigation() {
@@ -31,7 +31,7 @@ export function useNavigation() {
     if (!loader || !$nav) return
     const module = await loader()
 
-    currentRoute.value = routeName  // <-- mise à jour de la route active
+    currentRoute.value = routeName  // <-- update of active route
 
     $nav.$navigateTo(module.default, {
       props,
