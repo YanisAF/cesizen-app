@@ -1,0 +1,18 @@
+R_DEF: Internal format may change without notice
+local
+color ns_accent
+color ns_primary
+color ns_primaryDark
+color white
+drawable icon
+mipmap icon
+string app_name
+string title_activity_kimera
+style AppTheme
+style AppThemeBase
+style LaunchScreenTheme
+style NativeScriptToolbarStyle
+style NativeScriptToolbarStyleBase
+style NoActionBar
+style SpinnerDatePicker
+style SpinnerTimePicker

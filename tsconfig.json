@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "lib": ["ES2020", "DOM"],
+    "baseUrl": ".",
+    "paths": { "@/*": ["app/*"] },
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["jest", "node"]
+  },
+  "include": [
+    "app/**/*",
+    "tests/**/*",
+    "app/shims-vue.d.ts",
+    "tests/shims-vue.d.ts"
+  ],
+  "exclude": ["node_modules", "platforms"]
+}

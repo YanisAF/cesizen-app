@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/ns_primary</item>
+        <item name="colorPrimaryDark">@color/ns_primaryDark</item>
+        <item name="colorAccent">@color/ns_accent</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="AppTheme" parent="AppThemeBase"/>
+
+    <style name="NativeScriptToolbarStyleBase" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/ns_primary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <style name="NativeScriptToolbarStyle" parent="NativeScriptToolbarStyleBase"/>
+
+    <style name="LaunchScreenTheme" parent="AppThemeBase">
+        <item name="android:windowBackground">@color/ns_primary</item>
+    </style>
+
+</resources>

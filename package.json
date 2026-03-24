@@ -1,0 +1,71 @@
+{
+  "name": "cesizen",
+  "main": "app/app.ts",
+  "version": "1.0.0",
+  "description": "Application mobile de sensibilisation \u00e0 la sant\u00e9 mentale",
+  "scripts": {
+    "dev": "ns run android",
+    "dev:ios": "ns run ios",
+    "build:android": "ns build android",
+    "build:ios": "ns build ios",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .ts,.vue",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@nativescript/core": "~9.0.0",
+    "nativescript-vue": "^3.0.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@nativescript/android": "~9.0.0",
+    "@nativescript/ios": "~9.0.0",
+    "@nativescript/types": "~9.0.0",
+    "@nativescript/webpack": "~5.0.0",
+    "@types/jest": "^29.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vue/test-utils": "^2.4.0",
+    "@vue/vue3-jest": "^29.2.6",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.3.0",
+    "vue-tsc": "^2.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "vue",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest",
+      "^.+\\.vue$": "@vue/vue3-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/app/$1",
+      "^@nativescript/core$": "<rootDir>/tests/__mocks__/nativescript-core.ts"
+    },
+    "collectCoverageFrom": [
+      "app/**/*.{ts,vue}",
+      "!app/main.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  }
+}

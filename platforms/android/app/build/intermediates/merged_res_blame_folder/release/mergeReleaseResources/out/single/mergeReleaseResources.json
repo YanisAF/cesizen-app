@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/drawable-hdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/drawable-hdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/mipmap-xxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/mipmap-xxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/drawable-xxxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/drawable-xxxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/drawable-xxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/drawable-xxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/drawable-mdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/drawable-mdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/mipmap-hdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/mipmap-hdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/mipmap-xhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/mipmap-xhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/mipmap-mdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/mipmap-mdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/mipmap-xxxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/mipmap-xxxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/drawable_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/drawable/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-release-27:/drawable-xhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-28:/drawable-xhdpi/icon.xml"
+    }
+]

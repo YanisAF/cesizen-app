@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray">#1c1917</color>
+    <color name="nativescript_blue">#65ADF1</color>
+    <color name="ns_accent">#0063CB</color>
+    <color name="ns_primary">#003189</color>
+    <color name="ns_primaryDark">#003189</color>
+    <color name="red">#dc2626</color>
+    <color name="white">#ffffff</color>
+    <string name="app_name">cesizenapp</string>
+    <string name="title_activity_kimera">cesizenapp</string>
+    <style name="AppTheme" parent="AppThemeBase"/>
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/ns_primary</item>
+        <item name="colorPrimaryDark">@color/ns_primaryDark</item>
+        <item name="colorAccent">@color/ns_accent</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+    <style name="LaunchScreenTheme" parent="AppThemeBase">
+        <item name="android:windowBackground">@color/ns_primary</item>
+    </style>
+    <style name="NativeScriptToolbarStyle" parent="NativeScriptToolbarStyleBase"/>
+    <style name="NativeScriptToolbarStyleBase" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/ns_primary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

@@ -1,0 +1,4 @@
+C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\assets\app\bundle.mjs
+C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\assets\app\runtime.mjs
+C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\assets\app\tns_modules\inspector_modules.mjs
+C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\assets\app\vendor.mjs

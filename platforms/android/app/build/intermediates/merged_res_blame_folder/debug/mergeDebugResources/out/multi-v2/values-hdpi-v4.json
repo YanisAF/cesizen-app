@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "fr.sante.mentale.cesizen.app-mergeDebugResources-30:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\yaani\\.gradle\\caches\\8.14.3\\transforms\\984c572f1da799759a6f46275c33112b\\transformed\\appcompat-1.7.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

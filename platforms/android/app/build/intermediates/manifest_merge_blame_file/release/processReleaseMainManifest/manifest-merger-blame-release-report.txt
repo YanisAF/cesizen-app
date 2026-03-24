@@ -1,0 +1,160 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="fr.sante.mentale.cesizen"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission
+11-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:5:5-79
+12        android:name="android.permission.READ_EXTERNAL_STORAGE"
+12-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:5:22-77
+13        android:maxSdkVersion="28" />
+13-->[:widgets-release:] C:\Users\yaani\.gradle\caches\8.14.3\transforms\ab082a6c186dd44a097b10bbdacb4874\transformed\jetified-widgets-release\AndroidManifest.xml:9:9-35
+14    <uses-permission
+14-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:6:5-80
+15        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+15-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:6:22-78
+16        android:maxSdkVersion="28" />
+16-->[:widgets-release:] C:\Users\yaani\.gradle\caches\8.14.3\transforms\ab082a6c186dd44a097b10bbdacb4874\transformed\jetified-widgets-release\AndroidManifest.xml:12:9-35
+17    <uses-permission android:name="android.permission.INTERNET" />
+17-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:7:5-66
+17-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:7:22-64
+18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+18-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:8:5-78
+18-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:8:22-76
+19
+20    <permission
+20-->[androidx.core:core:1.13.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\e7cb7163a0b880906705dd8d09a9a98c\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+21        android:name="fr.sante.mentale.cesizen.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+21-->[androidx.core:core:1.13.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\e7cb7163a0b880906705dd8d09a9a98c\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+22        android:protectionLevel="signature" />
+22-->[androidx.core:core:1.13.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\e7cb7163a0b880906705dd8d09a9a98c\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+23
+24    <uses-permission android:name="fr.sante.mentale.cesizen.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+24-->[androidx.core:core:1.13.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\e7cb7163a0b880906705dd8d09a9a98c\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+24-->[androidx.core:core:1.13.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\e7cb7163a0b880906705dd8d09a9a98c\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+25    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+26
+27    <application
+27-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:10:5-33:19
+28        android:name="com.tns.NativeScriptApplication"
+28-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:11:9-55
+29        android:allowBackup="true"
+29-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:12:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.13.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\e7cb7163a0b880906705dd8d09a9a98c\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+31        android:extractNativeLibs="false"
+32        android:icon="@drawable/icon"
+32-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:14:9-38
+33        android:label="CesiZen"
+33-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:15:9-32
+34        android:supportsRtl="true"
+34-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:17:9-35
+35        android:theme="@style/AppTheme"
+35-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:16:9-40
+36        android:usesCleartextTraffic="true" >
+36-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:13:9-44
+37        <activity
+37-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:19:9-30:20
+38            android:name="com.tns.NativeScriptActivity"
+38-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:20:13-56
+39            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+39-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:22:13-106
+40            android:exported="true"
+40-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:25:13-36
+41            android:label="CesiZen"
+41-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:21:13-36
+42            android:screenOrientation="portrait"
+42-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:24:13-49
+43            android:theme="@style/LaunchScreenTheme" >
+43-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:23:13-53
+44            <intent-filter>
+44-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:26:13-29:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:27:17-69
+45-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:27:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:28:17-77
+47-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:28:27-74
+48            </intent-filter>
+49        </activity>
+50        <activity
+50-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:32:9-88
+51            android:name="com.tns.ErrorReportActivity"
+51-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:32:19-61
+52            android:exported="false" />
+52-->C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\AndroidManifest.xml:32:62-86
+53
+54        <provider
+54-->[androidx.emoji2:emoji2:1.3.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\9ce11bf85546e7d8a31b7804d94fe4c9\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+55            android:name="androidx.startup.InitializationProvider"
+55-->[androidx.emoji2:emoji2:1.3.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\9ce11bf85546e7d8a31b7804d94fe4c9\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
+56            android:authorities="fr.sante.mentale.cesizen.androidx-startup"
+56-->[androidx.emoji2:emoji2:1.3.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\9ce11bf85546e7d8a31b7804d94fe4c9\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
+57            android:exported="false" >
+57-->[androidx.emoji2:emoji2:1.3.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\9ce11bf85546e7d8a31b7804d94fe4c9\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
+58            <meta-data
+58-->[androidx.emoji2:emoji2:1.3.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\9ce11bf85546e7d8a31b7804d94fe4c9\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+59                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+59-->[androidx.emoji2:emoji2:1.3.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\9ce11bf85546e7d8a31b7804d94fe4c9\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
+60                android:value="androidx.startup" />
+60-->[androidx.emoji2:emoji2:1.3.0] C:\Users\yaani\.gradle\caches\8.14.3\transforms\9ce11bf85546e7d8a31b7804d94fe4c9\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
+61            <meta-data
+61-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\yaani\.gradle\caches\8.14.3\transforms\0f2e580c2346feeac2f196c6e128772a\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+62                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+62-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\yaani\.gradle\caches\8.14.3\transforms\0f2e580c2346feeac2f196c6e128772a\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+63                android:value="androidx.startup" />
+63-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\yaani\.gradle\caches\8.14.3\transforms\0f2e580c2346feeac2f196c6e128772a\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+64            <meta-data
+64-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+65                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+65-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+66                android:value="androidx.startup" />
+66-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+67        </provider>
+68
+69        <receiver
+69-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+70            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+70-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+71            android:directBootAware="false"
+71-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+72            android:enabled="true"
+72-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+73            android:exported="true"
+73-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+74            android:permission="android.permission.DUMP" >
+74-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+75            <intent-filter>
+75-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+76                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+77            </intent-filter>
+78            <intent-filter>
+78-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+79                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+80            </intent-filter>
+81            <intent-filter>
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+82                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+83            </intent-filter>
+84            <intent-filter>
+84-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+85                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\yaani\.gradle\caches\8.14.3\transforms\cbeb35e077900557c6b0ed90af831b56\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+86            </intent-filter>
+87        </receiver>
+88    </application>
+89
+90</manifest>

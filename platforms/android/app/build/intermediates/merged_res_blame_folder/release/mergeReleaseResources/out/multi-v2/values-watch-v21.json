@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "fr.sante.mentale.cesizen.app-mergeReleaseResources-25:/values-watch-v21/values-watch-v21.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\yaani\\.gradle\\caches\\8.14.3\\transforms\\984c572f1da799759a6f46275c33112b\\transformed\\appcompat-1.7.0\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "from": {
+                        "startLines": "2,6,10",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,271,499",
+                        "endLines": "5,9,13",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "266,494,724"
+                    }
+                }
+            ]
+        }
+    ]
+}

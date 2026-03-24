@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable_button_accented.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-debug-33:/drawable/button_accented.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable-mdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/drawable-mdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/mipmap-xxxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/mipmap-xxxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable-xhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/drawable-xhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/drawable/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/mipmap-hdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/mipmap-hdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/mipmap-xxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/mipmap-xxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/mipmap-mdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/mipmap-mdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable-xxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/drawable-xxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/layout_logcat_tab.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-debug-33:/layout/logcat_tab.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/layout_error_activity.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-debug-33:/layout/error_activity.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable-xxxhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/drawable-xxxhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/layout_exception_tab.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-debug-33:/layout/exception_tab.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/mipmap-xhdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/mipmap-xhdpi/icon.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable_button.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-debug-33:/drawable/button.xml"
+    },
+    {
+        "merged": "fr.sante.mentale.cesizen.app-debug-32:/drawable-hdpi_icon.xml.flat",
+        "source": "fr.sante.mentale.cesizen.app-main-34:/drawable-hdpi/icon.xml"
+    }
+]
