@@ -1,113 +1,119 @@
 <template>
-  <Page>
-    <!-- AppBar -->
-    <ActionBar>
-      <AppBar title="Ressources" showBack @back="navigateTo('Home')" />
-    </ActionBar>
-    
-    <DockLayout stretchLastChild="true">
-      
-      <!-- Bottom Menu -->
-      <BottomMenu dock="bottom" />
-      
-      <!-- Pagination -->
-      <StackLayout
-        dock="bottom"
-        orientation="horizontal"
-        horizontalAlignment="center"
-        margin="8"
-        spacing="8"
-      >
-        <Button text="« Prev" :isEnabled="currentPage > 1" @tap="prevPage" />
-        <Label :text="`Page ${currentPage} / ${totalPages}`" verticalAlignment="center" />
-        <Button text="Next »" :isEnabled="currentPage < totalPages" @tap="nextPage" />
-      </StackLayout>
-      
-      <!-- Contenu principal -->
-      <GridLayout rows="auto, *" :style="containerStyle">
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+
+      <!-- AppBar -->
+      <AppBar
+        row="0"
+        title="Ressources"
+        showBack
+        @back="navigateTo('Home')"
+      />
+
+      <DockLayout row="1" stretchLastChild="true">
         
-        <!-- HEADER (fixe) -->
-        <StackLayout row="0" :style="searchBarContainer">
-          <SearchBar
-            v-model="searchQuery"
-            @search="onSearch"
-            hint="Rechercher une ressource..."
-          />
-          
-          <!-- Filtres -->
-          <ScrollView orientation="horizontal" :style="filterScrollStyle">
-            <StackLayout orientation="horizontal">
-              <Label
-                text="Tous"
-                :style="filterChip(selectedCategory === null)"
-                @tap="selectCategory(null)"
-              />
-              <Label
-                v-for="cat in categories"
-                :key="cat.id"
-                :text="cat.name"
-                :style="filterChip(selectedCategory === cat.id)"
-                @tap="selectCategory(cat.id)"
-              />
-            </StackLayout>
-          </ScrollView>
-          
-          <!-- Page size -->
-          <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="8">
-            <Label
-              v-for="size in pageSizes"
-              :key="size"
-              :text="`${size}`"
-              :style="pageSizeChip(size === pageSize)"
-              @tap="setPageSize(size)"
-            />
-          </StackLayout>
+        <!-- Bottom Menu -->
+        <BottomMenu dock="bottom" />
+        
+        <!-- Pagination -->
+        <StackLayout
+          dock="bottom"
+          orientation="horizontal"
+          horizontalAlignment="center"
+          margin="8"
+          spacing="8"
+        >
+          <Button text="« Prev" :isEnabled="currentPage > 1" @tap="prevPage" />
+          <Label :text="`Page ${currentPage} / ${totalPages}`" verticalAlignment="center" />
+          <Button text="Next »" :isEnabled="currentPage < totalPages" @tap="nextPage" />
         </StackLayout>
         
-        <!-- LISTE (scroll native) -->
-        <ListView
-          row="1"
-          :items="paginatedPages"
-          @itemTap="onPageTap"
-        >
-          <template #default="{ item }">
-            <GridLayout columns="auto, *" :style="cardStyle">
-              <StackLayout col="0" :style="imagePlaceholder">
-                <Label text="📄" :style="imageIcon" />
-              </StackLayout>
-              
-              <StackLayout col="1" :style="cardContent">
-                <Label :text="item.title" :style="cardTitleStyle" textWrap="true" />
-                <Label :text="item.category.name" :style="cardCategoryStyle" />
+        <!-- Contenu principal -->
+        <GridLayout rows="auto, *" :style="containerStyle">
+          
+          <!-- HEADER (fixe) -->
+          <StackLayout row="0" :style="searchBarContainer">
+            <SearchBar
+              v-model="searchQuery"
+              @search="onSearch"
+              hint="Rechercher une ressource..."
+            />
+            
+            <!-- Filtres -->
+            <ScrollView orientation="horizontal" :style="filterScrollStyle">
+              <StackLayout orientation="horizontal">
                 <Label
-                  v-if="item.content && item.content[0]"
-                  :text="item.content[0].description"
-                  :style="cardPreviewStyle"
-                  textWrap="true"
-                  maxLines="2"
+                  text="Tous"
+                  :style="filterChip(selectedCategory === null)"
+                  @tap="selectCategory(null)"
+                />
+                <Label
+                  v-for="cat in categories"
+                  :key="cat.id"
+                  :text="cat.name"
+                  :style="filterChip(selectedCategory === cat.id)"
+                  @tap="selectCategory(cat.id)"
                 />
               </StackLayout>
-            </GridLayout>
-          </template>
-        </ListView>
+            </ScrollView>
+            
+            <!-- Page size -->
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="8">
+              <Label
+                v-for="size in pageSizes"
+                :key="size"
+                :text="`${size}`"
+                :style="pageSizeChip(size === pageSize)"
+                @tap="setPageSize(size)"
+              />
+            </StackLayout>
+          </StackLayout>
+          
+          <!-- LISTE (scroll native) -->
+          <ListView
+            row="1"
+            :items="paginatedPages"
+            @itemTap="onPageTap"
+          >
+            <template #default="{ item }">
+              <GridLayout columns="auto, *" :style="cardStyle">
+                <StackLayout col="0" :style="imagePlaceholder">
+                  <Label text="📄" :style="imageIcon" />
+                </StackLayout>
+                
+                <StackLayout col="1" :style="cardContent">
+                  <Label :text="item.title" :style="cardTitleStyle" textWrap="true" />
+                  <Label :text="item.category.name" :style="cardCategoryStyle" />
+                  <Label
+                    v-if="item.content && item.content[0]"
+                    :text="item.content[0].description"
+                    :style="cardPreviewStyle"
+                    textWrap="true"
+                    maxLines="2"
+                  />
+                </StackLayout>
+              </GridLayout>
+            </template>
+          </ListView>
+          
+        </GridLayout>
         
-      </GridLayout>
-      
-      <!-- Loader -->
-      <ActivityIndicator
-        v-if="loading"
-        :busy="true"
-        :style="loaderStyle"
-      />
-      
-      <!-- Empty -->
-      <Label
-        v-if="!loading && filteredPages.length === 0"
-        text="Aucune ressource disponible."
-        :style="emptyStyle"
-      />
-      
-    </DockLayout>
+        <!-- Loader -->
+        <ActivityIndicator
+          v-if="loading"
+          :busy="true"
+          :style="loaderStyle"
+        />
+        
+        <!-- Empty -->
+        <Label
+          v-if="!loading && filteredPages.length === 0"
+          text="Aucune ressource disponible."
+          :style="emptyStyle"
+        />
+        
+      </DockLayout>
+    </GridLayout>
   </Page>
 </template>
 

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { User, LoginRequest, RegisterRequest, JwtResponse } from '../types'
+import type { User, LoginRequest, RegisterRequest, JwtResponse, JwtResponseLogin } from '../types'
 import { authApi, setTokenGetter } from '../services/api'
 
 // Stockage secure key (NativeScript ApplicationSettings)
@@ -51,26 +51,28 @@ export const useAuthStore = defineStore('auth', () => {
   setTokenGetter(() => token.value)
 
   async function login(credentials: LoginRequest): Promise<void> {
-    loading.value = true
-    error.value = null
-    try {
-      const res: JwtResponse = await authApi.login(credentials)
-      token.value = res.token
-      persistToken(res.token)
-      // Profil charged with user store
-    } catch (e: any) {
-      error.value = e.message ?? 'Erreur de connexion'
-      throw e
-    } finally {
-      loading.value = false
-    }
+  loading.value = true
+  error.value = null
+  try {
+    const res: JwtResponseLogin = await authApi.login(credentials)
+    token.value = res.token
+    persistToken(res.token)
+    // ✅ Ajoutez ces deux lignes
+    user.value = res.user
+    persistUser(res.user)
+  } catch (e: any) {
+    error.value = e.message ?? 'Erreur de connexion'
+    throw e
+  } finally {
+    loading.value = false
   }
+}
 
   async function register(data: RegisterRequest): Promise<void> {
     loading.value = true
     error.value = null
     try {
-      const res: JwtResponse = await authApi.register(data)
+      const res: JwtResponseLogin = await authApi.register(data)
       token.value = res.token
       persistToken(res.token)
     } catch (e: any) {

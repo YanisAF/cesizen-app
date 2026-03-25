@@ -51,8 +51,9 @@ const buttonStyle = computed(() => {
     borderRadius: DSFR.radius.sm,
     fontWeight: DSFR.typography.weightBold,
     textTransform: 'none' as const,
-    width: props.fullWidth ? '100%' : 'auto',
-    opacity: props.disabled ? 0.6 : 1
+    width: props.fullWidth ? '100%' : 'auto', // reste le même
+    opacity: props.disabled ? 0.6 : 1,
+    marginTop: 12
   }
 
   const sizes = {

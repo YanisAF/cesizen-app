@@ -1,11 +1,14 @@
 <template>
-  <GridLayout rows="auto" columns="auto, *, auto" :style="barStyle">
+  <GridLayout rows="66" columns="auto, *, auto" :style="barStyle">
     <!-- Return button -->
-    <Button
+    <Image
       v-if="showBack"
       col="0"
-      text="←"
-      :style="backStyle"
+      src="~/assets/icons/back-redirection.png"
+      width="24"
+      height="24"
+      :style="backImageStyle"
+      verticalAlignment="center"
       accessibilityRole="button"
       accessibilityLabel="Retour"
       @tap="goBack"
@@ -18,6 +21,7 @@
       :text="title"
       :style="titleStyle"
       horizontalAlignment="center"
+      verticalAlignment="center"
       accessibilityRole="header"
     />
 
@@ -50,8 +54,14 @@ function goBack() { emit('back') }
 
 const barStyle = computed(() => ({
   backgroundColor: '#008000',
-  height: 56,
-  width: '100%'
+  height: 66,
+}))
+
+const backImageStyle = computed(() => ({
+  tintColor: '#FFFFFF',
+  width: 24,
+  height: 24,
+  margin: 10
 }))
 
 const titleStyle = computed(() => ({
@@ -59,14 +69,6 @@ const titleStyle = computed(() => ({
   fontSize: 16,
   fontWeight: 'bold',
   textAlign: 'center'
-}))
-
-const backStyle = computed(() => ({
-  color: '#FFFFFF',
-  fontSize: 20,
-  backgroundColor: 'transparent',
-  width: 40,
-  padding: 0
 }))
 
 const actionStyle = computed(() => ({

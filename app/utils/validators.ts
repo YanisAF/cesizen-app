@@ -12,14 +12,14 @@ export const validators = {
     valid: !!value?.trim(),
     message: `${label} est obligatoire`
   }),
-
+  
   userName: (value: string): ValidationResult => {
     if (!value?.trim()) return { valid: false, message: 'L\'identifiant est obligatoire' }
     if (value.length < 3 || value.length > 32)
       return { valid: false, message: 'L\'identifiant doit contenir entre 3 et 32 caractères' }
     return { valid: true, message: '' }
   },
-
+  
   email: (value: string): ValidationResult => {
     if (!value?.trim()) return { valid: false, message: 'L\'adresse électronique est obligatoire' }
     if (value.length < 6 || value.length > 32)
@@ -28,18 +28,18 @@ export const validators = {
     if (!re.test(value)) return { valid: false, message: 'Format d\'adresse électronique invalide' }
     return { valid: true, message: '' }
   },
-
+  
   password: (value: string): ValidationResult => {
     if (!value) return { valid: false, message: 'Le mot de passe est obligatoire' }
     if (value.length < 6) return { valid: false, message: 'Le mot de passe doit contenir au moins 6 caractères' }
     return { valid: true, message: '' }
   },
-
+  
   passwordConfirm: (password: string, confirm: string): ValidationResult => ({
     valid: password === confirm,
-    message: 'Les mots de passe ne correspondent pas'
+    message: password === confirm ? '' : 'Les mots de passe ne correspondent pas'
   }),
-
+  
   phone: (value: string): ValidationResult => {
     if (!value) return { valid: true, message: '' }  // optionnel
     const re = /^(\+33|0)[1-9](\d{8})$/
@@ -48,7 +48,7 @@ export const validators = {
       message: 'Numéro de téléphone invalide (format FR attendu)'
     }
   },
-
+  
   pin: (value: string): ValidationResult => {
     if (!value) return { valid: false, message: 'Le code est obligatoire' }
     if (!/^\d{4,6}$/.test(value))

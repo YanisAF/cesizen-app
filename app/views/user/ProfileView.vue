@@ -61,7 +61,7 @@
                 label="Désactiver mon compte"
                 variant="secondary"
                 fullWidth
-                @tap="confirmDeactivate"
+                @tap="confirmDesactivate"
               />
               <DsfrButton
                 label="Supprimer définitivement mon compte"
@@ -120,7 +120,7 @@ const infos = computed(() => [
   { label: 'Rôle', value: user.value?.role === 'ROLE_USER' ? 'Utilisateur' : 'Administrateur' }
 ])
 
-async function confirmDeactivate() {
+async function confirmDesactivate() {
   try {
     const { Dialogs } = require('@nativescript/core')
     const result = await Dialogs.confirm({
@@ -143,6 +143,7 @@ async function confirmDelete() {
       cancelButtonText: 'Annuler'
     })
     if (result && user.value?.id) await userStore.deleteAccount(user.value.id)
+    navigateTo('Home')
   } catch (_) { /* test env */ }
 }
 

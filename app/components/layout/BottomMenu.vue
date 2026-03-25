@@ -43,7 +43,7 @@ const itemsBase: MenuItem[] = [
 // Computed items with dynamic profil/login
 const computedItems = computed(() => {
   const extra: MenuItem = authStore.isAuthenticated
-    ? { route: 'UserProfile', label: 'Profil', icon: '~/assets/icons/user.png' }
+    ? { route: 'Profile', label: 'Profil', icon: '~/assets/icons/user.png' }
     : { route: 'Login', label: 'Connexion', icon: '~/assets/icons/login.png' }
   return [...itemsBase, extra]
 })

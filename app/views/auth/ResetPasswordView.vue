@@ -58,8 +58,14 @@ import DsfrButton from '../../components/common/DsfrButton.vue'
 import AlertBanner from '../../components/common/AlertBanner.vue'
 
 const { navigateTo } = useNavigation()
-const jwt = ref((route.query.jwt as string) ?? '')
-const channel = ref((route.query.channel as string) ?? 'email')
+const props = defineProps<{
+  jwt?: string
+  channel?: string
+}>()
+
+const jwt = ref(props.jwt ?? '')
+const channel = ref(props.channel ?? 'email')
+
 const newPassword = ref('')
 const confirmPassword = ref('')
 const passwordError = ref('')
@@ -69,7 +75,12 @@ const error = ref('')
 const success = ref(false)
 
 function validatePwd() { passwordError.value = validators.password(newPassword.value).message }
-function validateConfirm() { confirmError.value = validators.passwordConfirm(newPassword.value, confirmPassword.value).message }
+function validateConfirm() {
+  console.log('new:', JSON.stringify(newPassword.value))
+  console.log('confirm:', JSON.stringify(confirmPassword.value))
+  console.log('égaux ?', newPassword.value === confirmPassword.value)
+  confirmError.value = validators.passwordConfirm(newPassword.value, confirmPassword.value).message
+}
 
 async function submit() {
   validatePwd(); validateConfirm()

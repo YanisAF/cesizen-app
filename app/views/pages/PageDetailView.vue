@@ -1,7 +1,10 @@
 <template>
-  <Page>
-    <ActionBar>
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+
+      <!-- AppBar custom -->
       <AppBar
+        row="0"
         :title="page?.title ?? 'Ressource'"
         showBack
         :actionIcon="isSaved ? '🔖' : '☆'"
@@ -9,71 +12,73 @@
         @back="navigateTo('PageList')"
         @action="toggleSave"
       />
-    </ActionBar>
 
-    <ScrollView>
-      <StackLayout :style="containerStyle">
+      <!-- Contenu principal -->
+      <ScrollView row="1">
+        <StackLayout :style="containerStyle">
 
-        <!-- Loader -->
-        <ActivityIndicator v-if="pageStore.loading" :busy="true" :style="loaderStyle" />
+          <!-- Loader -->
+          <ActivityIndicator v-if="pageStore.loading" :busy="true" :style="loaderStyle" />
 
-        <template v-else-if="page">
-          
-          <!-- Hero image / placeholder -->
-          <StackLayout :style="heroContainer">
-            <Image
-              v-if="page.imageUrl"
-              :src="page.imageUrl"
-              stretch="aspectFill"
-              :style="heroImageStyle"
-              :accessibilityLabel="page.title"
-            />
-            <StackLayout v-else :style="heroPlaceholderStyle">
-              <Label text="📄" :style="heroIconStyle" />
+          <template v-else-if="page">
+            
+            <!-- Hero image / placeholder -->
+            <StackLayout :style="heroContainer">
+              <Image
+                v-if="page.imageUrl"
+                :src="page.imageUrl"
+                stretch="aspectFill"
+                :style="heroImageStyle"
+                :accessibilityLabel="page.title"
+              />
+              <StackLayout v-else :style="heroPlaceholderStyle">
+                <Label text="📄" :style="heroIconStyle" />
+              </StackLayout>
             </StackLayout>
-          </StackLayout>
 
-          <!-- Header -->
-          <StackLayout :style="headerStyle">
-            <Label :text="page.category.name" :style="categoryStyle" />
-            <Label :text="page.title" :style="titleStyle" textWrap="true" accessibilityRole="header" />
-          </StackLayout>
+            <!-- Header -->
+            <StackLayout :style="headerStyle">
+              <Label :text="page.category.name" :style="categoryStyle" />
+              <Label :text="page.title" :style="titleStyle" textWrap="true" accessibilityRole="header" />
+            </StackLayout>
 
-          <!-- Sauvegarde -->
-          <StackLayout v-if="authStore.isAuthenticated" :style="saveBarStyle">
-            <DsfrButton
-              :label="isSaved ? '🔖 Ressource sauvegardée' : '☆ Sauvegarder cette ressource'"
-              :variant="isSaved ? 'primary' : 'secondary'"
-              fullWidth
-              @tap="toggleSave"
-            />
-          </StackLayout>
+            <!-- Sauvegarde -->
+            <StackLayout v-if="authStore.isAuthenticated" :style="saveBarStyle">
+              <DsfrButton
+                :label="isSaved ? '🔖 Ressource sauvegardée' : '☆ Sauvegarder cette ressource'"
+                :variant="isSaved ? 'primary' : 'secondary'"
+                fullWidth
+                @tap="toggleSave"
+              />
+            </StackLayout>
 
-          <!-- Contenu -->
-          <StackLayout
-            v-for="(section, i) in page.content"
-            :key="i"
-            :style="sectionCardStyle"
-          >
-            <Label text="Article" :style="sectionTitleStyle" accessibilityRole="header" />
-            <Label :text="section.description" :style="descriptionStyle" textWrap="true" />
-            <Label
-              v-if="section.itemUrl"
-              :text="'🔗  ' + section.itemUrl"
-              :style="linkStyle"
-              @tap="openLink(section.itemUrl)"
-              accessibilityRole="link"
-              :accessibilityLabel="'Ouvrir le lien : ' + section.name"
-            />
-          </StackLayout>
+            <!-- Contenu -->
+            <StackLayout
+              v-for="(section, i) in page.content"
+              :key="i"
+              :style="sectionCardStyle"
+            >
+              <Label text="Article" :style="sectionTitleStyle" accessibilityRole="header" />
+              <Label :text="section.description" :style="descriptionStyle" textWrap="true" />
+              <Label
+                v-if="section.itemUrl"
+                :text="'🔗  ' + section.itemUrl"
+                :style="linkStyle"
+                @tap="openLink(section.itemUrl)"
+                accessibilityRole="link"
+                :accessibilityLabel="'Ouvrir le lien : ' + section.name"
+              />
+            </StackLayout>
 
-        </template>
+          </template>
 
-        <!-- Erreur -->
-        <AlertBanner v-if="pageStore.error" :message="pageStore.error" type="error" />
+          <!-- Erreur -->
+          <AlertBanner v-if="pageStore.error" :message="pageStore.error" type="error" />
 
-      </StackLayout>
-    </ScrollView>
+        </StackLayout>
+      </ScrollView>
+
+    </GridLayout>
   </Page>
 </template>
 
