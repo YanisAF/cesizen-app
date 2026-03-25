@@ -1,56 +1,56 @@
 <template>
-  <Page>
-    <!-- AppBar verte -->
-    <ActionBar>
+  <Page actionBarHidden="true">
+    <GridLayout rows="auto, *">
+
       <AppBar 
+        row="0"
         title="Catégories" 
         showBack 
         @back="navigateTo('Home')" 
       />
-    </ActionBar>
 
-    <DockLayout stretchLastChild="true">
-      <!-- Bottom menu -->
-      <BottomMenu dock="bottom" />
+      <DockLayout row="1" stretchLastChild="true">
+        <BottomMenu dock="bottom" />
 
-      <ScrollView>
-        <StackLayout :style="containerStyle">
-          <Label 
-            text="Explorer par catégorie" 
-            :style="pageTitleStyle" 
-            accessibilityRole="header" 
-          />
+        <ScrollView>
+          <StackLayout :style="containerStyle">
+            <Label 
+              text="Explorer par catégorie" 
+              :style="pageTitleStyle" 
+              accessibilityRole="header" 
+            />
 
-          <ActivityIndicator 
-            v-if="pageStore.loading" 
-            :busy="true" 
-            color="#FFFFFF" 
-          />
+            <ActivityIndicator 
+              v-if="pageStore.loading" 
+              :busy="true" 
+              color="#FFFFFF" 
+            />
 
-          <!-- Liste des catégories -->
-          <StackLayout
-            v-for="cat in pageStore.categories"
-            :key="cat.id"
-            :style="categoryCardStyle"
-            accessibilityRole="button"
-            :accessibilityLabel="'Voir les ressources : ' + cat.name"
-            @tap="selectCategory(cat.id)"
-          >
-            <GridLayout columns="*, auto">
-              <Label col="0" :text="cat.name" :style="catNameStyle" />
-              <Label col="1" :text="countForCategory(cat.id) + ' ressource(s)'" :style="catCountStyle" />
-            </GridLayout>
-            <Label text="›" :style="arrowStyle" />
+            <StackLayout
+              v-for="cat in pageStore.categories"
+              :key="cat.id"
+              :style="categoryCardStyle"
+              accessibilityRole="button"
+              :accessibilityLabel="'Voir les ressources : ' + cat.name"
+              @tap="selectCategory(cat.id)"
+            >
+              <GridLayout columns="*, auto">
+                <Label col="0" :text="cat.name" :style="catNameStyle" />
+                <Label col="1" :text="countForCategory(cat.id) + ' ressource(s)'" :style="catCountStyle" />
+              </GridLayout>
+              <Label text="›" :style="arrowStyle" />
+            </StackLayout>
+
+            <Label 
+              v-if="pageStore.categories.length === 0 && !pageStore.loading"
+              text="Aucune catégorie disponible." 
+              :style="emptyStyle" 
+            />
           </StackLayout>
+        </ScrollView>
+      </DockLayout>
 
-          <Label 
-            v-if="pageStore.categories.length === 0 && !pageStore.loading"
-            text="Aucune catégorie disponible." 
-            :style="emptyStyle" 
-          />
-        </StackLayout>
-      </ScrollView>
-    </DockLayout>
+    </GridLayout>
   </Page>
 </template>
 
@@ -61,6 +61,7 @@ import { DSFR } from '../../utils/design'
 import AppBar from '../../components/layout/AppBar.vue'
 import BottomMenu from '../../components/layout/BottomMenu.vue'
 import { useNavigation } from '../../composables/useNavigation'
+import { GridLayout } from '@nativescript/core'
 
 const { navigateTo } = useNavigation()
 const pageStore = usePageStore()

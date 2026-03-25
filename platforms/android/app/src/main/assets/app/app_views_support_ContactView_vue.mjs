@@ -220,21 +220,19 @@ __webpack_require__.r(__webpack_exports__);
         function goBack() { emit('back'); }
         const barStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             backgroundColor: '#008000',
-            height: 56,
-            width: '100%'
+            height: 66,
+        }));
+        const backImageStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
+            tintColor: '#FFFFFF',
+            width: 24,
+            height: 24,
+            margin: 10
         }));
         const titleStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
             fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center'
-        }));
-        const backStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
-            color: '#FFFFFF',
-            fontSize: 20,
-            backgroundColor: 'transparent',
-            width: 40,
-            padding: 0
         }));
         const actionStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
@@ -243,7 +241,7 @@ __webpack_require__.r(__webpack_exports__);
             width: 40,
             padding: 0
         }));
-        const __returned__ = { emit, goBack, barStyle, titleStyle, backStyle, actionStyle };
+        const __returned__ = { emit, goBack, barStyle, backImageStyle, titleStyle, actionStyle };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -434,22 +432,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+    const _component_Image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Image");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
+    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-        rows: "auto",
+        rows: "66",
         columns: "auto, *, auto",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.barStyle)
     }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Return button "),
             ($props.showBack)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
+                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
                     key: 0,
                     col: "0",
-                    text: "←",
-                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backStyle),
+                    src: "~/assets/icons/back-redirection.png",
+                    width: "24",
+                    height: "24",
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backImageStyle),
+                    verticalAlignment: "center",
                     accessibilityRole: "button",
                     accessibilityLabel: "Retour",
                     onTap: $setup.goBack
@@ -466,6 +468,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 text: $props.title,
                 style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.titleStyle),
                 horizontalAlignment: "center",
+                verticalAlignment: "center",
                 accessibilityRole: "header"
             }, null, 8 /* PROPS */, ["text", "style"]),
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slot right action "),
@@ -503,186 +506,188 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_ListPicker = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ListPicker");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
+    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Contacter le support",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.goBack()))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" En-tête "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                class: "page-header",
-                                marginBottom: "24"
-                            }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Une question ? Un problème ?",
-                                        class: "page-title",
-                                        accessibilityRole: "header",
-                                        textWrap: ""
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Notre équipe est là pour vous aider. Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais.",
-                                        class: "page-subtitle",
-                                        textWrap: ""
-                                    })
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Succès envoi "),
-                            ($setup.sent)
-                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                    key: 0,
-                                    type: "success",
-                                    message: "Votre message a bien été envoyé. Nous vous répondrons dans les 48h.",
-                                    marginBottom: "16"
-                                }))
-                                : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Formulaire "),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, null, {
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" En-tête "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                        class: "page-header",
+                                        marginBottom: "24"
+                                    }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nom "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                                modelValue: $setup.form.name,
-                                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.form.name) = $event)),
-                                                label: "Nom et prénom *",
-                                                placeholder: "Ex : Marie Dupont",
-                                                error: $setup.errors.name,
-                                                accessibilityLabel: "Votre nom et prénom"
-                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Email "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                                modelValue: $setup.form.email,
-                                                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.form.email) = $event)),
-                                                label: "Adresse électronique *",
-                                                placeholder: "exemple@domaine.fr",
-                                                keyboardType: "email",
-                                                error: $setup.errors.email,
-                                                accessibilityLabel: "Votre adresse électronique"
-                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sujet "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { marginBottom: "16" }, {
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Une question ? Un problème ?",
+                                                class: "page-title",
+                                                accessibilityRole: "header",
+                                                textWrap: ""
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Notre équipe est là pour vous aider. Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais.",
+                                                class: "page-subtitle",
+                                                textWrap: ""
+                                            })
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    }),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Succès envoi "),
+                                    ($setup.sent)
+                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                            key: 0,
+                                            type: "success",
+                                            message: "Votre message a bien été envoyé. Nous vous répondrons dans les 48h.",
+                                            marginBottom: "16"
+                                        }))
+                                        : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Formulaire "),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, null, {
                                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "Sujet *",
-                                                        class: "input-label"
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nom "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                        modelValue: $setup.form.name,
+                                                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.form.name) = $event)),
+                                                        label: "Nom et prénom *",
+                                                        placeholder: "Ex : Marie Dupont",
+                                                        error: $setup.errors.name,
+                                                        accessibilityLabel: "Votre nom et prénom"
+                                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Email "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                        modelValue: $setup.form.email,
+                                                        "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.form.email) = $event)),
+                                                        label: "Adresse électronique *",
+                                                        placeholder: "exemple@domaine.fr",
+                                                        keyboardType: "email",
+                                                        error: $setup.errors.email,
+                                                        accessibilityLabel: "Votre adresse électronique"
+                                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sujet "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { marginBottom: "16" }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "Sujet *",
+                                                                class: "input-label"
+                                                            }),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListPicker, {
+                                                                items: $setup.subjects,
+                                                                selectedIndex: $setup.selectedSubjectIndex,
+                                                                onSelectedIndexChange: $setup.onSubjectChange,
+                                                                height: "120",
+                                                                accessibilityLabel: "Choisir un sujet"
+                                                            }, null, 8 /* PROPS */, ["selectedIndex"])
+                                                        ]),
+                                                        _: 1 /* STABLE */
                                                     }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListPicker, {
-                                                        items: $setup.subjects,
-                                                        selectedIndex: $setup.selectedSubjectIndex,
-                                                        onSelectedIndexChange: $setup.onSubjectChange,
-                                                        height: "120",
-                                                        accessibilityLabel: "Choisir un sujet"
-                                                    }, null, 8 /* PROPS */, ["selectedIndex"])
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Message "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                        modelValue: $setup.form.message,
+                                                        "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.form.message) = $event)),
+                                                        label: "Message *",
+                                                        placeholder: "Décrivez votre demande...",
+                                                        multiline: true,
+                                                        height: 120,
+                                                        error: $setup.errors.message,
+                                                        accessibilityLabel: "Votre message"
+                                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Mention RGPD "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                        class: "rgpd-notice",
+                                                        marginBottom: "20"
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "🔒 Vos données ne sont collectées que pour traiter votre demande, conformément au RGPD. Elles ne seront jamais transmises à des tiers.",
+                                                                class: "rgpd-text",
+                                                                textWrap: ""
+                                                            })
+                                                        ]),
+                                                        _: 1 /* STABLE */
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                        label: "Envoyer le message",
+                                                        variant: "primary",
+                                                        loading: $setup.loading,
+                                                        onTap: $setup.submitForm
+                                                    }, null, 8 /* PROPS */, ["loading"])
                                                 ]),
                                                 _: 1 /* STABLE */
+                                            })
+                                        ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */)),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Liens utiles "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                        class: "useful-links",
+                                        marginTop: "32"
+                                    }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Ressources d'urgence",
+                                                class: "links-title",
+                                                accessibilityRole: "header"
                                             }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Message "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                                modelValue: $setup.form.message,
-                                                "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.form.message) = $event)),
-                                                label: "Message *",
-                                                placeholder: "Décrivez votre demande...",
-                                                multiline: true,
-                                                height: "120",
-                                                error: $setup.errors.message,
-                                                accessibilityLabel: "Votre message"
-                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Mention RGPD "),
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                class: "rgpd-notice",
-                                                marginBottom: "20"
+                                                class: "link-row",
+                                                onTap: _cache[4] || (_cache[4] = ($event) => ($setup.openUrl('https://www.3114.fr')))
                                             }, {
                                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "🔒 Vos données ne sont collectées que pour traiter votre demande, conformément au RGPD. Elles ne seront jamais transmises à des tiers.",
-                                                        class: "rgpd-text",
-                                                        textWrap: ""
+                                                        text: "🆘 3114 — Numéro national prévention suicide",
+                                                        class: "link-text"
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        text: "Appel gratuit 24h/24 →",
+                                                        class: "link-sub"
                                                     })
                                                 ]),
                                                 _: 1 /* STABLE */
                                             }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                label: "Envoyer le message",
-                                                variant: "primary",
-                                                loading: $setup.loading,
-                                                onTap: $setup.submitForm
-                                            }, null, 8 /* PROPS */, ["loading"])
-                                        ]),
-                                        _: 1 /* STABLE */
-                                    })
-                                ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */)),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Liens utiles "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                class: "useful-links",
-                                marginTop: "32"
-                            }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Ressources d'urgence",
-                                        class: "links-title",
-                                        accessibilityRole: "header"
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                        class: "link-row",
-                                        onTap: _cache[4] || (_cache[4] = ($event) => ($setup.openUrl('https://www.3114.fr')))
-                                    }, {
-                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: "🆘 3114 — Numéro national prévention suicide",
-                                                class: "link-text"
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                class: "link-row",
+                                                onTap: _cache[5] || (_cache[5] = ($event) => ($setup.openUrl('https://www.psycom.org')))
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        text: "🧠 Psycom — Guide santé mentale",
+                                                        class: "link-text"
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        text: "psycom.org →",
+                                                        class: "link-sub"
+                                                    })
+                                                ]),
+                                                _: 1 /* STABLE */
                                             }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: "Appel gratuit 24h/24 →",
-                                                class: "link-sub"
-                                            })
-                                        ]),
-                                        _: 1 /* STABLE */
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                        class: "link-row",
-                                        onTap: _cache[5] || (_cache[5] = ($event) => ($setup.openUrl('https://www.psycom.org')))
-                                    }, {
-                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: "🧠 Psycom — Guide santé mentale",
-                                                class: "link-text"
-                                            }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: "psycom.org →",
-                                                class: "link-sub"
-                                            })
-                                        ]),
-                                        _: 1 /* STABLE */
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                        class: "link-row",
-                                        onTap: _cache[6] || (_cache[6] = ($event) => ($setup.openUrl('https://www.ameli.fr/assure/sante/themes/sante-mentale')))
-                                    }, {
-                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: "🏥 Ameli — Santé mentale",
-                                                class: "link-text"
-                                            }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: "ameli.fr →",
-                                                class: "link-sub"
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                class: "link-row",
+                                                onTap: _cache[6] || (_cache[6] = ($event) => ($setup.openUrl('https://www.ameli.fr/assure/sante/themes/sante-mentale')))
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        text: "🏥 Ameli — Santé mentale",
+                                                        class: "link-text"
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        text: "ameli.fr →",
+                                                        class: "link-sub"
+                                                    })
+                                                ]),
+                                                _: 1 /* STABLE */
                                             })
                                         ]),
                                         _: 1 /* STABLE */

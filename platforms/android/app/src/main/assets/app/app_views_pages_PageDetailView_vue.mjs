@@ -78,21 +78,19 @@ __webpack_require__.r(__webpack_exports__);
         function goBack() { emit('back'); }
         const barStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             backgroundColor: '#008000',
-            height: 56,
-            width: '100%'
+            height: 66,
+        }));
+        const backImageStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
+            tintColor: '#FFFFFF',
+            width: 24,
+            height: 24,
+            margin: 10
         }));
         const titleStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
             fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center'
-        }));
-        const backStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
-            color: '#FFFFFF',
-            fontSize: 20,
-            backgroundColor: 'transparent',
-            width: 40,
-            padding: 0
         }));
         const actionStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
@@ -101,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
             width: 40,
             padding: 0
         }));
-        const __returned__ = { emit, goBack, barStyle, titleStyle, backStyle, actionStyle };
+        const __returned__ = { emit, goBack, barStyle, backImageStyle, titleStyle, actionStyle };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -280,22 +278,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+    const _component_Image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Image");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
+    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-        rows: "auto",
+        rows: "66",
         columns: "auto, *, auto",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.barStyle)
     }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Return button "),
             ($props.showBack)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
+                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
                     key: 0,
                     col: "0",
-                    text: "←",
-                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backStyle),
+                    src: "~/assets/icons/back-redirection.png",
+                    width: "24",
+                    height: "24",
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backImageStyle),
+                    verticalAlignment: "center",
                     accessibilityRole: "button",
                     accessibilityLabel: "Retour",
                     onTap: $setup.goBack
@@ -312,6 +314,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 text: $props.title,
                 style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.titleStyle),
                 horizontalAlignment: "center",
+                verticalAlignment: "center",
                 accessibilityRole: "header"
             }, null, 8 /* PROPS */, ["text", "style"]),
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slot right action "),
@@ -349,141 +352,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_ActivityIndicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActivityIndicator");
     const _component_Image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Image");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
+    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar custom "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: $setup.page?.title ?? 'Ressource',
                         showBack: "",
                         actionIcon: $setup.isSaved ? '🔖' : '☆',
                         actionLabel: $setup.isSaved ? 'Retirer des favoris' : 'Sauvegarder cette ressource',
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('PageList'))),
                         onAction: $setup.toggleSave
-                    }, null, 8 /* PROPS */, ["title", "actionIcon", "actionLabel"])
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                    }, null, 8 /* PROPS */, ["title", "actionIcon", "actionLabel"]),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenu principal "),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Loader "),
-                            ($setup.pageStore.loading)
-                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
-                                    key: 0,
-                                    busy: true,
-                                    style: $setup.loaderStyle
-                                }))
-                                : ($setup.page)
-                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Hero image / placeholder "),
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.heroContainer }, {
-                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                ($setup.page.imageUrl)
-                                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Loader "),
+                                    ($setup.pageStore.loading)
+                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
+                                            key: 0,
+                                            busy: true,
+                                            style: $setup.loaderStyle
+                                        }))
+                                        : ($setup.page)
+                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Hero image / placeholder "),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.heroContainer }, {
+                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                        ($setup.page.imageUrl)
+                                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
+                                                                key: 0,
+                                                                src: $setup.page.imageUrl,
+                                                                stretch: "aspectFill",
+                                                                style: $setup.heroImageStyle,
+                                                                accessibilityLabel: $setup.page.title
+                                                            }, null, 8 /* PROPS */, ["src", "accessibilityLabel"]))
+                                                            : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
+                                                                key: 1,
+                                                                style: $setup.heroPlaceholderStyle
+                                                            }, {
+                                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                        text: "📄",
+                                                                        style: $setup.heroIconStyle
+                                                                    })
+                                                                ]),
+                                                                _: 1 /* STABLE */
+                                                            }))
+                                                    ]),
+                                                    _: 1 /* STABLE */
+                                                }),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Header "),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
+                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                            text: $setup.page.category.name,
+                                                            style: $setup.categoryStyle
+                                                        }, null, 8 /* PROPS */, ["text"]),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                            text: $setup.page.title,
+                                                            style: $setup.titleStyle,
+                                                            textWrap: "true",
+                                                            accessibilityRole: "header"
+                                                        }, null, 8 /* PROPS */, ["text"])
+                                                    ]),
+                                                    _: 1 /* STABLE */
+                                                }),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sauvegarde "),
+                                                ($setup.authStore.isAuthenticated)
+                                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
                                                         key: 0,
-                                                        src: $setup.page.imageUrl,
-                                                        stretch: "aspectFill",
-                                                        style: $setup.heroImageStyle,
-                                                        accessibilityLabel: $setup.page.title
-                                                    }, null, 8 /* PROPS */, ["src", "accessibilityLabel"]))
-                                                    : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
-                                                        key: 1,
-                                                        style: $setup.heroPlaceholderStyle
+                                                        style: $setup.saveBarStyle
                                                     }, {
                                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                text: "📄",
-                                                                style: $setup.heroIconStyle
-                                                            })
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                label: $setup.isSaved ? '🔖 Ressource sauvegardée' : '☆ Sauvegarder cette ressource',
+                                                                variant: $setup.isSaved ? 'primary' : 'secondary',
+                                                                fullWidth: "",
+                                                                onTap: $setup.toggleSave
+                                                            }, null, 8 /* PROPS */, ["label", "variant"])
                                                         ]),
                                                         _: 1 /* STABLE */
                                                     }))
-                                            ]),
-                                            _: 1 /* STABLE */
-                                        }),
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Header "),
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
-                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                    text: $setup.page.category.name,
-                                                    style: $setup.categoryStyle
-                                                }, null, 8 /* PROPS */, ["text"]),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                    text: $setup.page.title,
-                                                    style: $setup.titleStyle,
-                                                    textWrap: "true",
-                                                    accessibilityRole: "header"
-                                                }, null, 8 /* PROPS */, ["text"])
-                                            ]),
-                                            _: 1 /* STABLE */
-                                        }),
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sauvegarde "),
-                                        ($setup.authStore.isAuthenticated)
-                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
-                                                key: 0,
-                                                style: $setup.saveBarStyle
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                        label: $setup.isSaved ? '🔖 Ressource sauvegardée' : '☆ Sauvegarder cette ressource',
-                                                        variant: $setup.isSaved ? 'primary' : 'secondary',
-                                                        fullWidth: "",
-                                                        onTap: $setup.toggleSave
-                                                    }, null, 8 /* PROPS */, ["label", "variant"])
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            }))
+                                                    : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenu "),
+                                                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.page.content, (section, i) => {
+                                                    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
+                                                        key: i,
+                                                        style: $setup.sectionCardStyle
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "Article",
+                                                                style: $setup.sectionTitleStyle,
+                                                                accessibilityRole: "header"
+                                                            }),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: section.description,
+                                                                style: $setup.descriptionStyle,
+                                                                textWrap: "true"
+                                                            }, null, 8 /* PROPS */, ["text"]),
+                                                            (section.itemUrl)
+                                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                                    key: 0,
+                                                                    text: '🔗  ' + section.itemUrl,
+                                                                    style: $setup.linkStyle,
+                                                                    onTap: ($event) => ($setup.openLink(section.itemUrl)),
+                                                                    accessibilityRole: "link",
+                                                                    accessibilityLabel: 'Ouvrir le lien : ' + section.name
+                                                                }, null, 8 /* PROPS */, ["text", "onTap", "accessibilityLabel"]))
+                                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                        ]),
+                                                        _: 2 /* DYNAMIC */
+                                                    }, 1024 /* DYNAMIC_SLOTS */));
+                                                }), 128 /* KEYED_FRAGMENT */))
+                                            ], 64 /* STABLE_FRAGMENT */))
                                             : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenu "),
-                                        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.page.content, (section, i) => {
-                                            return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
-                                                key: i,
-                                                style: $setup.sectionCardStyle
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "Article",
-                                                        style: $setup.sectionTitleStyle,
-                                                        accessibilityRole: "header"
-                                                    }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: section.description,
-                                                        style: $setup.descriptionStyle,
-                                                        textWrap: "true"
-                                                    }, null, 8 /* PROPS */, ["text"]),
-                                                    (section.itemUrl)
-                                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
-                                                            key: 0,
-                                                            text: '🔗  ' + section.itemUrl,
-                                                            style: $setup.linkStyle,
-                                                            onTap: ($event) => ($setup.openLink(section.itemUrl)),
-                                                            accessibilityRole: "link",
-                                                            accessibilityLabel: 'Ouvrir le lien : ' + section.name
-                                                        }, null, 8 /* PROPS */, ["text", "onTap", "accessibilityLabel"]))
-                                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
-                                                ]),
-                                                _: 2 /* DYNAMIC */
-                                            }, 1024 /* DYNAMIC_SLOTS */));
-                                        }), 128 /* KEYED_FRAGMENT */))
-                                    ], 64 /* STABLE_FRAGMENT */))
-                                    : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Erreur "),
-                            ($setup.pageStore.error)
-                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                    key: 2,
-                                    message: $setup.pageStore.error,
-                                    type: "error"
-                                }, null, 8 /* PROPS */, ["message"]))
-                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Erreur "),
+                                    ($setup.pageStore.error)
+                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                            key: 2,
+                                            message: $setup.pageStore.error,
+                                            type: "error"
+                                        }, null, 8 /* PROPS */, ["message"]))
+                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                ]),
+                                _: 1 /* STABLE */
+                            })
                         ]),
                         _: 1 /* STABLE */
                     })

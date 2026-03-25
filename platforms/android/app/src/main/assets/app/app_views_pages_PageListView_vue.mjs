@@ -27,21 +27,19 @@ __webpack_require__.r(__webpack_exports__);
         function goBack() { emit('back'); }
         const barStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             backgroundColor: '#008000',
-            height: 56,
-            width: '100%'
+            height: 66,
+        }));
+        const backImageStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
+            tintColor: '#FFFFFF',
+            width: 24,
+            height: 24,
+            margin: 10
         }));
         const titleStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
             fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center'
-        }));
-        const backStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
-            color: '#FFFFFF',
-            fontSize: 20,
-            backgroundColor: 'transparent',
-            width: 40,
-            padding: 0
         }));
         const actionStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
@@ -50,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
             width: 40,
             padding: 0
         }));
-        const __returned__ = { emit, goBack, barStyle, titleStyle, backStyle, actionStyle };
+        const __returned__ = { emit, goBack, barStyle, backImageStyle, titleStyle, actionStyle };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -216,22 +214,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+    const _component_Image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Image");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
+    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-        rows: "auto",
+        rows: "66",
         columns: "auto, *, auto",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.barStyle)
     }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Return button "),
             ($props.showBack)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
+                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
                     key: 0,
                     col: "0",
-                    text: "←",
-                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backStyle),
+                    src: "~/assets/icons/back-redirection.png",
+                    width: "24",
+                    height: "24",
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backImageStyle),
+                    verticalAlignment: "center",
                     accessibilityRole: "button",
                     accessibilityLabel: "Retour",
                     onTap: $setup.goBack
@@ -248,6 +250,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 text: $props.title,
                 style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.titleStyle),
                 horizontalAlignment: "center",
+                verticalAlignment: "center",
                 accessibilityRole: "header"
             }, null, 8 /* PROPS */, ["text", "style"]),
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slot right action "),
@@ -285,7 +288,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
@@ -295,190 +297,194 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_ActivityIndicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActivityIndicator");
     const _component_DockLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DockLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Ressources",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Home')))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DockLayout, { stretchLastChild: "true" }, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bottom Menu "),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BottomMenu"], { dock: "bottom" }),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Pagination "),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                        dock: "bottom",
-                        orientation: "horizontal",
-                        horizontalAlignment: "center",
-                        margin: "8",
-                        spacing: "8"
-                    }, {
-                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-                                text: "« Prev",
-                                isEnabled: $setup.currentPage > 1,
-                                onTap: $setup.prevPage
-                            }, null, 8 /* PROPS */, ["isEnabled"]),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                text: `Page ${$setup.currentPage} / ${$setup.totalPages}`,
-                                verticalAlignment: "center"
-                            }, null, 8 /* PROPS */, ["text"]),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-                                text: "Next »",
-                                isEnabled: $setup.currentPage < $setup.totalPages,
-                                onTap: $setup.nextPage
-                            }, null, 8 /* PROPS */, ["isEnabled"])
-                        ]),
-                        _: 1 /* STABLE */
                     }),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenu principal "),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                        rows: "auto, *",
-                        style: $setup.containerStyle
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DockLayout, {
+                        row: "1",
+                        stretchLastChild: "true"
                     }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" HEADER (fixe) "),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bottom Menu "),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BottomMenu"], { dock: "bottom" }),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Pagination "),
                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                row: "0",
-                                style: $setup.searchBarContainer
+                                dock: "bottom",
+                                orientation: "horizontal",
+                                horizontalAlignment: "center",
+                                margin: "8",
+                                spacing: "8"
                             }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchBar"], {
-                                        modelValue: $setup.searchQuery,
-                                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.searchQuery) = $event)),
-                                        onSearch: $setup.onSearch,
-                                        hint: "Rechercher une ressource..."
-                                    }, null, 8 /* PROPS */, ["modelValue"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Filtres "),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, {
-                                        orientation: "horizontal",
-                                        style: $setup.filterScrollStyle
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+                                        text: "« Prev",
+                                        isEnabled: $setup.currentPage > 1,
+                                        onTap: $setup.prevPage
+                                    }, null, 8 /* PROPS */, ["isEnabled"]),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                        text: `Page ${$setup.currentPage} / ${$setup.totalPages}`,
+                                        verticalAlignment: "center"
+                                    }, null, 8 /* PROPS */, ["text"]),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+                                        text: "Next »",
+                                        isEnabled: $setup.currentPage < $setup.totalPages,
+                                        onTap: $setup.nextPage
+                                    }, null, 8 /* PROPS */, ["isEnabled"])
+                                ]),
+                                _: 1 /* STABLE */
+                            }),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenu principal "),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                rows: "auto, *",
+                                style: $setup.containerStyle
+                            }, {
+                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" HEADER (fixe) "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                        row: "0",
+                                        style: $setup.searchBarContainer
                                     }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { orientation: "horizontal" }, {
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchBar"], {
+                                                modelValue: $setup.searchQuery,
+                                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.searchQuery) = $event)),
+                                                onSearch: $setup.onSearch,
+                                                hint: "Rechercher une ressource..."
+                                            }, null, 8 /* PROPS */, ["modelValue"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Filtres "),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, {
+                                                orientation: "horizontal",
+                                                style: $setup.filterScrollStyle
+                                            }, {
                                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "Tous",
-                                                        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.filterChip($setup.selectedCategory === null)),
-                                                        onTap: _cache[2] || (_cache[2] = ($event) => ($setup.selectCategory(null)))
-                                                    }, null, 8 /* PROPS */, ["style"]),
-                                                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categories, (cat) => {
-                                                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
-                                                            key: cat.id,
-                                                            text: cat.name,
-                                                            style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.filterChip($setup.selectedCategory === cat.id)),
-                                                            onTap: ($event) => ($setup.selectCategory(cat.id))
-                                                        }, null, 8 /* PROPS */, ["text", "style", "onTap"]));
-                                                    }), 128 /* KEYED_FRAGMENT */))
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { orientation: "horizontal" }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "Tous",
+                                                                style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.filterChip($setup.selectedCategory === null)),
+                                                                onTap: _cache[2] || (_cache[2] = ($event) => ($setup.selectCategory(null)))
+                                                            }, null, 8 /* PROPS */, ["style"]),
+                                                            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categories, (cat) => {
+                                                                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                                    key: cat.id,
+                                                                    text: cat.name,
+                                                                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.filterChip($setup.selectedCategory === cat.id)),
+                                                                    onTap: ($event) => ($setup.selectCategory(cat.id))
+                                                                }, null, 8 /* PROPS */, ["text", "style", "onTap"]));
+                                                            }), 128 /* KEYED_FRAGMENT */))
+                                                        ]),
+                                                        _: 1 /* STABLE */
+                                                    })
+                                                ]),
+                                                _: 1 /* STABLE */
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page size "),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                orientation: "horizontal",
+                                                horizontalAlignment: "center",
+                                                marginTop: "8"
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.pageSizes, (size) => {
+                                                        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                            key: size,
+                                                            text: `${size}`,
+                                                            style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.pageSizeChip(size === $setup.pageSize)),
+                                                            onTap: ($event) => ($setup.setPageSize(size))
+                                                        }, null, 8 /* PROPS */, ["text", "style", "onTap"]);
+                                                    }), 64 /* STABLE_FRAGMENT */))
                                                 ]),
                                                 _: 1 /* STABLE */
                                             })
                                         ]),
                                         _: 1 /* STABLE */
                                     }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page size "),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                        orientation: "horizontal",
-                                        horizontalAlignment: "center",
-                                        marginTop: "8"
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" LISTE (scroll native) "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListView, {
+                                        row: "1",
+                                        items: $setup.paginatedPages,
+                                        onItemTap: $setup.onPageTap
                                     }, {
-                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.pageSizes, (size) => {
-                                                return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                    key: size,
-                                                    text: `${size}`,
-                                                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.pageSizeChip(size === $setup.pageSize)),
-                                                    onTap: ($event) => ($setup.setPageSize(size))
-                                                }, null, 8 /* PROPS */, ["text", "style", "onTap"]);
-                                            }), 64 /* STABLE_FRAGMENT */))
-                                        ]),
-                                        _: 1 /* STABLE */
-                                    })
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" LISTE (scroll native) "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListView, {
-                                row: "1",
-                                items: $setup.paginatedPages,
-                                onItemTap: $setup.onPageTap
-                            }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(({ item }) => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                        columns: "auto, *",
-                                        style: $setup.cardStyle
-                                    }, {
-                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                col: "0",
-                                                style: $setup.imagePlaceholder
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(({ item }) => [
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                columns: "auto, *",
+                                                style: $setup.cardStyle
                                             }, {
                                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "📄",
-                                                        style: $setup.imageIcon
-                                                    })
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                col: "1",
-                                                style: $setup.cardContent
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: item.title,
-                                                        style: $setup.cardTitleStyle,
-                                                        textWrap: "true"
-                                                    }, null, 8 /* PROPS */, ["text"]),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: item.category.name,
-                                                        style: $setup.cardCategoryStyle
-                                                    }, null, 8 /* PROPS */, ["text"]),
-                                                    (item.content && item.content[0])
-                                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
-                                                            key: 0,
-                                                            text: item.content[0].description,
-                                                            style: $setup.cardPreviewStyle,
-                                                            textWrap: "true",
-                                                            maxLines: "2"
-                                                        }, null, 8 /* PROPS */, ["text"]))
-                                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                        col: "0",
+                                                        style: $setup.imagePlaceholder
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "📄",
+                                                                style: $setup.imageIcon
+                                                            })
+                                                        ]),
+                                                        _: 1 /* STABLE */
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                        col: "1",
+                                                        style: $setup.cardContent
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: item.title,
+                                                                style: $setup.cardTitleStyle,
+                                                                textWrap: "true"
+                                                            }, null, 8 /* PROPS */, ["text"]),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: item.category.name,
+                                                                style: $setup.cardCategoryStyle
+                                                            }, null, 8 /* PROPS */, ["text"]),
+                                                            (item.content && item.content[0])
+                                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                                    key: 0,
+                                                                    text: item.content[0].description,
+                                                                    style: $setup.cardPreviewStyle,
+                                                                    textWrap: "true",
+                                                                    maxLines: "2"
+                                                                }, null, 8 /* PROPS */, ["text"]))
+                                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                        ]),
+                                                        _: 2 /* DYNAMIC */
+                                                    }, 1024 /* DYNAMIC_SLOTS */)
                                                 ]),
                                                 _: 2 /* DYNAMIC */
                                             }, 1024 /* DYNAMIC_SLOTS */)
                                         ]),
-                                        _: 2 /* DYNAMIC */
-                                    }, 1024 /* DYNAMIC_SLOTS */)
+                                        _: 1 /* STABLE */
+                                    }, 8 /* PROPS */, ["items"])
                                 ]),
                                 _: 1 /* STABLE */
-                            }, 8 /* PROPS */, ["items"])
+                            }),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Loader "),
+                            ($setup.loading)
+                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
+                                    key: 0,
+                                    busy: true,
+                                    style: $setup.loaderStyle
+                                }))
+                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Empty "),
+                            (!$setup.loading && $setup.filteredPages.length === 0)
+                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                    key: 1,
+                                    text: "Aucune ressource disponible.",
+                                    style: $setup.emptyStyle
+                                }))
+                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
                         ]),
                         _: 1 /* STABLE */
-                    }),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Loader "),
-                    ($setup.loading)
-                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
-                            key: 0,
-                            busy: true,
-                            style: $setup.loaderStyle
-                        }))
-                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Empty "),
-                    (!$setup.loading && $setup.filteredPages.length === 0)
-                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
-                            key: 1,
-                            text: "Aucune ressource disponible.",
-                            style: $setup.emptyStyle
-                        }))
-                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                    })
                 ]),
                 _: 1 /* STABLE */
             })

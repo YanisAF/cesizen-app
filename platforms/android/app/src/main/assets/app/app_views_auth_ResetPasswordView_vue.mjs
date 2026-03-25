@@ -203,21 +203,19 @@ __webpack_require__.r(__webpack_exports__);
         function goBack() { emit('back'); }
         const barStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             backgroundColor: '#008000',
-            height: 56,
-            width: '100%'
+            height: 66,
+        }));
+        const backImageStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
+            tintColor: '#FFFFFF',
+            width: 24,
+            height: 24,
+            margin: 10
         }));
         const titleStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
             fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center'
-        }));
-        const backStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
-            color: '#FFFFFF',
-            fontSize: 20,
-            backgroundColor: 'transparent',
-            width: 40,
-            padding: 0
         }));
         const actionStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
@@ -226,7 +224,7 @@ __webpack_require__.r(__webpack_exports__);
             width: 40,
             padding: 0
         }));
-        const __returned__ = { emit, goBack, barStyle, titleStyle, backStyle, actionStyle };
+        const __returned__ = { emit, goBack, barStyle, backImageStyle, titleStyle, actionStyle };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -422,22 +420,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+    const _component_Image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Image");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
+    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-        rows: "auto",
+        rows: "66",
         columns: "auto, *, auto",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.barStyle)
     }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Return button "),
             ($props.showBack)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
+                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
                     key: 0,
                     col: "0",
-                    text: "←",
-                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backStyle),
+                    src: "~/assets/icons/back-redirection.png",
+                    width: "24",
+                    height: "24",
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backImageStyle),
+                    verticalAlignment: "center",
                     accessibilityRole: "button",
                     accessibilityLabel: "Retour",
                     onTap: $setup.goBack
@@ -454,6 +456,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 text: $props.title,
                 style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.titleStyle),
                 horizontalAlignment: "center",
+                verticalAlignment: "center",
                 accessibilityRole: "header"
             }, null, 8 /* PROPS */, ["text", "style"]),
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slot right action "),

@@ -95,21 +95,19 @@ __webpack_require__.r(__webpack_exports__);
         function goBack() { emit('back'); }
         const barStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             backgroundColor: '#008000',
-            height: 56,
-            width: '100%'
+            height: 66,
+        }));
+        const backImageStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
+            tintColor: '#FFFFFF',
+            width: 24,
+            height: 24,
+            margin: 10
         }));
         const titleStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
             fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center'
-        }));
-        const backStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
-            color: '#FFFFFF',
-            fontSize: 20,
-            backgroundColor: 'transparent',
-            width: 40,
-            padding: 0
         }));
         const actionStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
@@ -118,7 +116,7 @@ __webpack_require__.r(__webpack_exports__);
             width: 40,
             padding: 0
         }));
-        const __returned__ = { emit, goBack, barStyle, titleStyle, backStyle, actionStyle };
+        const __returned__ = { emit, goBack, barStyle, backImageStyle, titleStyle, actionStyle };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -293,22 +291,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+    const _component_Image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Image");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
+    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-        rows: "auto",
+        rows: "66",
         columns: "auto, *, auto",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.barStyle)
     }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Return button "),
             ($props.showBack)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
+                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
                     key: 0,
                     col: "0",
-                    text: "←",
-                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backStyle),
+                    src: "~/assets/icons/back-redirection.png",
+                    width: "24",
+                    height: "24",
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backImageStyle),
+                    verticalAlignment: "center",
                     accessibilityRole: "button",
                     accessibilityLabel: "Retour",
                     onTap: $setup.goBack
@@ -325,6 +327,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 text: $props.title,
                 style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.titleStyle),
                 horizontalAlignment: "center",
+                verticalAlignment: "center",
                 accessibilityRole: "header"
             }, null, 8 /* PROPS */, ["text", "style"]),
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slot right action "),
@@ -362,7 +365,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_ActivityIndicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActivityIndicator");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
@@ -371,218 +373,220 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Quiz",
                         showBack: "",
                         onBack: $setup.confirmExit
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Loader "),
-                            ($setup.quizStore.loading)
-                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
-                                    key: 0,
-                                    busy: "",
-                                    color: $setup.DSFR.colors.blueFranceSun,
-                                    horizontalAlignment: "center",
-                                    marginTop: "40",
-                                    accessibilityLabel: "Chargement du quiz en cours"
-                                }, null, 8 /* PROPS */, ["color"]))
-                                : ($setup.quizStore.error)
-                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Erreur "),
-                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AlertBanner"], {
-                                            type: "error",
-                                            message: $setup.quizStore.error
-                                        }, null, 8 /* PROPS */, ["message"])
-                                    ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
-                                    : ($setup.quiz)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 2 }, [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Quiz "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Header Quiz "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                class: "quiz-header",
-                                                marginBottom: "24"
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: $setup.quiz.title,
-                                                        class: "quiz-title",
-                                                        accessibilityRole: "header",
-                                                        textWrap: ""
-                                                    }, null, 8 /* PROPS */, ["text"]),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: $setup.quiz.description,
-                                                        class: "quiz-desc",
-                                                        textWrap: ""
-                                                    }, null, 8 /* PROPS */, ["text"]),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bandeau visiteur "),
-                                                    (!$setup.authStore.isAuthenticated)
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
+                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Loader "),
+                                    ($setup.quizStore.loading)
+                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
+                                            key: 0,
+                                            busy: "",
+                                            color: $setup.DSFR.colors.blueFranceSun,
+                                            horizontalAlignment: "center",
+                                            marginTop: "40",
+                                            accessibilityLabel: "Chargement du quiz en cours"
+                                        }, null, 8 /* PROPS */, ["color"]))
+                                        : ($setup.quizStore.error)
+                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Erreur "),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AlertBanner"], {
+                                                    type: "error",
+                                                    message: $setup.quizStore.error
+                                                }, null, 8 /* PROPS */, ["message"])
+                                            ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
+                                            : ($setup.quiz)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 2 }, [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Quiz "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Header Quiz "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                        class: "quiz-header",
+                                                        marginBottom: "24"
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: $setup.quiz.title,
+                                                                class: "quiz-title",
+                                                                accessibilityRole: "header",
+                                                                textWrap: ""
+                                                            }, null, 8 /* PROPS */, ["text"]),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: $setup.quiz.description,
+                                                                class: "quiz-desc",
+                                                                textWrap: ""
+                                                            }, null, 8 /* PROPS */, ["text"]),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bandeau visiteur "),
+                                                            (!$setup.authStore.isAuthenticated)
+                                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
+                                                                    key: 0,
+                                                                    class: "visitor-banner",
+                                                                    marginTop: "12"
+                                                                }, {
+                                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                            text: "👤 Vous consultez en tant que visiteur. Connectez-vous pour enregistrer votre résultat.",
+                                                                            class: "visitor-text",
+                                                                            textWrap: ""
+                                                                        })
+                                                                    ]),
+                                                                    _: 1 /* STABLE */
+                                                                }))
+                                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Progression "),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                                class: "progress-bar-wrap",
+                                                                marginTop: "16"
+                                                            }, {
+                                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                        text: `Question ${$setup.currentIndex + 1} / ${$setup.quiz.questionList.length}`,
+                                                                        class: "progress-label"
+                                                                    }, null, 8 /* PROPS */, ["text"]),
+                                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Progress, {
+                                                                        value: $setup.progressPct,
+                                                                        maxValue: "100",
+                                                                        color: $setup.DSFR.colors.blueFranceSun,
+                                                                        backgroundColor: "#e3effd",
+                                                                        height: "8"
+                                                                    }, null, 8 /* PROPS */, ["value", "color"])
+                                                                ]),
+                                                                _: 1 /* STABLE */
+                                                            })
+                                                        ]),
+                                                        _: 1 /* STABLE */
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Question courante "),
+                                                    ($setup.currentQuestion)
                                                         ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
                                                             key: 0,
-                                                            class: "visitor-banner",
-                                                            marginTop: "12"
+                                                            class: "question-card",
+                                                            marginBottom: "24"
                                                         }, {
                                                             default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                                                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                    text: "👤 Vous consultez en tant que visiteur. Connectez-vous pour enregistrer votre résultat.",
-                                                                    class: "visitor-text",
-                                                                    textWrap: ""
+                                                                    text: $setup.currentQuestion.statement,
+                                                                    class: "question-text",
+                                                                    textWrap: "",
+                                                                    accessibilityRole: "header"
+                                                                }, null, 8 /* PROPS */, ["text"]),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Boutons Vrai / Faux "),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                                    columns: "*, 16, *",
+                                                                    marginTop: "20"
+                                                                }, {
+                                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+                                                                            col: "0",
+                                                                            text: "✓  Vrai",
+                                                                            class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.answerClass(true)),
+                                                                            onTap: _cache[0] || (_cache[0] = ($event) => ($setup.selectAnswer(true))),
+                                                                            accessibilityLabel: "Répondre Vrai"
+                                                                        }, null, 8 /* PROPS */, ["class"]),
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+                                                                            col: "2",
+                                                                            text: "✗  Faux",
+                                                                            class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.answerClass(false)),
+                                                                            onTap: _cache[1] || (_cache[1] = ($event) => ($setup.selectAnswer(false))),
+                                                                            accessibilityLabel: "Répondre Faux"
+                                                                        }, null, 8 /* PROPS */, ["class"])
+                                                                    ]),
+                                                                    _: 1 /* STABLE */
                                                                 })
                                                             ]),
                                                             _: 1 /* STABLE */
                                                         }))
                                                         : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Progression "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Navigation questions "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                        columns: "*, 16, *",
+                                                        marginBottom: "32"
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                col: "0",
+                                                                label: "← Précédent",
+                                                                variant: "secondary",
+                                                                disabled: $setup.currentIndex === 0,
+                                                                onTap: $setup.prevQuestion
+                                                            }, null, 8 /* PROPS */, ["disabled"]),
+                                                            (!$setup.isLastQuestion)
+                                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DsfrButton"], {
+                                                                    key: 0,
+                                                                    col: "2",
+                                                                    label: "Suivant →",
+                                                                    variant: "primary",
+                                                                    disabled: $setup.currentAnswerUndefined,
+                                                                    onTap: $setup.nextQuestion
+                                                                }, null, 8 /* PROPS */, ["disabled"]))
+                                                                : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DsfrButton"], {
+                                                                    key: 1,
+                                                                    col: "2",
+                                                                    label: "Terminer",
+                                                                    variant: "primary",
+                                                                    disabled: !$setup.quizStore.isComplete(),
+                                                                    loading: $setup.quizStore.loading,
+                                                                    onTap: $setup.submitQuiz
+                                                                }, null, 8 /* PROPS */, ["disabled", "loading"]))
+                                                        ]),
+                                                        _: 1 /* STABLE */
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Résumé réponses "),
                                                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                        class: "progress-bar-wrap",
-                                                        marginTop: "16"
+                                                        class: "answers-summary",
+                                                        marginBottom: "16"
                                                     }, {
                                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                text: `Question ${$setup.currentIndex + 1} / ${$setup.quiz.questionList.length}`,
-                                                                class: "progress-label"
-                                                            }, null, 8 /* PROPS */, ["text"]),
-                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Progress, {
-                                                                value: $setup.progressPct,
-                                                                maxValue: "100",
-                                                                color: $setup.DSFR.colors.blueFranceSun,
-                                                                backgroundColor: "#e3effd",
-                                                                height: "8"
-                                                            }, null, 8 /* PROPS */, ["value", "color"])
+                                                                text: "Récapitulatif de vos réponses",
+                                                                class: "summary-title",
+                                                                accessibilityRole: "header"
+                                                            }),
+                                                            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.quiz.questionList, (q, i) => {
+                                                                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
+                                                                    key: q.id,
+                                                                    columns: "24, *, 40",
+                                                                    class: "summary-row"
+                                                                }, {
+                                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                            col: "0",
+                                                                            text: `${i + 1}.`,
+                                                                            class: "summary-num"
+                                                                        }, null, 8 /* PROPS */, ["text"]),
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                            col: "1",
+                                                                            text: q.statement,
+                                                                            class: "summary-q",
+                                                                            textWrap: ""
+                                                                        }, null, 8 /* PROPS */, ["text"]),
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                            col: "2",
+                                                                            text: $setup.quizStore.answers[q.id] === undefined ? '–' : $setup.quizStore.answers[q.id] ? '✓' : '✗',
+                                                                            class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.summaryAnswerClass(q.id))
+                                                                        }, null, 8 /* PROPS */, ["text", "class"])
+                                                                    ]),
+                                                                    _: 2 /* DYNAMIC */
+                                                                }, 1024 /* DYNAMIC_SLOTS */));
+                                                            }), 128 /* KEYED_FRAGMENT */))
                                                         ]),
                                                         _: 1 /* STABLE */
                                                     })
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Question courante "),
-                                            ($setup.currentQuestion)
-                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
-                                                    key: 0,
-                                                    class: "question-card",
-                                                    marginBottom: "24"
-                                                }, {
-                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: $setup.currentQuestion.statement,
-                                                            class: "question-text",
-                                                            textWrap: "",
-                                                            accessibilityRole: "header"
-                                                        }, null, 8 /* PROPS */, ["text"]),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Boutons Vrai / Faux "),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                                            columns: "*, 16, *",
-                                                            marginTop: "20"
-                                                        }, {
-                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-                                                                    col: "0",
-                                                                    text: "✓  Vrai",
-                                                                    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.answerClass(true)),
-                                                                    onTap: _cache[0] || (_cache[0] = ($event) => ($setup.selectAnswer(true))),
-                                                                    accessibilityLabel: "Répondre Vrai"
-                                                                }, null, 8 /* PROPS */, ["class"]),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
-                                                                    col: "2",
-                                                                    text: "✗  Faux",
-                                                                    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.answerClass(false)),
-                                                                    onTap: _cache[1] || (_cache[1] = ($event) => ($setup.selectAnswer(false))),
-                                                                    accessibilityLabel: "Répondre Faux"
-                                                                }, null, 8 /* PROPS */, ["class"])
-                                                            ]),
-                                                            _: 1 /* STABLE */
-                                                        })
-                                                    ]),
-                                                    _: 1 /* STABLE */
-                                                }))
-                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Navigation questions "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                                columns: "*, 16, *",
-                                                marginBottom: "32"
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                        col: "0",
-                                                        label: "← Précédent",
-                                                        variant: "secondary",
-                                                        disabled: $setup.currentIndex === 0,
-                                                        onTap: $setup.prevQuestion
-                                                    }, null, 8 /* PROPS */, ["disabled"]),
-                                                    (!$setup.isLastQuestion)
-                                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DsfrButton"], {
-                                                            key: 0,
-                                                            col: "2",
-                                                            label: "Suivant →",
-                                                            variant: "primary",
-                                                            disabled: $setup.currentAnswerUndefined,
-                                                            onTap: $setup.nextQuestion
-                                                        }, null, 8 /* PROPS */, ["disabled"]))
-                                                        : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DsfrButton"], {
-                                                            key: 1,
-                                                            col: "2",
-                                                            label: "Terminer",
-                                                            variant: "primary",
-                                                            disabled: !$setup.quizStore.isComplete(),
-                                                            loading: $setup.quizStore.loading,
-                                                            onTap: $setup.submitQuiz
-                                                        }, null, 8 /* PROPS */, ["disabled", "loading"]))
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Résumé réponses "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                class: "answers-summary",
-                                                marginBottom: "16"
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "Récapitulatif de vos réponses",
-                                                        class: "summary-title",
-                                                        accessibilityRole: "header"
-                                                    }),
-                                                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.quiz.questionList, (q, i) => {
-                                                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-                                                            key: q.id,
-                                                            columns: "24, *, 40",
-                                                            class: "summary-row"
-                                                        }, {
-                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                    col: "0",
-                                                                    text: `${i + 1}.`,
-                                                                    class: "summary-num"
-                                                                }, null, 8 /* PROPS */, ["text"]),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                    col: "1",
-                                                                    text: q.statement,
-                                                                    class: "summary-q",
-                                                                    textWrap: ""
-                                                                }, null, 8 /* PROPS */, ["text"]),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                    col: "2",
-                                                                    text: $setup.quizStore.answers[q.id] === undefined ? '–' : $setup.quizStore.answers[q.id] ? '✓' : '✗',
-                                                                    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.summaryAnswerClass(q.id))
-                                                                }, null, 8 /* PROPS */, ["text", "class"])
-                                                            ]),
-                                                            _: 2 /* DYNAMIC */
-                                                        }, 1024 /* DYNAMIC_SLOTS */));
-                                                    }), 128 /* KEYED_FRAGMENT */))
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            })
-                                        ], 64 /* STABLE_FRAGMENT */))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                ], 64 /* STABLE_FRAGMENT */))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                ]),
+                                _: 1 /* STABLE */
+                            })
                         ]),
                         _: 1 /* STABLE */
                     })

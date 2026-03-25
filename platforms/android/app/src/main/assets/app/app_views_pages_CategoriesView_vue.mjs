@@ -27,21 +27,19 @@ __webpack_require__.r(__webpack_exports__);
         function goBack() { emit('back'); }
         const barStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             backgroundColor: '#008000',
-            height: 56,
-            width: '100%'
+            height: 66,
+        }));
+        const backImageStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
+            tintColor: '#FFFFFF',
+            width: 24,
+            height: 24,
+            margin: 10
         }));
         const titleStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
             fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center'
-        }));
-        const backStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
-            color: '#FFFFFF',
-            fontSize: 20,
-            backgroundColor: 'transparent',
-            width: 40,
-            padding: 0
         }));
         const actionStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
             color: '#FFFFFF',
@@ -50,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
             width: 40,
             padding: 0
         }));
-        const __returned__ = { emit, goBack, barStyle, titleStyle, backStyle, actionStyle };
+        const __returned__ = { emit, goBack, barStyle, backImageStyle, titleStyle, actionStyle };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -72,6 +70,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/components/layout/AppBar.vue");
 /* harmony import */ var _components_layout_BottomMenu_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/components/layout/BottomMenu.vue");
 /* harmony import */ var _composables_useNavigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/composables/useNavigation.ts");
+/* harmony import */ var _nativescript_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./node_modules/@nativescript/core/ui/layouts/grid-layout/index.android.js");
+
 
 
 
@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
             textAlignment: 'center',
             margin: _utils_design__WEBPACK_IMPORTED_MODULE_2__.DSFR.spacing['2xl']
         };
-        const __returned__ = { navigateTo, pageStore, countForCategory, selectCategory, containerStyle, pageTitleStyle, categoryCardStyle, catNameStyle, catCountStyle, arrowStyle, emptyStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_3__["default"], BottomMenu: _components_layout_BottomMenu_vue__WEBPACK_IMPORTED_MODULE_4__["default"] };
+        const __returned__ = { navigateTo, pageStore, countForCategory, selectCategory, containerStyle, pageTitleStyle, categoryCardStyle, catNameStyle, catCountStyle, arrowStyle, emptyStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_3__["default"], BottomMenu: _components_layout_BottomMenu_vue__WEBPACK_IMPORTED_MODULE_4__["default"], get GridLayout() { return _nativescript_core__WEBPACK_IMPORTED_MODULE_6__.GridLayout; } };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -155,22 +155,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
+    const _component_Image = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Image");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
+    const _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-        rows: "auto",
+        rows: "66",
         columns: "auto, *, auto",
         style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.barStyle)
     }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Return button "),
             ($props.showBack)
-                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
+                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Image, {
                     key: 0,
                     col: "0",
-                    text: "←",
-                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backStyle),
+                    src: "~/assets/icons/back-redirection.png",
+                    width: "24",
+                    height: "24",
+                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.backImageStyle),
+                    verticalAlignment: "center",
                     accessibilityRole: "button",
                     accessibilityLabel: "Retour",
                     onTap: $setup.goBack
@@ -187,6 +191,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 text: $props.title,
                 style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.titleStyle),
                 horizontalAlignment: "center",
+                verticalAlignment: "center",
                 accessibilityRole: "header"
             }, null, 8 /* PROPS */, ["text", "style"]),
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slot right action "),
@@ -224,87 +229,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_ActivityIndicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActivityIndicator");
-    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
     const _component_DockLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DockLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar verte "),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GridLayout"], { rows: "auto, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Catégories",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Home')))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DockLayout, { stretchLastChild: "true" }, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bottom menu "),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BottomMenu"], { dock: "bottom" }),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DockLayout, {
+                        row: "1",
+                        stretchLastChild: "true"
+                    }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BottomMenu"], { dock: "bottom" }),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Explorer par catégorie",
-                                        style: $setup.pageTitleStyle,
-                                        accessibilityRole: "header"
-                                    }),
-                                    ($setup.pageStore.loading)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
-                                            key: 0,
-                                            busy: true,
-                                            color: "#FFFFFF"
-                                        }))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Liste des catégories "),
-                                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.pageStore.categories, (cat) => {
-                                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
-                                            key: cat.id,
-                                            style: $setup.categoryCardStyle,
-                                            accessibilityRole: "button",
-                                            accessibilityLabel: 'Voir les ressources : ' + cat.name,
-                                            onTap: ($event) => ($setup.selectCategory(cat.id))
-                                        }, {
-                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { columns: "*, auto" }, {
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Explorer par catégorie",
+                                                style: $setup.pageTitleStyle,
+                                                accessibilityRole: "header"
+                                            }),
+                                            ($setup.pageStore.loading)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
+                                                    key: 0,
+                                                    busy: true,
+                                                    color: "#FFFFFF"
+                                                }))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.pageStore.categories, (cat) => {
+                                                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
+                                                    key: cat.id,
+                                                    style: $setup.categoryCardStyle,
+                                                    accessibilityRole: "button",
+                                                    accessibilityLabel: 'Voir les ressources : ' + cat.name,
+                                                    onTap: ($event) => ($setup.selectCategory(cat.id))
+                                                }, {
                                                     default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GridLayout"], { columns: "*, auto" }, {
+                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    col: "0",
+                                                                    text: cat.name,
+                                                                    style: $setup.catNameStyle
+                                                                }, null, 8 /* PROPS */, ["text"]),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    col: "1",
+                                                                    text: $setup.countForCategory(cat.id) + ' ressource(s)',
+                                                                    style: $setup.catCountStyle
+                                                                }, null, 8 /* PROPS */, ["text"])
+                                                            ]),
+                                                            _: 2 /* DYNAMIC */
+                                                        }, 1024 /* DYNAMIC_SLOTS */),
                                                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            col: "0",
-                                                            text: cat.name,
-                                                            style: $setup.catNameStyle
-                                                        }, null, 8 /* PROPS */, ["text"]),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            col: "1",
-                                                            text: $setup.countForCategory(cat.id) + ' ressource(s)',
-                                                            style: $setup.catCountStyle
-                                                        }, null, 8 /* PROPS */, ["text"])
+                                                            text: "›",
+                                                            style: $setup.arrowStyle
+                                                        })
                                                     ]),
                                                     _: 2 /* DYNAMIC */
-                                                }, 1024 /* DYNAMIC_SLOTS */),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                    text: "›",
-                                                    style: $setup.arrowStyle
-                                                })
-                                            ]),
-                                            _: 2 /* DYNAMIC */
-                                        }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["accessibilityLabel", "onTap"]));
-                                    }), 128 /* KEYED_FRAGMENT */)),
-                                    ($setup.pageStore.categories.length === 0 && !$setup.pageStore.loading)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
-                                            key: 1,
-                                            text: "Aucune catégorie disponible.",
-                                            style: $setup.emptyStyle
-                                        }))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["accessibilityLabel", "onTap"]));
+                                            }), 128 /* KEYED_FRAGMENT */)),
+                                            ($setup.pageStore.categories.length === 0 && !$setup.pageStore.loading)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                    key: 1,
+                                                    text: "Aucune catégorie disponible.",
+                                                    style: $setup.emptyStyle
+                                                }))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    })
                                 ]),
                                 _: 1 /* STABLE */
                             })

@@ -1,157 +1,161 @@
 <template>
-  <Page>
-    <ActionBar>
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+      
+      <!-- AppBar -->
       <AppBar
-        title="Quiz"
-        showBack
-        @back="confirmExit"
+      row="0"
+      title="Quiz"
+      showBack
+      @back="confirmExit"
       />
-    </ActionBar>
-
-    <ScrollView>
-      <StackLayout padding="16">
-
-        <!-- Loader -->
-        <ActivityIndicator
+      
+      <ScrollView row="1">
+        <StackLayout padding="16">
+          
+          <!-- Loader -->
+          <ActivityIndicator
           v-if="quizStore.loading"
           busy
           :color="DSFR.colors.blueFranceSun"
           horizontalAlignment="center"
           marginTop="40"
           accessibilityLabel="Chargement du quiz en cours"
-        />
-
-        <!-- Erreur -->
-        <AlertBanner
+          />
+          
+          <!-- Erreur -->
+          <AlertBanner
           v-else-if="quizStore.error"
           type="error"
           :message="quizStore.error"
-        />
-
-        <!-- Quiz -->
-        <template v-else-if="quiz">
-          <!-- Header Quiz -->
-          <StackLayout class="quiz-header" marginBottom="24">
-            <Label
+          />
+          
+          <!-- Quiz -->
+          <template v-else-if="quiz">
+            <!-- Header Quiz -->
+            <StackLayout class="quiz-header" marginBottom="24">
+              <Label
               :text="quiz.title"
               class="quiz-title"
               accessibilityRole="header"
               textWrap
-            />
-            <Label
+              />
+              <Label
               :text="quiz.description"
               class="quiz-desc"
               textWrap
-            />
-
-            <!-- Bandeau visiteur -->
-            <StackLayout v-if="!authStore.isAuthenticated" class="visitor-banner" marginTop="12">
-              <Label
+              />
+              
+              <!-- Bandeau visiteur -->
+              <StackLayout v-if="!authStore.isAuthenticated" class="visitor-banner" marginTop="12">
+                <Label
                 text="👤 Vous consultez en tant que visiteur. Connectez-vous pour enregistrer votre résultat."
                 class="visitor-text"
                 textWrap
-              />
-            </StackLayout>
-
-            <!-- Progression -->
-            <StackLayout class="progress-bar-wrap" marginTop="16">
-              <Label :text="`Question ${currentIndex + 1} / ${quiz.questionList.length}`" class="progress-label" />
-              <Progress
+                />
+              </StackLayout>
+              
+              <!-- Progression -->
+              <StackLayout class="progress-bar-wrap" marginTop="16">
+                <Label :text="`Question ${currentIndex + 1} / ${quiz.questionList.length}`" class="progress-label" />
+                <Progress
                 :value="progressPct"
                 maxValue="100"
                 :color="DSFR.colors.blueFranceSun"
                 backgroundColor="#e3effd"
                 height="8"
-              />
+                />
+              </StackLayout>
             </StackLayout>
-          </StackLayout>
-
-          <!-- Question courante -->
-          <StackLayout
+            
+            <!-- Question courante -->
+            <StackLayout
             v-if="currentQuestion"
             class="question-card"
             marginBottom="24"
-          >
+            >
             <Label
-              :text="currentQuestion.statement"
-              class="question-text"
-              textWrap
-              accessibilityRole="header"
+            :text="currentQuestion.statement"
+            class="question-text"
+            textWrap
+            accessibilityRole="header"
             />
-
+            
             <!-- Boutons Vrai / Faux -->
             <GridLayout columns="*, 16, *" marginTop="20">
               <Button
-                col="0"
-                text="✓  Vrai"
-                :class="answerClass(true)"
-                @tap="selectAnswer(true)"
-                accessibilityLabel="Répondre Vrai"
+              col="0"
+              text="✓  Vrai"
+              :class="answerClass(true)"
+              @tap="selectAnswer(true)"
+              accessibilityLabel="Répondre Vrai"
               />
               <Button
-                col="2"
-                text="✗  Faux"
-                :class="answerClass(false)"
-                @tap="selectAnswer(false)"
-                accessibilityLabel="Répondre Faux"
+              col="2"
+              text="✗  Faux"
+              :class="answerClass(false)"
+              @tap="selectAnswer(false)"
+              accessibilityLabel="Répondre Faux"
               />
             </GridLayout>
           </StackLayout>
-
+          
           <!-- Navigation questions -->
           <GridLayout columns="*, 16, *" marginBottom="32">
             <DsfrButton
-              col="0"
-              label="← Précédent"
-              variant="secondary"
-              :disabled="currentIndex === 0"
-              @tap="prevQuestion"
+            col="0"
+            label="← Précédent"
+            variant="secondary"
+            :disabled="currentIndex === 0"
+            @tap="prevQuestion"
             />
             <DsfrButton
-              v-if="!isLastQuestion"
-              col="2"
-              label="Suivant →"
-              variant="primary"
-              :disabled="currentAnswerUndefined"
-              @tap="nextQuestion"
+            v-if="!isLastQuestion"
+            col="2"
+            label="Suivant →"
+            variant="primary"
+            :disabled="currentAnswerUndefined"
+            @tap="nextQuestion"
             />
             <DsfrButton
-              v-else
-              col="2"
-              label="Terminer"
-              variant="primary"
-              :disabled="!quizStore.isComplete()"
-              :loading="quizStore.loading"
-              @tap="submitQuiz"
+            v-else
+            col="2"
+            label="Terminer"
+            variant="primary"
+            :disabled="!quizStore.isComplete()"
+            :loading="quizStore.loading"
+            @tap="submitQuiz"
             />
           </GridLayout>
-
+          
           <!-- Résumé réponses -->
           <StackLayout class="answers-summary" marginBottom="16">
             <Label
-              text="Récapitulatif de vos réponses"
-              class="summary-title"
-              accessibilityRole="header"
+            text="Récapitulatif de vos réponses"
+            class="summary-title"
+            accessibilityRole="header"
             />
             <GridLayout
-              v-for="(q, i) in quiz.questionList"
-              :key="q.id"
-              columns="24, *, 40"
-              class="summary-row"
+            v-for="(q, i) in quiz.questionList"
+            :key="q.id"
+            columns="24, *, 40"
+            class="summary-row"
             >
-              <Label col="0" :text="`${i + 1}.`" class="summary-num" />
-              <Label col="1" :text="q.statement" class="summary-q" textWrap />
-              <Label
-                col="2"
-                :text="quizStore.answers[q.id] === undefined ? '–' : quizStore.answers[q.id] ? '✓' : '✗'"
-                :class="summaryAnswerClass(q.id)"
-              />
-            </GridLayout>
-          </StackLayout>
-        </template>
-      </StackLayout>
-    </ScrollView>
-  </Page>
+            <Label col="0" :text="`${i + 1}.`" class="summary-num" />
+            <Label col="1" :text="q.statement" class="summary-q" textWrap />
+            <Label
+            col="2"
+            :text="quizStore.answers[q.id] === undefined ? '–' : quizStore.answers[q.id] ? '✓' : '✗'"
+            :class="summaryAnswerClass(q.id)"
+            />
+          </GridLayout>
+        </StackLayout>
+      </template>
+    </StackLayout>
+  </ScrollView>
+  
+</GridLayout>
+</Page>
 </template>
 
 <script setup lang="ts">
@@ -192,13 +196,13 @@ const isLastQuestion = computed(() => {
 })
 
 const currentAnswerUndefined = computed(() =>
-  currentQuestion.value ? quizStore.answers[currentQuestion.value.id] === undefined : true
+currentQuestion.value ? quizStore.answers[currentQuestion.value.id] === undefined : true
 )
 
 const progressPct = computed(() => {
   if (!quiz.value?.questionList?.length) return 0
   return Math.round(
-    (Object.keys(quizStore.answers).length / quiz.value.questionList.length) * 100
+  (Object.keys(quizStore.answers).length / quiz.value.questionList.length) * 100
   )
 })
 
@@ -239,14 +243,14 @@ async function confirmExit() {
     goBack()
     return
   }
-
+  
   const confirmed = await Dialogs.confirm({
     title: 'Quitter le quiz ?',
     message: 'Vos réponses en cours seront perdues.',
     okButtonText: 'Quitter',
     cancelButtonText: 'Continuer'
   })
-
+  
   if (confirmed) {
     quizStore.resetAnswers()
     goBack()
@@ -258,7 +262,7 @@ onMounted(() => {
     quizStore.error = 'ID de quiz invalide'
     return
   }
-
+  
   quizStore.fetchById(quizId.value)
 })
 </script>
