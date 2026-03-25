@@ -527,7 +527,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" En-tête "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  Header "),
                                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
                                         class: "page-header",
                                         marginBottom: "24"

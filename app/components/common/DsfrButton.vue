@@ -12,7 +12,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { DSFR } from '../../utils/design'
-import { marginTopProperty } from '@nativescript/core';
 
 const props = withDefaults(defineProps<{
   label: string

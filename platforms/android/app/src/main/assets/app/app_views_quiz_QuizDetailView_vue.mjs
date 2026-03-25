@@ -138,10 +138,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stores_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/stores/auth.ts");
 /* harmony import */ var _utils_design__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/utils/design.ts");
 /* harmony import */ var _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/components/layout/AppBar.vue");
-/* harmony import */ var _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/components/common/DsfrButton.vue");
-/* harmony import */ var _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./app/components/common/AlertBanner.vue");
-/* harmony import */ var _nativescript_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("./node_modules/@nativescript/core/ui/dialogs/index.android.js");
-
+/* harmony import */ var _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/components/common/AlertBanner.vue");
+/* harmony import */ var _nativescript_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./node_modules/@nativescript/core/ui/dialogs/index.android.js");
 
 
 
@@ -202,6 +200,7 @@ __webpack_require__.r(__webpack_exports__);
             quizStore.setAnswer(currentQuestion.value.id, value);
         }
         function nextQuestion() {
+            console.log('index:', currentIndex.value, 'total:', quiz.value?.questionList.length);
             if (!isLastQuestion.value)
                 currentIndex.value++;
         }
@@ -220,7 +219,7 @@ __webpack_require__.r(__webpack_exports__);
                 goBack();
                 return;
             }
-            const confirmed = await _nativescript_core__WEBPACK_IMPORTED_MODULE_8__.Dialogs.confirm({
+            const confirmed = await _nativescript_core__WEBPACK_IMPORTED_MODULE_7__.Dialogs.confirm({
                 title: 'Quitter le quiz ?',
                 message: 'Vos réponses en cours seront perdues.',
                 okButtonText: 'Quitter',
@@ -238,7 +237,7 @@ __webpack_require__.r(__webpack_exports__);
             }
             quizStore.fetchById(quizId.value);
         });
-        const __returned__ = { navigateTo, goBack, props, quizStore, authStore, currentIndex, quizId, quiz, currentQuestion, isLastQuestion, currentAnswerUndefined, progressPct, answerClass, summaryAnswerClass, selectAnswer, nextQuestion, prevQuestion, submitQuiz, confirmExit, get DSFR() { return _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR; }, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], DsfrButton: _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_6__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_7__["default"] };
+        const __returned__ = { navigateTo, goBack, props, quizStore, authStore, currentIndex, quizId, quiz, currentQuestion, isLastQuestion, currentAnswerUndefined, progressPct, answerClass, summaryAnswerClass, selectAnswer, nextQuestion, prevQuestion, submitQuiz, confirmExit, get DSFR() { return _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR; }, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_6__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -400,7 +399,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                         }, null, 8 /* PROPS */, ["color"]))
                                         : ($setup.quizStore.error)
                                             ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Erreur "),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Error "),
                                                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AlertBanner"], {
                                                     type: "error",
                                                     message: $setup.quizStore.error
@@ -426,7 +425,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                                 class: "quiz-desc",
                                                                 textWrap: ""
                                                             }, null, 8 /* PROPS */, ["text"]),
-                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bandeau visiteur "),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Visitor banner "),
                                                             (!$setup.authStore.isAuthenticated)
                                                                 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
                                                                     key: 0,
@@ -466,7 +465,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                         ]),
                                                         _: 1 /* STABLE */
                                                     }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Question courante "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Question "),
                                                     ($setup.currentQuestion)
                                                         ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
                                                             key: 0,
@@ -480,7 +479,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                                     textWrap: "",
                                                                     accessibilityRole: "header"
                                                                 }, null, 8 /* PROPS */, ["text"]),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Boutons Vrai / Faux "),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" True or False / Buttons "),
                                                                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
                                                                     columns: "*, 16, *",
                                                                     marginTop: "20"
@@ -507,41 +506,40 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                             _: 1 /* STABLE */
                                                         }))
                                                         : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Navigation questions "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Questions navigation "),
                                                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
                                                         columns: "*, 16, *",
                                                         marginBottom: "32"
                                                     }, {
                                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
                                                                 col: "0",
-                                                                label: "← Précédent",
-                                                                variant: "secondary",
-                                                                disabled: $setup.currentIndex === 0,
+                                                                text: "← Précédent",
+                                                                isEnabled: $setup.currentIndex > 0,
                                                                 onTap: $setup.prevQuestion
-                                                            }, null, 8 /* PROPS */, ["disabled"]),
+                                                            }, null, 8 /* PROPS */, ["isEnabled"]),
                                                             (!$setup.isLastQuestion)
-                                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DsfrButton"], {
+                                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
                                                                     key: 0,
                                                                     col: "2",
-                                                                    label: "Suivant →",
-                                                                    variant: "primary",
-                                                                    disabled: $setup.currentAnswerUndefined,
+                                                                    text: "Suivant →",
+                                                                    isEnabled: !$setup.currentAnswerUndefined,
                                                                     onTap: $setup.nextQuestion
-                                                                }, null, 8 /* PROPS */, ["disabled"]))
-                                                                : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["DsfrButton"], {
+                                                                }, null, 8 /* PROPS */, ["isEnabled"]))
+                                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                                            ($setup.isLastQuestion)
+                                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Button, {
                                                                     key: 1,
                                                                     col: "2",
-                                                                    label: "Terminer",
-                                                                    variant: "primary",
-                                                                    disabled: !$setup.quizStore.isComplete(),
-                                                                    loading: $setup.quizStore.loading,
+                                                                    text: "Terminer",
+                                                                    isEnabled: $setup.quizStore.isComplete(),
                                                                     onTap: $setup.submitQuiz
-                                                                }, null, 8 /* PROPS */, ["disabled", "loading"]))
+                                                                }, null, 8 /* PROPS */, ["isEnabled"]))
+                                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
                                                         ]),
                                                         _: 1 /* STABLE */
                                                     }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Résumé réponses "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Responses resume "),
                                                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
                                                         class: "answers-summary",
                                                         marginBottom: "16"

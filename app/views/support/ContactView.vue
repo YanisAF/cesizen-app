@@ -13,7 +13,7 @@
       <ScrollView row="1">
         <StackLayout padding="16">
 
-          <!-- En-tête -->
+          <!--  Header -->
           <StackLayout class="page-header" marginBottom="24">
             <Label text="Une question ? Un problème ?" class="page-title" accessibilityRole="header" textWrap />
             <Label
