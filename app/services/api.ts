@@ -152,7 +152,13 @@ export const submissionApi = {
   submit: (quizId: number, submission: QuizSubmissionDto) =>
     request<ResultDtoResponse>(
     `/submit?quizId=${quizId}`,
-    { method: 'POST', body: JSON.stringify(submission) })
+    { method: 'POST', body: JSON.stringify(submission) }),
+    
+  save: (quizId: number, submission: QuizSubmissionDto) =>
+    request<ResultDtoResponse>(
+    `/save-result?quizId=${quizId}`,
+    { method: 'POST', body: JSON.stringify(submission) }
+    )
   }
   
   // ============================================================
@@ -160,5 +166,5 @@ export const submissionApi = {
   // ============================================================
   export const resultApi = {
     getByUser: (userId: number) =>
-      request<ResultDtoResponse[]>(`/results?userId=${userId}`)
+      request<ResultDtoResponse[]>(`/get-history-quiz?userId=${userId}`)
   }

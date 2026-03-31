@@ -1,7 +1,10 @@
 <template>
-  <Page>
-    <ActionBar>
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+
+      <!-- AppBar -->
       <AppBar
+        row="0"
         title="Mon profil"
         showBack
         actionIcon="⚙"
@@ -9,83 +12,84 @@
         @back="navigateTo('Home')"
         @action="navigateTo('Account')"
       />
-    </ActionBar>
 
-    <DockLayout stretchLastChild="true">
-      <BottomMenu dock="bottom" />
+      <DockLayout row="1" stretchLastChild="true">
+        <BottomMenu dock="bottom" />
 
-      <ScrollView>
-        <StackLayout :style="containerStyle">
+        <ScrollView>
+          <StackLayout :style="containerStyle">
 
-          <ActivityIndicator v-if="userStore.loading" :busy="true" :style="loaderStyle" />
+            <ActivityIndicator v-if="userStore.loading" :busy="true" :style="loaderStyle" />
 
-          <template v-else-if="user">
-            <!-- Avatar & nom -->
-            <StackLayout :style="profileHeaderStyle">
-              <Label :text="initials" :style="avatarStyle" />
-              <Label :text="user.user_name" :style="nameStyle" accessibilityRole="header" />
-              <Label :text="user.email" :style="emailStyle" />
-              <Label v-if="user.role === 'ROLE_USER'" text="Utilisateur" :style="roleBadgeStyle" />
-            </StackLayout>
+            <template v-else-if="user">
+              <!-- Avatar & nom -->
+              <StackLayout :style="profileHeaderStyle">
+                <Label :text="initials" :style="avatarStyle" />
+                <Label :text="user.user_name" :style="nameStyle" accessibilityRole="header" />
+                <Label :text="user.email" :style="emailStyle" />
+                <Label v-if="user.role === 'ROLE_USER'" text="Utilisateur" :style="roleBadgeStyle" />
+              </StackLayout>
 
-            <!-- Infos -->
-            <StackLayout :style="sectionStyle">
-              <Label text="Informations du compte" :style="sectionTitleStyle" accessibilityRole="header" />
-              <GridLayout v-for="info in infos" :key="info.label" columns="auto, *" rows="auto" :style="infoRowStyle">
-                <Label col="0" :text="info.label" :style="infoLabelStyle" />
-                <Label col="1" :text="info.value" :style="infoValueStyle" textWrap="true" />
-              </GridLayout>
-            </StackLayout>
+              <!-- Infos -->
+              <StackLayout :style="sectionStyle">
+                <Label text="Informations du compte" :style="sectionTitleStyle" accessibilityRole="header" />
+                <GridLayout v-for="info in infos" :key="info.label" columns="auto, *" rows="auto" :style="infoRowStyle">
+                  <Label col="0" :text="info.label" :style="infoLabelStyle" />
+                  <Label col="1" :text="info.value" :style="infoValueStyle" textWrap="true" />
+                </GridLayout>
+              </StackLayout>
 
-            <!-- Actions rapides -->
-            <StackLayout :style="sectionStyle">
-              <Label text="Mes activités" :style="sectionTitleStyle" accessibilityRole="header" />
-              <DsfrButton
-                label="📊  Mes résultats de diagnostic"
-                variant="secondary"
-                fullWidth
-                @tap="navigateTo('DiagnosisHistory')"
-              />
-              <DsfrButton
-                label="🔑  Modifier mon mot de passe"
-                variant="secondary"
-                fullWidth
-                @tap="navigateTo('ResetRequest')"
-              />
-            </StackLayout>
+              <!-- Actions rapides -->
+              <StackLayout :style="sectionStyle">
+                <Label text="Mes activités" :style="sectionTitleStyle" accessibilityRole="header" />
+                <DsfrButton
+                  label="📊  Mes résultats de diagnostic"
+                  variant="secondary"
+                  fullWidth
+                  @tap="navigateTo('DiagnosisHistory')"
+                />
+                <DsfrButton
+                  label="🔑  Modifier mon mot de passe"
+                  variant="secondary"
+                  fullWidth
+                  @tap="navigateTo('ResetRequest')"
+                />
+              </StackLayout>
 
-            <!-- Zone danger -->
-            <StackLayout :style="dangerZoneStyle">
-              <Label text="Zone de danger" :style="dangerTitleStyle" accessibilityRole="header" />
-              <DsfrButton
-                label="Désactiver mon compte"
-                variant="secondary"
-                fullWidth
-                @tap="confirmDesactivate"
-              />
-              <DsfrButton
-                label="Supprimer définitivement mon compte"
-                variant="danger"
-                fullWidth
-                @tap="confirmDelete"
-              />
-            </StackLayout>
+              <!-- Zone danger -->
+              <StackLayout :style="dangerZoneStyle">
+                <Label text="Zone de danger" :style="dangerTitleStyle" accessibilityRole="header" />
+                <DsfrButton
+                  label="Désactiver mon compte"
+                  variant="secondary"
+                  fullWidth
+                  @tap="confirmDesactivate"
+                />
+                <DsfrButton
+                  label="Supprimer définitivement mon compte"
+                  variant="danger"
+                  fullWidth
+                  @tap="confirmDelete"
+                />
+              </StackLayout>
 
-            <!-- Note RGPD -->
-            <StackLayout :style="rgpdStyle">
-              <Label
-                text="Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et de suppression à tout moment."
-                textWrap="true"
-                :style="rgpdTextStyle"
-              />
-            </StackLayout>
-          </template>
+              <!-- Note RGPD -->
+              <StackLayout :style="rgpdStyle">
+                <Label
+                  text="Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et de suppression à tout moment."
+                  textWrap="true"
+                  :style="rgpdTextStyle"
+                />
+              </StackLayout>
+            </template>
 
-          <AlertBanner v-if="userStore.error" :message="userStore.error" type="error" />
+            <AlertBanner v-if="userStore.error" :message="userStore.error" type="error" />
 
-        </StackLayout>
-      </ScrollView>
-    </DockLayout>
+          </StackLayout>
+        </ScrollView>
+      </DockLayout>
+
+    </GridLayout>
   </Page>
 </template>
 

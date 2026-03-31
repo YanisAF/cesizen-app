@@ -57,35 +57,51 @@ export const useQuizStore = defineStore('quiz', () => {
   */
   
   async function submitQuiz(): Promise<ResultDtoResponse | null> {
-  if (!currentQuiz.value) {
-    error.value = 'Aucun quiz sélectionné'
-    return null
-  }
-
-  if (!isComplete()) {
-    error.value = 'Veuillez répondre à toutes les questions'
-    return null
-  }
-
-  loading.value = true
-  error.value = null
-
-  try {
-    const submission: QuizSubmissionDto = {
-      quizId: currentQuiz.value.id,
-      answers: answers.value
+    if (!currentQuiz.value) {
+      error.value = 'Aucun quiz sélectionné'
+      return null
     }
-
-    const result = await submissionApi.submit(currentQuiz.value.id, submission)
-    currentResult.value = result
-    return result // On retourne ici le résultat pour le récupérer dans le composant
-  } catch (e: any) {
-    error.value = e.message ?? 'Erreur lors de la soumission du quiz'
-    return null
-  } finally {
-    loading.value = false
+    
+    if (!isComplete()) {
+      error.value = 'Veuillez répondre à toutes les questions'
+      return null
+    }
+    
+    loading.value = true
+    error.value = null
+    
+    try {
+      const submission: QuizSubmissionDto = {
+        quizId: currentQuiz.value.id,
+        answers: answers.value
+      }
+      
+      const result = await submissionApi.submit(currentQuiz.value.id, submission)
+      currentResult.value = result
+      return result // On retourne ici le résultat pour le récupérer dans le composant
+    } catch (e: any) {
+      error.value = e.message ?? 'Erreur lors de la soumission du quiz'
+      return null
+    } finally {
+      loading.value = false
+    }
   }
-}
+  
+  async function saveResult(quizId: number): Promise<void> {
+    loading.value = true
+    error.value = null
+    try {
+      const submission: QuizSubmissionDto = {
+        quizId,
+        answers: answers.value  // directement la ref, pas de this
+      }
+      await submissionApi.save(quizId, submission)
+    } catch (e: any) {
+      error.value = e.message ?? 'Erreur lors de la sauvegarde'
+    } finally {
+      loading.value = false
+    }
+  }
   
   async function fetchHistory(userId: number): Promise<void> {
     loading.value = true
@@ -118,6 +134,6 @@ export const useQuizStore = defineStore('quiz', () => {
   return {
     quizList, currentQuiz, currentResult, history, loading, error, answers,
     fetchAll, fetchById, setAnswer, isComplete, submitQuiz,
-    fetchHistory, searchQuiz, resetAnswers, clearError
+    fetchHistory, searchQuiz, resetAnswers, clearError, saveResult
   }
 })

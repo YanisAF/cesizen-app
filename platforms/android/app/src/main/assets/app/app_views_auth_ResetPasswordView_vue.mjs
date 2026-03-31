@@ -494,80 +494,83 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
+    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" APP BAR "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Nouveau mot de passe",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('ResetVerify')))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CONTENU "),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Nouveau mot de passe",
-                                        style: $setup.titleStyle,
-                                        accessibilityRole: "header"
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Nouveau mot de passe",
+                                                style: $setup.titleStyle,
+                                                accessibilityRole: "header"
+                                            })
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    }),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            ($setup.error)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 0,
+                                                    message: $setup.error,
+                                                    type: "error"
+                                                }, null, 8 /* PROPS */, ["message"]))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            ($setup.success)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 1,
+                                                    message: "Mot de passe modifié avec succès !",
+                                                    type: "success"
+                                                }))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                modelValue: $setup.newPassword,
+                                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.newPassword) = $event)),
+                                                label: "Nouveau mot de passe",
+                                                hint: "Au moins 6 caractères",
+                                                secure: true,
+                                                error: $setup.passwordError,
+                                                required: "",
+                                                onBlur: $setup.validatePwd
+                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                modelValue: $setup.confirmPassword,
+                                                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.confirmPassword) = $event)),
+                                                label: "Confirmer le mot de passe",
+                                                secure: true,
+                                                error: $setup.confirmError,
+                                                required: "",
+                                                onBlur: $setup.validateConfirm
+                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: $setup.loading ? 'Enregistrement…' : 'Enregistrer',
+                                                variant: "primary",
+                                                fullWidth: "",
+                                                loading: $setup.loading,
+                                                disabled: $setup.loading || $setup.success,
+                                                onTap: $setup.submit
+                                            }, null, 8 /* PROPS */, ["label", "loading", "disabled"])
+                                        ]),
+                                        _: 1 /* STABLE */
                                     })
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    ($setup.error)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                            key: 0,
-                                            message: $setup.error,
-                                            type: "error"
-                                        }, null, 8 /* PROPS */, ["message"]))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    ($setup.success)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                            key: 1,
-                                            message: "Mot de passe modifié avec succès !",
-                                            type: "success"
-                                        }))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                        modelValue: $setup.newPassword,
-                                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.newPassword) = $event)),
-                                        label: "Nouveau mot de passe",
-                                        hint: "Au moins 6 caractères",
-                                        secure: true,
-                                        error: $setup.passwordError,
-                                        required: "",
-                                        onBlur: $setup.validatePwd
-                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                        modelValue: $setup.confirmPassword,
-                                        "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.confirmPassword) = $event)),
-                                        label: "Confirmer le mot de passe",
-                                        secure: true,
-                                        error: $setup.confirmError,
-                                        required: "",
-                                        onBlur: $setup.validateConfirm
-                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: $setup.loading ? 'Enregistrement…' : 'Enregistrer',
-                                        variant: "primary",
-                                        fullWidth: "",
-                                        loading: $setup.loading,
-                                        disabled: $setup.loading || $setup.success,
-                                        onTap: $setup.submit
-                                    }, null, 8 /* PROPS */, ["label", "loading", "disabled"])
                                 ]),
                                 _: 1 /* STABLE */
                             })

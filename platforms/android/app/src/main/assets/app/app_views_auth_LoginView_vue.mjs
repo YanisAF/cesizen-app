@@ -587,94 +587,96 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
+    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Connexion",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Home')))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" RF banner "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "🇫🇷  République Française",
-                                        style: $setup.rfStyle
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Se connecter",
-                                        style: $setup.pageTitleStyle,
-                                        accessibilityRole: "header"
-                                    })
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    ($setup.authStore.error)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                            key: 0,
-                                            message: $setup.authStore.error,
-                                            type: "error"
-                                        }, null, 8 /* PROPS */, ["message"]))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                        modelValue: $setup.form.username,
-                                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.form.username) = $event)),
-                                        label: "Identifiant ou adresse électronique",
-                                        hint: "Entrez votre identifiant",
-                                        error: $setup.errors.username,
-                                        required: "",
-                                        onBlur: _cache[2] || (_cache[2] = ($event) => ($setup.validateField('username')))
-                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                        modelValue: $setup.form.password,
-                                        "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.form.password) = $event)),
-                                        label: "Mot de passe",
-                                        hint: "Entrez votre mot de passe",
-                                        secure: true,
-                                        error: $setup.errors.password,
-                                        required: "",
-                                        onBlur: _cache[4] || (_cache[4] = ($event) => ($setup.validateField('password')))
-                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: "Mot de passe oublié ?",
-                                        variant: "tertiary",
-                                        onTap: _cache[5] || (_cache[5] = ($event) => ($setup.navigateTo('ResetRequest')))
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: $setup.authStore.loading ? 'Connexion…' : 'Se connecter',
-                                        variant: "primary",
-                                        fullWidth: "",
-                                        loading: $setup.authStore.loading,
-                                        disabled: $setup.authStore.loading,
-                                        onTap: $setup.submit
-                                    }, null, 8 /* PROPS */, ["label", "loading", "disabled"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.dividerStyle }, {
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" RF banner "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: "Pas encore de compte ?",
-                                                style: $setup.dividerTextStyle
+                                                text: "🇫🇷  République Française",
+                                                style: $setup.rfStyle
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Se connecter",
+                                                style: $setup.pageTitleStyle,
+                                                accessibilityRole: "header"
+                                            })
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    }),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            ($setup.authStore.error)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 0,
+                                                    message: $setup.authStore.error,
+                                                    type: "error"
+                                                }, null, 8 /* PROPS */, ["message"]))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                modelValue: $setup.form.username,
+                                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.form.username) = $event)),
+                                                label: "Identifiant ou adresse électronique",
+                                                hint: "Entrez votre identifiant",
+                                                error: $setup.errors.username,
+                                                required: "",
+                                                onBlur: _cache[2] || (_cache[2] = ($event) => ($setup.validateField('username')))
+                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                modelValue: $setup.form.password,
+                                                "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.form.password) = $event)),
+                                                label: "Mot de passe",
+                                                hint: "Entrez votre mot de passe",
+                                                secure: true,
+                                                error: $setup.errors.password,
+                                                required: "",
+                                                onBlur: _cache[4] || (_cache[4] = ($event) => ($setup.validateField('password')))
+                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: "Mot de passe oublié ?",
+                                                variant: "tertiary",
+                                                onTap: _cache[5] || (_cache[5] = ($event) => ($setup.navigateTo('ResetRequest')))
                                             }),
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                label: "Créer un compte",
-                                                variant: "secondary",
+                                                label: $setup.authStore.loading ? 'Connexion…' : 'Se connecter',
+                                                variant: "primary",
                                                 fullWidth: "",
-                                                onTap: _cache[6] || (_cache[6] = ($event) => ($setup.navigateTo('Register')))
+                                                loading: $setup.authStore.loading,
+                                                disabled: $setup.authStore.loading,
+                                                onTap: $setup.submit
+                                            }, null, 8 /* PROPS */, ["label", "loading", "disabled"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.dividerStyle }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        text: "Pas encore de compte ?",
+                                                        style: $setup.dividerTextStyle
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                        label: "Créer un compte",
+                                                        variant: "secondary",
+                                                        fullWidth: "",
+                                                        onTap: _cache[6] || (_cache[6] = ($event) => ($setup.navigateTo('Register')))
+                                                    })
+                                                ]),
+                                                _: 1 /* STABLE */
                                             })
                                         ]),
                                         _: 1 /* STABLE */

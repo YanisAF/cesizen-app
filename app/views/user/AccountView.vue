@@ -1,97 +1,107 @@
 <template>
-  <Page>
-    <ActionBar>
-      <AppBar title="Mon compte" showBack @back="goBack()" />
-    </ActionBar>
-
-    <ScrollView>
-      <StackLayout padding="16">
-
-        <AlertBanner
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+      <!-- AppBar -->
+      <AppBar 
+        title="Mon compte" 
+        showBack 
+        @back="goBack()" 
+      />
+      
+      
+      <!-- CONTENT -->
+      <ScrollView row="1">
+        <StackLayout padding="16">
+          
+          <AlertBanner
           v-if="userStore.error"
           type="error"
           :message="userStore.error"
           @dismiss="userStore.clearError()"
-        />
-
-        <!-- account infos -->
-        <StackLayout class="section" marginBottom="20">
-          <Label text="Informations du compte" class="section-title" accessibilityRole="header" />
-          <GridLayout columns="120, *" class="info-row">
-            <Label col="0" text="Identifiant" class="info-label" />
-            <Label col="1" :text="authStore.user?.user_name ?? '—'" class="info-value" />
-          </GridLayout>
-          <GridLayout columns="120, *" class="info-row">
-            <Label col="0" text="Adresse e-mail" class="info-label" />
-            <Label col="1" :text="authStore.user?.email ?? '—'" class="info-value" />
-          </GridLayout>
-          <GridLayout columns="120, *" class="info-row">
-            <Label col="0" text="Téléphone" class="info-label" />
-            <Label col="1" :text="authStore.user?.phone ?? 'Non renseigné'" class="info-value" />
-          </GridLayout>
-          <GridLayout columns="120, *" class="info-row">
-            <Label col="0" text="Rôle" class="info-label" />
-            <Label col="1" :text="roleLabel" class="info-value" />
-          </GridLayout>
-        </StackLayout>
-
-        <!-- update password -->
-        <StackLayout class="section" marginBottom="20">
-          <Label text="Sécurité" class="section-title" accessibilityRole="header" />
-          <DsfrButton
+          />
+          
+          <!-- account infos -->
+          <StackLayout class="section" marginBottom="20">
+            <Label text="Informations du compte" class="section-title" />
+            
+            <GridLayout columns="120, *" class="info-row">
+              <Label col="0" text="Identifiant" class="info-label" />
+              <Label col="1" :text="authStore.user?.user_name ?? '—'" class="info-value" />
+            </GridLayout>
+            
+            <GridLayout columns="120, *" class="info-row">
+              <Label col="0" text="Adresse e-mail" class="info-label" />
+              <Label col="1" :text="authStore.user?.email ?? '—'" class="info-value" />
+            </GridLayout>
+            
+            <GridLayout columns="120, *" class="info-row">
+              <Label col="0" text="Téléphone" class="info-label" />
+              <Label col="1" :text="authStore.user?.phone ?? 'Non renseigné'" class="info-value" />
+            </GridLayout>
+            
+            <GridLayout columns="120, *" class="info-row">
+              <Label col="0" text="Rôle" class="info-label" />
+              <Label col="1" :text="roleLabel" class="info-value" />
+            </GridLayout>
+          </StackLayout>
+          
+          <!-- update password -->
+          <StackLayout class="section" marginBottom="20">
+            <Label text="Sécurité" class="section-title" />
+            <DsfrButton
             label="Modifier mon mot de passe"
             variant="secondary"
             @tap="navigateTo('ResetRequest')"
-          />
-        </StackLayout>
-
-        <!-- our diagnosis -->
-        <StackLayout class="section" marginBottom="20">
-          <Label text="Mes diagnostics" class="section-title" accessibilityRole="header" />
-          <DsfrButton
+            />
+          </StackLayout>
+          
+          <!-- our diagnosis -->
+          <StackLayout class="section" marginBottom="20">
+            <Label text="Mes diagnostics" class="section-title" />
+            <DsfrButton
             label="Consulter mon historique"
             variant="secondary"
             @tap="navigateTo('DiagnosisHistory')"
-          />
-        </StackLayout>
-
-        <!-- RGPD -->
-        <StackLayout class="section rgpd-section" marginBottom="20">
-          <Label text="Vos droits (RGPD)" class="section-title" accessibilityRole="header" />
-          <Label
+            />
+          </StackLayout>
+          
+          <!-- RGPD -->
+          <StackLayout class="section rgpd-section" marginBottom="20">
+            <Label text="Vos droits (RGPD)" class="section-title" />
+            <Label
             text="Conformément au Règlement Général sur la Protection des Données, vous pouvez à tout moment désactiver ou supprimer votre compte. Vos données seront anonymisées sous 30 jours."
             class="rgpd-text"
             textWrap
             marginBottom="16"
-          />
-
-          <!-- desactived -->
-          <DsfrButton
+            />
+            
+            <DsfrButton
             label="Désactiver mon compte"
             variant="secondary"
             :loading="userStore.loading"
             marginBottom="10"
             @tap="confirmDeactivate"
-          />
-
-          <!-- delete -->
-          <DsfrButton
+            />
+            
+            <DsfrButton
             label="Supprimer définitivement mon compte"
             variant="danger"
             :loading="userStore.loading"
             @tap="confirmDelete"
-          />
-        </StackLayout>
-
-        <!-- deconnexion -->
-        <DsfrButton
+            />
+          </StackLayout>
+          
+          <!-- deconnexion -->
+          <DsfrButton
           label="Se déconnecter"
           variant="tertiary"
           @tap="logout"
-        />
-
-      </StackLayout>
-    </ScrollView>
+          />
+          
+        </StackLayout>
+      </ScrollView>
+      
+    </GridLayout>
   </Page>
 </template>
 

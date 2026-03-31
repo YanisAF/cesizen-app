@@ -426,7 +426,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_ActivityIndicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActivityIndicator");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
@@ -434,162 +433,167 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
     const _component_DockLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DockLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Mon profil",
                         showBack: "",
                         actionIcon: "⚙",
                         actionLabel: "Paramètres du compte",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Home'))),
                         onAction: _cache[1] || (_cache[1] = ($event) => ($setup.navigateTo('Account')))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DockLayout, { stretchLastChild: "true" }, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BottomMenu"], { dock: "bottom" }),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DockLayout, {
+                        row: "1",
+                        stretchLastChild: "true"
+                    }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BottomMenu"], { dock: "bottom" }),
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    ($setup.userStore.loading)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
-                                            key: 0,
-                                            busy: true,
-                                            style: $setup.loaderStyle
-                                        }))
-                                        : ($setup.user)
-                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Avatar & nom "),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.profileHeaderStyle }, {
-                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: $setup.initials,
-                                                            style: $setup.avatarStyle
-                                                        }, null, 8 /* PROPS */, ["text"]),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: $setup.user.user_name,
-                                                            style: $setup.nameStyle,
-                                                            accessibilityRole: "header"
-                                                        }, null, 8 /* PROPS */, ["text"]),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: $setup.user.email,
-                                                            style: $setup.emailStyle
-                                                        }, null, 8 /* PROPS */, ["text"]),
-                                                        ($setup.user.role === 'ROLE_USER')
-                                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
-                                                                key: 0,
-                                                                text: "Utilisateur",
-                                                                style: $setup.roleBadgeStyle
-                                                            }))
-                                                            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
-                                                    ]),
-                                                    _: 1 /* STABLE */
-                                                }),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Infos "),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.sectionStyle }, {
-                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: "Informations du compte",
-                                                            style: $setup.sectionTitleStyle,
-                                                            accessibilityRole: "header"
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            ($setup.userStore.loading)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
+                                                    key: 0,
+                                                    busy: true,
+                                                    style: $setup.loaderStyle
+                                                }))
+                                                : ($setup.user)
+                                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 1 }, [
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Avatar & nom "),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.profileHeaderStyle }, {
+                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: $setup.initials,
+                                                                    style: $setup.avatarStyle
+                                                                }, null, 8 /* PROPS */, ["text"]),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: $setup.user.user_name,
+                                                                    style: $setup.nameStyle,
+                                                                    accessibilityRole: "header"
+                                                                }, null, 8 /* PROPS */, ["text"]),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: $setup.user.email,
+                                                                    style: $setup.emailStyle
+                                                                }, null, 8 /* PROPS */, ["text"]),
+                                                                ($setup.user.role === 'ROLE_USER')
+                                                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                                        key: 0,
+                                                                        text: "Utilisateur",
+                                                                        style: $setup.roleBadgeStyle
+                                                                    }))
+                                                                    : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                            ]),
+                                                            _: 1 /* STABLE */
                                                         }),
-                                                        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.infos, (info) => {
-                                                            return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-                                                                key: info.label,
-                                                                columns: "auto, *",
-                                                                rows: "auto",
-                                                                style: $setup.infoRowStyle
-                                                            }, {
-                                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                        col: "0",
-                                                                        text: info.label,
-                                                                        style: $setup.infoLabelStyle
-                                                                    }, null, 8 /* PROPS */, ["text"]),
-                                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                        col: "1",
-                                                                        text: info.value,
-                                                                        style: $setup.infoValueStyle,
-                                                                        textWrap: "true"
-                                                                    }, null, 8 /* PROPS */, ["text"])
-                                                                ]),
-                                                                _: 2 /* DYNAMIC */
-                                                            }, 1024 /* DYNAMIC_SLOTS */));
-                                                        }), 128 /* KEYED_FRAGMENT */))
-                                                    ]),
-                                                    _: 1 /* STABLE */
-                                                }),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Actions rapides "),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.sectionStyle }, {
-                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: "Mes activités",
-                                                            style: $setup.sectionTitleStyle,
-                                                            accessibilityRole: "header"
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Infos "),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.sectionStyle }, {
+                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: "Informations du compte",
+                                                                    style: $setup.sectionTitleStyle,
+                                                                    accessibilityRole: "header"
+                                                                }),
+                                                                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.infos, (info) => {
+                                                                    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
+                                                                        key: info.label,
+                                                                        columns: "auto, *",
+                                                                        rows: "auto",
+                                                                        style: $setup.infoRowStyle
+                                                                    }, {
+                                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                                col: "0",
+                                                                                text: info.label,
+                                                                                style: $setup.infoLabelStyle
+                                                                            }, null, 8 /* PROPS */, ["text"]),
+                                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                                col: "1",
+                                                                                text: info.value,
+                                                                                style: $setup.infoValueStyle,
+                                                                                textWrap: "true"
+                                                                            }, null, 8 /* PROPS */, ["text"])
+                                                                        ]),
+                                                                        _: 2 /* DYNAMIC */
+                                                                    }, 1024 /* DYNAMIC_SLOTS */));
+                                                                }), 128 /* KEYED_FRAGMENT */))
+                                                            ]),
+                                                            _: 1 /* STABLE */
                                                         }),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                            label: "📊  Mes résultats de diagnostic",
-                                                            variant: "secondary",
-                                                            fullWidth: "",
-                                                            onTap: _cache[2] || (_cache[2] = ($event) => ($setup.navigateTo('DiagnosisHistory')))
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Actions rapides "),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.sectionStyle }, {
+                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: "Mes activités",
+                                                                    style: $setup.sectionTitleStyle,
+                                                                    accessibilityRole: "header"
+                                                                }),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                    label: "📊  Mes résultats de diagnostic",
+                                                                    variant: "secondary",
+                                                                    fullWidth: "",
+                                                                    onTap: _cache[2] || (_cache[2] = ($event) => ($setup.navigateTo('DiagnosisHistory')))
+                                                                }),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                    label: "🔑  Modifier mon mot de passe",
+                                                                    variant: "secondary",
+                                                                    fullWidth: "",
+                                                                    onTap: _cache[3] || (_cache[3] = ($event) => ($setup.navigateTo('ResetRequest')))
+                                                                })
+                                                            ]),
+                                                            _: 1 /* STABLE */
                                                         }),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                            label: "🔑  Modifier mon mot de passe",
-                                                            variant: "secondary",
-                                                            fullWidth: "",
-                                                            onTap: _cache[3] || (_cache[3] = ($event) => ($setup.navigateTo('ResetRequest')))
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Zone danger "),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.dangerZoneStyle }, {
+                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: "Zone de danger",
+                                                                    style: $setup.dangerTitleStyle,
+                                                                    accessibilityRole: "header"
+                                                                }),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                    label: "Désactiver mon compte",
+                                                                    variant: "secondary",
+                                                                    fullWidth: "",
+                                                                    onTap: $setup.confirmDesactivate
+                                                                }),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                    label: "Supprimer définitivement mon compte",
+                                                                    variant: "danger",
+                                                                    fullWidth: "",
+                                                                    onTap: $setup.confirmDelete
+                                                                })
+                                                            ]),
+                                                            _: 1 /* STABLE */
+                                                        }),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Note RGPD "),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.rgpdStyle }, {
+                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: "Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et de suppression à tout moment.",
+                                                                    textWrap: "true",
+                                                                    style: $setup.rgpdTextStyle
+                                                                })
+                                                            ]),
+                                                            _: 1 /* STABLE */
                                                         })
-                                                    ]),
-                                                    _: 1 /* STABLE */
-                                                }),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Zone danger "),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.dangerZoneStyle }, {
-                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: "Zone de danger",
-                                                            style: $setup.dangerTitleStyle,
-                                                            accessibilityRole: "header"
-                                                        }),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                            label: "Désactiver mon compte",
-                                                            variant: "secondary",
-                                                            fullWidth: "",
-                                                            onTap: $setup.confirmDesactivate
-                                                        }),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                            label: "Supprimer définitivement mon compte",
-                                                            variant: "danger",
-                                                            fullWidth: "",
-                                                            onTap: $setup.confirmDelete
-                                                        })
-                                                    ]),
-                                                    _: 1 /* STABLE */
-                                                }),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Note RGPD "),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.rgpdStyle }, {
-                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: "Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et de suppression à tout moment.",
-                                                            textWrap: "true",
-                                                            style: $setup.rgpdTextStyle
-                                                        })
-                                                    ]),
-                                                    _: 1 /* STABLE */
-                                                })
-                                            ], 64 /* STABLE_FRAGMENT */))
-                                            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    ($setup.userStore.error)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                            key: 2,
-                                            message: $setup.userStore.error,
-                                            type: "error"
-                                        }, null, 8 /* PROPS */, ["message"]))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                    ], 64 /* STABLE_FRAGMENT */))
+                                                    : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            ($setup.userStore.error)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 2,
+                                                    message: $setup.userStore.error,
+                                                    type: "error"
+                                                }, null, 8 /* PROPS */, ["message"]))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    })
                                 ]),
                                 _: 1 /* STABLE */
                             })

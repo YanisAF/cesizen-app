@@ -1,19 +1,27 @@
 <template>
-  <Page>
-    <ActionBar>
-      <AppBar title="Nouveau mot de passe" showBack @back="navigateTo('ResetVerify')" />
-    </ActionBar>
-    <ScrollView>
-      <StackLayout :style="containerStyle">
-        <StackLayout :style="headerStyle">
-          <Label text="Nouveau mot de passe" :style="titleStyle" accessibilityRole="header" />
-        </StackLayout>
-
-        <StackLayout :style="formStyle">
-          <AlertBanner v-if="error" :message="error" type="error" />
-          <AlertBanner v-if="success" message="Mot de passe modifié avec succès !" type="success" />
-
-          <DsfrInput
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+      
+      <!-- APP BAR -->
+      <AppBar
+      row="0"
+      title="Nouveau mot de passe"
+      showBack
+      @back="navigateTo('ResetVerify')"
+      />
+      
+      <!-- CONTENU -->
+      <ScrollView row="1">
+        <StackLayout :style="containerStyle">
+          <StackLayout :style="headerStyle">
+            <Label text="Nouveau mot de passe" :style="titleStyle" accessibilityRole="header" />
+          </StackLayout>
+          
+          <StackLayout :style="formStyle">
+            <AlertBanner v-if="error" :message="error" type="error" />
+            <AlertBanner v-if="success" message="Mot de passe modifié avec succès !" type="success" />
+            
+            <DsfrInput
             v-model="newPassword"
             label="Nouveau mot de passe"
             hint="Au moins 6 caractères"
@@ -21,27 +29,29 @@
             :error="passwordError"
             required
             @blur="validatePwd"
-          />
-          <DsfrInput
+            />
+            <DsfrInput
             v-model="confirmPassword"
             label="Confirmer le mot de passe"
             :secure="true"
             :error="confirmError"
             required
             @blur="validateConfirm"
-          />
-
-          <DsfrButton
+            />
+            
+            <DsfrButton
             :label="loading ? 'Enregistrement…' : 'Enregistrer'"
             variant="primary"
             fullWidth
             :loading="loading"
             :disabled="loading || success"
             @tap="submit"
-          />
+            />
+          </StackLayout>
         </StackLayout>
-      </StackLayout>
-    </ScrollView>
+      </ScrollView>
+      
+    </GridLayout>
   </Page>
 </template>
 
