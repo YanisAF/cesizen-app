@@ -84,7 +84,7 @@ export const userApi = {
     request<User>(`/users/profil?id=${id}`),
   
   update: (id: number, data: Partial<User>) =>
-    request<User>(`/users/profil?id=${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    request<User>(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   
   delete: (id: number) =>
     request<void>(`/users/delete?id=${id}`, { method: 'DELETE' }),

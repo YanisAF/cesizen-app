@@ -47,6 +47,7 @@ const viewMap = {
     QuizResult: () => __webpack_require__.e(/* import() */ "app_views_quiz_QuizResultView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/quiz/QuizResultView.vue")),
     DiagnosisHistory: () => __webpack_require__.e(/* import() */ "app_views_quiz_DiagnosisHistoryView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/quiz/DiagnosisHistoryView.vue")),
     Contact: () => __webpack_require__.e(/* import() */ "app_views_support_ContactView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/support/ContactView.vue")),
+    EditProfil: () => __webpack_require__.e(/* import() */ "app_views_user_EditProfilView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/user/EditProfilView.vue")),
 };
 // global ref 
 const currentRoute = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('Home');
@@ -149,7 +150,7 @@ const authApi = {
 // ============================================================
 const userApi = {
     getProfile: (id) => request(`/users/profil?id=${id}`),
-    update: (id, data) => request(`/users/profil?id=${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    update: (id, data) => request(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
     delete: (id) => request(`/users/delete?id=${id}`, { method: 'DELETE' }),
     deactivate: (id) => request(`/users/deactivate?id=${id}`, { method: 'PATCH' })
 };

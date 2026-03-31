@@ -54,6 +54,12 @@
                   fullWidth
                   @tap="navigateTo('ResetRequest')"
                 />
+                <DsfrButton
+                  label="👤  Modifier mon profil"
+                  variant="secondary"
+                  fullWidth
+                  @tap="navigateTo('EditProfil')"
+                />
               </StackLayout>
 
               <!-- Zone danger -->

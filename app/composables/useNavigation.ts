@@ -17,6 +17,8 @@ const viewMap: Record<string, () => Promise<any>> = {
   QuizResult:       () => import('../views/quiz/QuizResultView.vue'),
   DiagnosisHistory: () => import('../views/quiz/DiagnosisHistoryView.vue'),
   Contact:          () => import('../views/support/ContactView.vue'),
+  EditProfil:       () => import('../views/user/EditProfilView.vue'),
+
 }
 
 // global ref 

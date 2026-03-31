@@ -38,6 +38,8 @@ const useUserStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('user', 
     const profile = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     const loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     const error = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    const saving = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    const authStore = (0,_auth__WEBPACK_IMPORTED_MODULE_3__.useAuthStore)();
     async function fetchProfile(id) {
         loading.value = true;
         error.value = null;
@@ -51,6 +53,22 @@ const useUserStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('user', 
         }
         finally {
             loading.value = false;
+        }
+    }
+    async function updateProfile(id, payload) {
+        saving.value = true;
+        error.value = null;
+        try {
+            const updated = await _services_api__WEBPACK_IMPORTED_MODULE_2__.userApi.update(id, payload);
+            authStore.setUser(updated);
+            return updated;
+        }
+        catch (err) {
+            error.value = err?.message ?? 'Une erreur est survenue lors de la mise à jour.';
+            throw err;
+        }
+        finally {
+            saving.value = false;
         }
     }
     async function deleteAccount(id) {
@@ -86,7 +104,7 @@ const useUserStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('user', 
         }
     }
     function clearError() { error.value = null; }
-    return { profile, loading, error, fetchProfile, deleteAccount, deactivateAccount, clearError };
+    return { profile, loading, error, fetchProfile, deleteAccount, deactivateAccount, clearError, updateProfile, saving };
 });
 
 
