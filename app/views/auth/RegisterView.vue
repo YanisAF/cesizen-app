@@ -1,97 +1,105 @@
 <template>
-  <Page>
-    <ActionBar>
-      <AppBar title="Créer un compte" showBack @back="navigateTo('Login')" />
-    </ActionBar>
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
 
-    <ScrollView>
-      <StackLayout :style="containerStyle">
+      <!-- AppBar -->
+      <AppBar
+        row="0"
+        title="Créer un compte"
+        showBack
+        @back="navigateTo('Login')"
+      />
 
-        <!-- Header -->
-        <StackLayout :style="headerStyle">
-          <Label text="🇫🇷 République Française" :style="rfStyle" />
-          <Label text="Créer un compte" :style="pageTitleStyle" />
-          <Label
-            text="Vos données sont protégées conformément au RGPD."
-            :style="rgpdStyle"
-            textWrap
-          />
-        </StackLayout>
+      <ScrollView row="1">
+        <StackLayout :style="containerStyle">
 
-        <!-- Form -->
-        <StackLayout :style="formStyle">
-
-          <AlertBanner v-if="authStore.error" :message="authStore.error" type="error" />
-
-          <DsfrInput
-            v-model="form.user_name"
-            label="Identifiant"
-            hint="3 à 32 caractères"
-            :error="errors.user_name"
-            required
-            @blur="validateUserName"
-          />
-
-          <DsfrInput
-            v-model="form.email"
-            label="Email"
-            hint="exemple@domaine.fr"
-            keyboardType="email"
-            :error="errors.email"
-            required
-            @blur="validateEmail"
-          />
-
-          <DsfrInput
-            v-model="form.phone"
-            label="Téléphone (optionnel)"
-            hint="06 00 00 00 00"
-            keyboardType="phone"
-            :error="errors.phone"
-            @blur="validatePhone"
-          />
-
-          <DsfrInput
-            v-model="form.password"
-            label="Mot de passe"
-            hint="Minimum 6 caractères"
-            :secure="true"
-            :error="errors.password"
-            required
-            @blur="validatePassword"
-          />
-
-          <DsfrInput
-            v-model="form.passwordConfirm"
-            label="Confirmer le mot de passe"
-            :secure="true"
-            :error="errors.passwordConfirm"
-            required
-            @blur="validatePasswordConfirm"
-          />
-
-          <!-- RGPD -->
-          <StackLayout :style="consentStyle">
+          <!-- Header -->
+          <StackLayout :style="headerStyle">
+            <Label text="🇫🇷 République Française" :style="rfStyle" />
+            <Label text="Créer un compte" :style="pageTitleStyle" />
             <Label
-              text="En créant votre compte, vous acceptez notre politique de confidentialité."
+              text="Vos données sont protégées conformément au RGPD."
+              :style="rgpdStyle"
               textWrap
-              :style="consentTextStyle"
             />
           </StackLayout>
 
-          <DsfrButton
-            :label="authStore.loading ? 'Création…' : 'Créer mon compte'"
-            variant="primary"
-            fullWidth
-            :loading="authStore.loading"
-            :disabled="authStore.loading || !canSubmit"
-            @tap="submit"
-          />
+          <!-- Form -->
+          <StackLayout :style="formStyle">
+
+            <AlertBanner v-if="authStore.error" :message="authStore.error" type="error" />
+
+            <DsfrInput
+              v-model="form.user_name"
+              label="Identifiant"
+              hint="3 à 32 caractères"
+              :error="errors.user_name"
+              required
+              @blur="validateUserName"
+            />
+
+            <DsfrInput
+              v-model="form.email"
+              label="Email"
+              hint="exemple@domaine.fr"
+              keyboardType="email"
+              :error="errors.email"
+              required
+              @blur="validateEmail"
+            />
+
+            <DsfrInput
+              v-model="form.phone"
+              label="Téléphone (optionnel)"
+              hint="06 00 00 00 00"
+              keyboardType="phone"
+              :error="errors.phone"
+              @blur="validatePhone"
+            />
+
+            <DsfrInput
+              v-model="form.password"
+              label="Mot de passe"
+              hint="Minimum 6 caractères"
+              :secure="true"
+              :error="errors.password"
+              required
+              @blur="validatePassword"
+            />
+
+            <DsfrInput
+              v-model="form.passwordConfirm"
+              label="Confirmer le mot de passe"
+              :secure="true"
+              :error="errors.passwordConfirm"
+              required
+              @blur="validatePasswordConfirm"
+            />
+
+            <!-- RGPD -->
+            <StackLayout :style="consentStyle">
+              <Label
+                text="En créant votre compte, vous acceptez notre politique de confidentialité."
+                textWrap
+                :style="consentTextStyle"
+              />
+            </StackLayout>
+
+            <DsfrButton
+              :label="authStore.loading ? 'Création…' : 'Créer mon compte'"
+              variant="primary"
+              fullWidth
+              :loading="authStore.loading"
+              :disabled="authStore.loading || !canSubmit"
+              @tap="submit"
+            />
+
+          </StackLayout>
 
         </StackLayout>
+      </ScrollView>
 
-      </StackLayout>
-    </ScrollView>
+    </GridLayout>
   </Page>
 </template>
 

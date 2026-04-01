@@ -1,5 +1,5 @@
-export const __webpack_esm_id__ = "app_views_user_ProfileView_vue";
-export const __webpack_esm_ids__ = ["app_views_user_ProfileView_vue"];
+export const __webpack_esm_id__ = "app_views_user_EditProfilView_vue";
+export const __webpack_esm_ids__ = ["app_views_user_EditProfilView_vue"];
 export const __webpack_esm_modules__ = {
 
 /***/ "./app/stores/user.ts"
@@ -199,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ },
 
-/***/ "./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/ProfileView.vue?vue&type=script&lang=ts&setup=true"
+/***/ "./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/EditProfilView.vue?vue&type=script&lang=ts&setup=true"
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -226,56 +226,83 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*@__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
-    __name: 'ProfileView',
+    __name: 'EditProfilView',
     setup(__props, { expose: __expose }) {
         __expose();
-        const { navigateTo, goBack } = (0,_composables_useNavigation__WEBPACK_IMPORTED_MODULE_1__.useNavigation)();
+        const { navigateTo } = (0,_composables_useNavigation__WEBPACK_IMPORTED_MODULE_1__.useNavigation)();
         const authStore = (0,_stores_auth__WEBPACK_IMPORTED_MODULE_2__.useAuthStore)();
         const userStore = (0,_stores_user__WEBPACK_IMPORTED_MODULE_3__.useUserStore)();
         const user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => authStore.user);
         const initials = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
-            const n = user.value?.user_name ?? '?';
+            const n = form.user_name ?? user.value?.user_name ?? '?';
             return n.slice(0, 2).toUpperCase();
         });
-        const infos = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => [
-            { label: 'Identifiant', value: user.value?.user_name ?? '' },
-            { label: 'E-mail', value: user.value?.email ?? '' },
-            { label: 'Téléphone', value: user.value?.phone ?? 'Non renseigné' },
-            { label: 'Rôle', value: user.value?.role === 'ROLE_USER' ? 'Utilisateur' : 'Administrateur' }
-        ]);
-        async function confirmDesactivate() {
-            try {
-                const { Dialogs } = __webpack_require__("./node_modules/@nativescript/core/index.js");
-                const result = await Dialogs.confirm({
-                    title: 'Désactiver le compte',
-                    message: 'Votre compte sera désactivé. Vous pourrez le réactiver en contactant le support.',
-                    okButtonText: 'Désactiver',
-                    cancelButtonText: 'Annuler'
-                });
-                if (result && user.value?.id)
-                    await userStore.deactivateAccount(user.value.id);
-            }
-            catch (_) { /* test env */ }
-        }
-        async function confirmDelete() {
-            try {
-                const { Dialogs } = __webpack_require__("./node_modules/@nativescript/core/index.js");
-                const result = await Dialogs.confirm({
-                    title: 'Supprimer le compte',
-                    message: 'Cette action est irréversible. Toutes vos données seront supprimées conformément au RGPD.',
-                    okButtonText: 'Supprimer définitivement',
-                    cancelButtonText: 'Annuler'
-                });
-                if (result && user.value?.id)
-                    await userStore.deleteAccount(user.value.id);
-                navigateTo('Home');
-            }
-            catch (_) { /* test env */ }
-        }
+        const form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+            user_name: '',
+            email: '',
+            phone: ''
+        });
+        const errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+            user_name: '',
+            email: '',
+            phone: ''
+        });
+        const successMessage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(async () => {
             if (user.value?.id)
                 await userStore.fetchProfile(user.value.id);
+            form.user_name = user.value?.user_name ?? '';
+            form.email = user.value?.email ?? '';
+            form.phone = user.value?.phone ?? '';
         });
+        function validate() {
+            errors.user_name = '';
+            errors.email = '';
+            errors.phone = '';
+            let valid = true;
+            if (!form.user_name.trim()) {
+                errors.user_name = "L'identifiant est requis.";
+                valid = false;
+            }
+            else if (form.user_name.trim().length < 3) {
+                errors.user_name = "L'identifiant doit contenir au moins 3 caractères.";
+                valid = false;
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!form.email.trim()) {
+                errors.email = "L'adresse e-mail est requise.";
+                valid = false;
+            }
+            else if (!emailRegex.test(form.email.trim())) {
+                errors.email = "L'adresse e-mail n'est pas valide.";
+                valid = false;
+            }
+            if (form.phone.trim() && !/^[\d\s\+\-\(\)]{7,20}$/.test(form.phone.trim())) {
+                errors.phone = 'Le numéro de téléphone n\'est pas valide.';
+                valid = false;
+            }
+            return valid;
+        }
+        async function submitForm() {
+            successMessage.value = '';
+            if (!validate())
+                return;
+            if (!user.value?.id)
+                return;
+            try {
+                await userStore.updateProfile(user.value.id, {
+                    user_name: form.user_name.trim(),
+                    email: form.email.trim(),
+                    phone: form.phone.trim() || undefined
+                });
+                successMessage.value = 'Vos informations ont été mises à jour avec succès.';
+                setTimeout(() => navigateTo('Profile'), 1500);
+            }
+            catch (_) {
+                // catch by userStore
+            }
+        }
+        // ─── Styles ────────────────────────────────────────────────────────────────────
         const containerStyle = { backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.background };
         const profileHeaderStyle = {
             backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.blueFrance,
@@ -297,27 +324,65 @@ __webpack_require__.r(__webpack_exports__);
             fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightBold,
             marginTop: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.sm
         };
-        const emailStyle = { color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white, fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeMd, opacity: 0.8 };
-        const roleBadgeStyle = {
-            backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.blueFranceLight,
-            color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.blueFrance,
-            fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeSm,
-            fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightBold,
-            borderRadius: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.radius.full,
-            padding: '4 12',
-            marginTop: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.sm
+        const emailStyle = {
+            color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white,
+            fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeMd,
+            opacity: 0.8
         };
-        const sectionStyle = { backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white, padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg, marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xs };
-        const sectionTitleStyle = { fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeLg, fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightBold, color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey950, marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.md };
-        const infoRowStyle = { paddingBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.sm, borderBottomWidth: 1, borderBottomColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey200, marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.sm };
-        const infoLabelStyle = { fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeSm, color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey625, width: 110 };
-        const infoValueStyle = { fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeMd, color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey950, fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightMedium };
-        const dangerZoneStyle = { backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.errorLight, padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg, marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xs };
-        const dangerTitleStyle = { fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeLg, fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightBold, color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.error, marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.md };
+        const sectionStyle = {
+            backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white,
+            padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg,
+            marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xs
+        };
+        const sectionTitleStyle = {
+            fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeLg,
+            fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightBold,
+            color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey950,
+            marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.md
+        };
+        const fieldGroupStyle = {
+            marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.md
+        };
+        const fieldLabelStyle = {
+            fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeSm,
+            fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightMedium,
+            color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey950,
+            marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xs
+        };
+        const textFieldStyle = {
+            fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeMd,
+            color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey950,
+            backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white,
+            borderWidth: 1,
+            borderColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey625,
+            borderRadius: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.radius.sm ?? 4,
+            padding: '10 12',
+            height: 44
+        };
+        const textFieldErrorStyle = {
+            borderColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.error,
+            borderWidth: 2
+        };
+        const fieldErrorStyle = {
+            fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeSm,
+            color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.error,
+            marginTop: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xs
+        };
+        const actionsStyle = {
+            backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white,
+            padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg,
+            marginBottom: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xs
+        };
         const loaderStyle = { margin: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing['2xl'] };
-        const rgpdStyle = { backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey100, padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg };
-        const rgpdTextStyle = { fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeSm, color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey625 };
-        const __returned__ = { navigateTo, goBack, authStore, userStore, user, initials, infos, confirmDesactivate, confirmDelete, containerStyle, profileHeaderStyle, avatarStyle, nameStyle, emailStyle, roleBadgeStyle, sectionStyle, sectionTitleStyle, infoRowStyle, infoLabelStyle, infoValueStyle, dangerZoneStyle, dangerTitleStyle, loaderStyle, rgpdStyle, rgpdTextStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], BottomMenu: _components_layout_BottomMenu_vue__WEBPACK_IMPORTED_MODULE_6__["default"], DsfrButton: _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_7__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
+        const rgpdStyle = {
+            backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey100,
+            padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg
+        };
+        const rgpdTextStyle = {
+            fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeSm,
+            color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey625
+        };
+        const __returned__ = { navigateTo, authStore, userStore, user, initials, form, errors, successMessage, validate, submitForm, containerStyle, profileHeaderStyle, avatarStyle, nameStyle, emailStyle, sectionStyle, sectionTitleStyle, fieldGroupStyle, fieldLabelStyle, textFieldStyle, textFieldErrorStyle, fieldErrorStyle, actionsStyle, loaderStyle, rgpdStyle, rgpdTextStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], BottomMenu: _components_layout_BottomMenu_vue__WEBPACK_IMPORTED_MODULE_6__["default"], DsfrButton: _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_7__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
@@ -434,7 +499,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ },
 
-/***/ "./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[4]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/ProfileView.vue?vue&type=template&id=174dbf72&ts=true"
+/***/ "./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[4]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/EditProfilView.vue?vue&type=template&id=936f053c&ts=true"
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -447,9 +512,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_ActivityIndicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActivityIndicator");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
-    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
+    const _component_TextField = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TextField");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
     const _component_DockLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DockLayout");
+    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
@@ -458,12 +524,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
                         row: "0",
-                        title: "Mon profil",
+                        title: "Modifier mon profil",
                         showBack: "",
-                        actionIcon: "⚙",
-                        actionLabel: "Paramètres du compte",
-                        onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Home'))),
-                        onAction: _cache[1] || (_cache[1] = ($event) => ($setup.navigateTo('Account')))
+                        onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Profile')))
                     }),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DockLayout, {
                         row: "1",
@@ -492,105 +555,119 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                                 }, null, 8 /* PROPS */, ["text"]),
                                                                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
                                                                     text: $setup.user.user_name,
-                                                                    style: $setup.nameStyle,
-                                                                    accessibilityRole: "header"
+                                                                    style: $setup.nameStyle
                                                                 }, null, 8 /* PROPS */, ["text"]),
                                                                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
                                                                     text: $setup.user.email,
                                                                     style: $setup.emailStyle
-                                                                }, null, 8 /* PROPS */, ["text"]),
-                                                                ($setup.user.role === 'ROLE_USER')
-                                                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
-                                                                        key: 0,
-                                                                        text: "Utilisateur",
-                                                                        style: $setup.roleBadgeStyle
-                                                                    }))
-                                                                    : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                                }, null, 8 /* PROPS */, ["text"])
                                                             ]),
                                                             _: 1 /* STABLE */
                                                         }),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Infos "),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Formulaire "),
                                                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.sectionStyle }, {
                                                             default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                                                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                    text: "Informations du compte",
+                                                                    text: "Informations personnelles",
                                                                     style: $setup.sectionTitleStyle,
                                                                     accessibilityRole: "header"
                                                                 }),
-                                                                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.infos, (info) => {
-                                                                    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GridLayout, {
-                                                                        key: info.label,
-                                                                        columns: "auto, *",
-                                                                        rows: "auto",
-                                                                        style: $setup.infoRowStyle
-                                                                    }, {
-                                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                                col: "0",
-                                                                                text: info.label,
-                                                                                style: $setup.infoLabelStyle
-                                                                            }, null, 8 /* PROPS */, ["text"]),
-                                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                                col: "1",
-                                                                                text: info.value,
-                                                                                style: $setup.infoValueStyle,
-                                                                                textWrap: "true"
-                                                                            }, null, 8 /* PROPS */, ["text"])
-                                                                        ]),
-                                                                        _: 2 /* DYNAMIC */
-                                                                    }, 1024 /* DYNAMIC_SLOTS */));
-                                                                }), 128 /* KEYED_FRAGMENT */))
-                                                            ]),
-                                                            _: 1 /* STABLE */
-                                                        }),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Actions rapides "),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.sectionStyle }, {
-                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                    text: "Mes activités",
-                                                                    style: $setup.sectionTitleStyle,
-                                                                    accessibilityRole: "header"
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Identifiant "),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.fieldGroupStyle }, {
+                                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                            text: "Identifiant",
+                                                                            style: $setup.fieldLabelStyle
+                                                                        }),
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextField, {
+                                                                            modelValue: $setup.form.user_name,
+                                                                            "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.form.user_name) = $event)),
+                                                                            hint: "Votre identifiant",
+                                                                            style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([$setup.textFieldStyle, $setup.errors.user_name ? $setup.textFieldErrorStyle : {}]),
+                                                                            returnKeyType: "next",
+                                                                            autocorrect: "false",
+                                                                            autocapitalizationType: "none"
+                                                                        }, null, 8 /* PROPS */, ["modelValue", "style"]),
+                                                                        ($setup.errors.user_name)
+                                                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                                                key: 0,
+                                                                                text: $setup.errors.user_name,
+                                                                                style: $setup.fieldErrorStyle
+                                                                            }, null, 8 /* PROPS */, ["text"]))
+                                                                            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                                    ]),
+                                                                    _: 1 /* STABLE */
                                                                 }),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                                    label: "📊  Mes résultats de diagnostic",
-                                                                    variant: "secondary",
-                                                                    fullWidth: "",
-                                                                    onTap: _cache[2] || (_cache[2] = ($event) => ($setup.navigateTo('DiagnosisHistory')))
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" E-mail "),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.fieldGroupStyle }, {
+                                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                            text: "E-mail",
+                                                                            style: $setup.fieldLabelStyle
+                                                                        }),
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextField, {
+                                                                            modelValue: $setup.form.email,
+                                                                            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (($setup.form.email) = $event)),
+                                                                            hint: "Votre adresse e-mail",
+                                                                            keyboardType: "email",
+                                                                            style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([$setup.textFieldStyle, $setup.errors.email ? $setup.textFieldErrorStyle : {}]),
+                                                                            returnKeyType: "next",
+                                                                            autocorrect: "false",
+                                                                            autocapitalizationType: "none"
+                                                                        }, null, 8 /* PROPS */, ["modelValue", "style"]),
+                                                                        ($setup.errors.email)
+                                                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                                                key: 0,
+                                                                                text: $setup.errors.email,
+                                                                                style: $setup.fieldErrorStyle
+                                                                            }, null, 8 /* PROPS */, ["text"]))
+                                                                            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                                    ]),
+                                                                    _: 1 /* STABLE */
                                                                 }),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                                    label: "🔑  Modifier mon mot de passe",
-                                                                    variant: "secondary",
-                                                                    fullWidth: "",
-                                                                    onTap: _cache[3] || (_cache[3] = ($event) => ($setup.navigateTo('ResetRequest')))
-                                                                }),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                                    label: "👤  Modifier mon profil",
-                                                                    variant: "secondary",
-                                                                    fullWidth: "",
-                                                                    onTap: _cache[4] || (_cache[4] = ($event) => ($setup.navigateTo('EditProfil')))
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Téléphone "),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.fieldGroupStyle }, {
+                                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                            text: "Téléphone",
+                                                                            style: $setup.fieldLabelStyle
+                                                                        }),
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TextField, {
+                                                                            modelValue: $setup.form.phone,
+                                                                            "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (($setup.form.phone) = $event)),
+                                                                            hint: "Ex : +33 6 00 00 00 00",
+                                                                            keyboardType: "phone",
+                                                                            style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([$setup.textFieldStyle, $setup.errors.phone ? $setup.textFieldErrorStyle : {}]),
+                                                                            returnKeyType: "done"
+                                                                        }, null, 8 /* PROPS */, ["modelValue", "style"]),
+                                                                        ($setup.errors.phone)
+                                                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
+                                                                                key: 0,
+                                                                                text: $setup.errors.phone,
+                                                                                style: $setup.fieldErrorStyle
+                                                                            }, null, 8 /* PROPS */, ["text"]))
+                                                                            : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+                                                                    ]),
+                                                                    _: 1 /* STABLE */
                                                                 })
                                                             ]),
                                                             _: 1 /* STABLE */
                                                         }),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Zone danger "),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.dangerZoneStyle }, {
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Actions "),
+                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.actionsStyle }, {
                                                             default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                    text: "Zone de danger",
-                                                                    style: $setup.dangerTitleStyle,
-                                                                    accessibilityRole: "header"
-                                                                }),
                                                                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                                    label: "Désactiver mon compte",
+                                                                    label: "Enregistrer les modifications",
+                                                                    variant: "primary",
+                                                                    fullWidth: "",
+                                                                    disabled: $setup.userStore.saving,
+                                                                    onTap: $setup.submitForm
+                                                                }, null, 8 /* PROPS */, ["disabled"]),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                    label: "Annuler",
                                                                     variant: "secondary",
                                                                     fullWidth: "",
-                                                                    onTap: $setup.confirmDesactivate
-                                                                }),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                                    label: "Supprimer définitivement mon compte",
-                                                                    variant: "danger",
-                                                                    fullWidth: "",
-                                                                    onTap: $setup.confirmDelete
+                                                                    onTap: _cache[4] || (_cache[4] = ($event) => ($setup.navigateTo('Profile')))
                                                                 })
                                                             ]),
                                                             _: 1 /* STABLE */
@@ -613,6 +690,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                     key: 2,
                                                     message: $setup.userStore.error,
                                                     type: "error"
+                                                }, null, 8 /* PROPS */, ["message"]))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            ($setup.successMessage)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 3,
+                                                    message: $setup.successMessage,
+                                                    type: "success"
                                                 }, null, 8 /* PROPS */, ["message"]))
                                                 : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
                                         ]),
@@ -685,22 +769,22 @@ if (false) // removed by dead control flow
 
 /***/ },
 
-/***/ "./app/views/user/ProfileView.vue"
+/***/ "./app/views/user/EditProfilView.vue"
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _ProfileView_vue_vue_type_template_id_174dbf72_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./app/views/user/ProfileView.vue?vue&type=template&id=174dbf72&ts=true");
-/* harmony import */ var _ProfileView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/views/user/ProfileView.vue?vue&type=script&lang=ts&setup=true");
+/* harmony import */ var _EditProfilView_vue_vue_type_template_id_936f053c_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./app/views/user/EditProfilView.vue?vue&type=template&id=936f053c&ts=true");
+/* harmony import */ var _EditProfilView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/views/user/EditProfilView.vue?vue&type=script&lang=ts&setup=true");
 /* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ProfileView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ProfileView_vue_vue_type_template_id_174dbf72_ts_true__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"app/views/user/ProfileView.vue"]])
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_EditProfilView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_EditProfilView_vue_vue_type_template_id_936f053c_ts_true__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"app/views/user/EditProfilView.vue"]])
 /* hot reload */
 if (false) // removed by dead control flow
 {}
@@ -734,14 +818,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ },
 
-/***/ "./app/views/user/ProfileView.vue?vue&type=script&lang=ts&setup=true"
+/***/ "./app/views/user/EditProfilView.vue?vue&type=script&lang=ts&setup=true"
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProfileView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EditProfilView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProfileView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/ProfileView.vue?vue&type=script&lang=ts&setup=true");
+/* harmony import */ var _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EditProfilView_vue_vue_type_script_lang_ts_setup_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/EditProfilView.vue?vue&type=script&lang=ts&setup=true");
  
 
 /***/ },
@@ -770,18 +854,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ },
 
-/***/ "./app/views/user/ProfileView.vue?vue&type=template&id=174dbf72&ts=true"
+/***/ "./app/views/user/EditProfilView.vue?vue&type=template&id=936f053c&ts=true"
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_4_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProfileView_vue_vue_type_template_id_174dbf72_ts_true__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_4_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EditProfilView_vue_vue_type_template_id_936f053c_ts_true__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_4_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProfileView_vue_vue_type_template_id_174dbf72_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[4]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/ProfileView.vue?vue&type=template&id=174dbf72&ts=true");
+/* harmony import */ var _node_modules_nativescript_webpack_dist_loaders_nativescript_worker_loader_index_js_node_modules_ts_loader_index_js_clonedRuleSet_4_use_0_node_modules_nativescript_webpack_dist_loaders_native_class_downlevel_loader_index_js_node_modules_nativescript_webpack_dist_loaders_native_class_strip_loader_index_js_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_4_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EditProfilView_vue_vue_type_template_id_936f053c_ts_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/@nativescript/webpack/dist/loaders/nativescript-worker-loader/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-4.use[0]!./node_modules/@nativescript/webpack/dist/loaders/native-class-downlevel-loader/index.js!./node_modules/@nativescript/webpack/dist/loaders/native-class-strip-loader/index.js!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[4]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./app/views/user/EditProfilView.vue?vue&type=template&id=936f053c&ts=true");
 
 
 /***/ }
 
 };
 
-//# sourceMappingURL=file:///C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\assets\app/app_views_user_ProfileView_vue.mjs.map
+//# sourceMappingURL=file:///C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\src\main\assets\app/app_views_user_EditProfilView_vue.mjs.map

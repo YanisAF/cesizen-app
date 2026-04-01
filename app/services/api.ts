@@ -84,7 +84,7 @@ export const userApi = {
     request<User>(`/users/profil?id=${id}`),
   
   update: (id: number, data: Partial<User>) =>
-    request<User>(`/users/profil?id=${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    request<User>(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   
   delete: (id: number) =>
     request<void>(`/users/delete?id=${id}`, { method: 'DELETE' }),
@@ -126,7 +126,7 @@ export const pageApi = {
 // ============================================================
 export const categoryApi = {
   getAll: () =>
-    request<Category[]>('/categories', {}, false)
+    request<Category[]>('/categories/list', {}, false)
 }
 
 // ============================================================
@@ -152,7 +152,13 @@ export const submissionApi = {
   submit: (quizId: number, submission: QuizSubmissionDto) =>
     request<ResultDtoResponse>(
     `/submit?quizId=${quizId}`,
-    { method: 'POST', body: JSON.stringify(submission) })
+    { method: 'POST', body: JSON.stringify(submission) }),
+    
+  save: (quizId: number, submission: QuizSubmissionDto) =>
+    request<ResultDtoResponse>(
+    `/save-result?quizId=${quizId}`,
+    { method: 'POST', body: JSON.stringify(submission) }
+    )
   }
   
   // ============================================================
@@ -160,5 +166,5 @@ export const submissionApi = {
   // ============================================================
   export const resultApi = {
     getByUser: (userId: number) =>
-      request<ResultDtoResponse[]>(`/results?userId=${userId}`)
+      request<ResultDtoResponse[]>(`/get-history-quiz?userId=${userId}`)
   }

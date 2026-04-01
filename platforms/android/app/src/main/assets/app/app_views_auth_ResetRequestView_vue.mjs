@@ -419,126 +419,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" APP BAR "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Réinitialisation",
                         showBack: "",
-                        onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Login')))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                        onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('Home')))
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CONTENU "),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Mot de passe oublié",
-                                        style: $setup.titleStyle,
-                                        accessibilityRole: "header"
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Choisissez comment recevoir votre code de vérification.",
-                                        textWrap: "true",
-                                        style: $setup.subtitleStyle
-                                    })
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    ($setup.error)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                            key: 0,
-                                            message: $setup.error,
-                                            type: "error"
-                                        }, null, 8 /* PROPS */, ["message"]))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    ($setup.success)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                            key: 1,
-                                            message: "Code envoyé ! Vérifiez vos messages.",
-                                            type: "success"
-                                        }))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                        modelValue: $setup.identifier,
-                                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.identifier) = $event)),
-                                        label: "Adresse électronique ou numéro de téléphone",
-                                        hint: "Identifiant associé à votre compte",
-                                        error: $setup.idError,
-                                        required: "",
-                                        onBlur: $setup.validateId
-                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Canal de réception",
-                                        style: $setup.labelStyle
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                        columns: "*, *",
-                                        style: $setup.channelGrid
-                                    }, {
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                col: "0",
-                                                style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.channelCard($setup.channel === 'email')),
-                                                accessibilityRole: "button",
-                                                accessibilityLabel: "Recevoir par e-mail",
-                                                onTap: _cache[2] || (_cache[2] = ($event) => ($setup.channel = 'email'))
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "✉️",
-                                                        style: $setup.channelIcon
-                                                    }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "E-mail",
-                                                        style: $setup.channelLabel
-                                                    })
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            }, 8 /* PROPS */, ["style"]),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                col: "1",
-                                                style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.channelCard($setup.channel === 'sms')),
-                                                accessibilityRole: "button",
-                                                accessibilityLabel: "Recevoir par SMS",
-                                                onTap: _cache[3] || (_cache[3] = ($event) => ($setup.channel = 'sms'))
-                                            }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "📱",
-                                                        style: $setup.channelIcon
-                                                    }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "SMS",
-                                                        style: $setup.channelLabel
-                                                    })
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            }, 8 /* PROPS */, ["style"])
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Mot de passe oublié",
+                                                style: $setup.titleStyle,
+                                                accessibilityRole: "header"
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Choisissez comment recevoir votre code de vérification.",
+                                                textWrap: "true",
+                                                style: $setup.subtitleStyle
+                                            })
                                         ]),
                                         _: 1 /* STABLE */
                                     }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: $setup.loading ? 'Envoi…' : 'Envoyer le code',
-                                        variant: "primary",
-                                        fullWidth: "",
-                                        loading: $setup.loading,
-                                        disabled: $setup.loading,
-                                        onTap: $setup.submit
-                                    }, null, 8 /* PROPS */, ["label", "loading", "disabled"])
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            ($setup.error)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 0,
+                                                    message: $setup.error,
+                                                    type: "error"
+                                                }, null, 8 /* PROPS */, ["message"]))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            ($setup.success)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 1,
+                                                    message: "Code envoyé ! Vérifiez vos messages.",
+                                                    type: "success"
+                                                }))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                modelValue: $setup.identifier,
+                                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.identifier) = $event)),
+                                                label: "Adresse électronique ou numéro de téléphone",
+                                                hint: "Identifiant associé à votre compte",
+                                                error: $setup.idError,
+                                                required: "",
+                                                onBlur: $setup.validateId
+                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Canal de réception",
+                                                style: $setup.labelStyle
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                columns: "*, *",
+                                                style: $setup.channelGrid
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                        col: "0",
+                                                        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.channelCard($setup.channel === 'email')),
+                                                        accessibilityRole: "button",
+                                                        accessibilityLabel: "Recevoir par e-mail",
+                                                        onTap: _cache[2] || (_cache[2] = ($event) => ($setup.channel = 'email'))
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "✉️",
+                                                                style: $setup.channelIcon
+                                                            }),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "E-mail",
+                                                                style: $setup.channelLabel
+                                                            })
+                                                        ]),
+                                                        _: 1 /* STABLE */
+                                                    }, 8 /* PROPS */, ["style"]),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                        col: "1",
+                                                        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.channelCard($setup.channel === 'sms')),
+                                                        accessibilityRole: "button",
+                                                        accessibilityLabel: "Recevoir par SMS",
+                                                        onTap: _cache[3] || (_cache[3] = ($event) => ($setup.channel = 'sms'))
+                                                    }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "📱",
+                                                                style: $setup.channelIcon
+                                                            }),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "SMS",
+                                                                style: $setup.channelLabel
+                                                            })
+                                                        ]),
+                                                        _: 1 /* STABLE */
+                                                    }, 8 /* PROPS */, ["style"])
+                                                ]),
+                                                _: 1 /* STABLE */
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: $setup.loading ? 'Envoi…' : 'Envoyer le code',
+                                                variant: "primary",
+                                                fullWidth: "",
+                                                loading: $setup.loading,
+                                                disabled: $setup.loading,
+                                                onTap: $setup.submit
+                                            }, null, 8 /* PROPS */, ["label", "loading", "disabled"])
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    })
                                 ]),
                                 _: 1 /* STABLE */
                             })

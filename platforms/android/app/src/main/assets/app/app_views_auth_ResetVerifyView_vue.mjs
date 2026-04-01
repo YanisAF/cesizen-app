@@ -485,69 +485,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
+    const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" APP BAR "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
+                        row: "0",
                         title: "Vérification",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.navigateTo('ResetRequest')))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CONTENU "),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.containerStyle }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Saisissez votre code",
-                                        style: $setup.titleStyle,
-                                        accessibilityRole: "header"
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.headerStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: "Saisissez votre code",
+                                                style: $setup.titleStyle,
+                                                accessibilityRole: "header"
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                text: `Code envoyé par ${$setup.channelLabel} à : ${$setup.identifier}`,
+                                                textWrap: "true",
+                                                style: $setup.subtitleStyle
+                                            }, null, 8 /* PROPS */, ["text"])
+                                        ]),
+                                        _: 1 /* STABLE */
                                     }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: `Code envoyé par ${$setup.channelLabel} à : ${$setup.identifier}`,
-                                        textWrap: "true",
-                                        style: $setup.subtitleStyle
-                                    }, null, 8 /* PROPS */, ["text"])
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    ($setup.error)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                            key: 0,
-                                            message: $setup.error,
-                                            type: "error"
-                                        }, null, 8 /* PROPS */, ["message"]))
-                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
-                                        modelValue: $setup.pin,
-                                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.pin) = $event)),
-                                        label: "Code de vérification",
-                                        hint: "4 à 6 chiffres",
-                                        keyboardType: "number",
-                                        error: $setup.pinError,
-                                        required: "",
-                                        onBlur: $setup.validatePin
-                                    }, null, 8 /* PROPS */, ["modelValue", "error"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: $setup.loading ? 'Vérification…' : 'Valider le code',
-                                        variant: "primary",
-                                        fullWidth: "",
-                                        loading: $setup.loading,
-                                        disabled: $setup.loading,
-                                        onTap: $setup.submit
-                                    }, null, 8 /* PROPS */, ["label", "loading", "disabled"])
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { style: $setup.formStyle }, {
+                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                            ($setup.error)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                    key: 0,
+                                                    message: $setup.error,
+                                                    type: "error"
+                                                }, null, 8 /* PROPS */, ["message"]))
+                                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrInput"], {
+                                                modelValue: $setup.pin,
+                                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (($setup.pin) = $event)),
+                                                label: "Code de vérification",
+                                                hint: "4 à 6 chiffres",
+                                                keyboardType: "number",
+                                                error: $setup.pinError,
+                                                required: "",
+                                                onBlur: $setup.validatePin
+                                            }, null, 8 /* PROPS */, ["modelValue", "error"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: $setup.loading ? 'Vérification…' : 'Valider le code',
+                                                variant: "primary",
+                                                fullWidth: "",
+                                                loading: $setup.loading,
+                                                disabled: $setup.loading,
+                                                onTap: $setup.submit
+                                            }, null, 8 /* PROPS */, ["label", "loading", "disabled"])
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    })
                                 ]),
                                 _: 1 /* STABLE */
                             })

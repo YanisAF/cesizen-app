@@ -1,68 +1,76 @@
 <template>
-  <Page>
-    <ActionBar>
-      <AppBar title="Connexion" showBack @back="navigateTo('Home')" />
-    </ActionBar>
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
 
-    <ScrollView>
-      <StackLayout :style="containerStyle">
+      <!-- AppBar -->
+      <AppBar
+        row="0"
+        title="Connexion"
+        showBack
+        @back="navigateTo('Home')"
+      />
 
-        <!-- RF banner -->
-        <StackLayout :style="headerStyle">
-          <Label text="🇫🇷  République Française" :style="rfStyle" />
-          <Label text="Se connecter" :style="pageTitleStyle" accessibilityRole="header" />
-        </StackLayout>
+      <ScrollView row="1">
+        <StackLayout :style="containerStyle">
 
-        <StackLayout :style="formStyle">
-          <AlertBanner v-if="authStore.error" :message="authStore.error" type="error" />
-
-          <DsfrInput
-            v-model="form.username"
-            label="Identifiant ou adresse électronique"
-            hint="Entrez votre identifiant"
-            :error="errors.username"
-            required
-            @blur="validateField('username')"
-          />
-
-          <DsfrInput
-            v-model="form.password"
-            label="Mot de passe"
-            hint="Entrez votre mot de passe"
-            :secure="true"
-            :error="errors.password"
-            required
-            @blur="validateField('password')"
-          />
-
-          <DsfrButton
-            label="Mot de passe oublié ?"
-            variant="tertiary"
-            @tap="navigateTo('ResetRequest')"
-          />
-
-          <DsfrButton
-            :label="authStore.loading ? 'Connexion…' : 'Se connecter'"
-            variant="primary"
-            fullWidth
-            :loading="authStore.loading"
-            :disabled="authStore.loading"
-            @tap="submit"
-          />
-
-          <StackLayout :style="dividerStyle">
-            <Label text="Pas encore de compte ?" :style="dividerTextStyle" />
-            <DsfrButton
-              label="Créer un compte"
-              variant="secondary"
-              fullWidth
-              @tap="navigateTo('Register')"
-            />
+          <!-- RF banner -->
+          <StackLayout :style="headerStyle">
+            <Label text="🇫🇷  République Française" :style="rfStyle" />
+            <Label text="Se connecter" :style="pageTitleStyle" accessibilityRole="header" />
           </StackLayout>
-        </StackLayout>
 
-      </StackLayout>
-    </ScrollView>
+          <StackLayout :style="formStyle">
+            <AlertBanner v-if="authStore.error" :message="authStore.error" type="error" />
+
+            <DsfrInput
+              v-model="form.username"
+              label="Identifiant ou adresse électronique"
+              hint="Entrez votre identifiant"
+              :error="errors.username"
+              required
+              @blur="validateField('username')"
+            />
+
+            <DsfrInput
+              v-model="form.password"
+              label="Mot de passe"
+              hint="Entrez votre mot de passe"
+              :secure="true"
+              :error="errors.password"
+              required
+              @blur="validateField('password')"
+            />
+
+            <DsfrButton
+              label="Mot de passe oublié ?"
+              variant="tertiary"
+              @tap="navigateTo('ResetRequest')"
+            />
+
+            <DsfrButton
+              :label="authStore.loading ? 'Connexion…' : 'Se connecter'"
+              variant="primary"
+              fullWidth
+              :loading="authStore.loading"
+              :disabled="authStore.loading"
+              @tap="submit"
+            />
+
+            <StackLayout :style="dividerStyle">
+              <Label text="Pas encore de compte ?" :style="dividerTextStyle" />
+              <DsfrButton
+                label="Créer un compte"
+                variant="secondary"
+                fullWidth
+                @tap="navigateTo('Register')"
+              />
+            </StackLayout>
+          </StackLayout>
+
+        </StackLayout>
+      </ScrollView>
+
+    </GridLayout>
   </Page>
 </template>
 

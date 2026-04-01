@@ -1,19 +1,27 @@
 <template>
-  <Page>
-    <ActionBar>
-      <AppBar title="Vérification" showBack @back="navigateTo('ResetRequest')" />
-    </ActionBar>
-    <ScrollView>
-      <StackLayout :style="containerStyle">
-        <StackLayout :style="headerStyle">
-          <Label text="Saisissez votre code" :style="titleStyle" accessibilityRole="header" />
-          <Label :text="`Code envoyé par ${channelLabel} à : ${identifier}`" textWrap="true" :style="subtitleStyle" />
-        </StackLayout>
-
-        <StackLayout :style="formStyle">
-          <AlertBanner v-if="error" :message="error" type="error" />
-
-          <DsfrInput
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+      
+      <!-- APP BAR -->
+      <AppBar
+      row="0"
+      title="Vérification"
+      showBack
+      @back="navigateTo('ResetRequest')"
+      />
+      
+      <!-- CONTENU -->
+      <ScrollView row="1">
+        <StackLayout :style="containerStyle">
+          <StackLayout :style="headerStyle">
+            <Label text="Saisissez votre code" :style="titleStyle" accessibilityRole="header" />
+            <Label :text="`Code envoyé par ${channelLabel} à : ${identifier}`" textWrap="true" :style="subtitleStyle" />
+          </StackLayout>
+          
+          <StackLayout :style="formStyle">
+            <AlertBanner v-if="error" :message="error" type="error" />
+            
+            <DsfrInput
             v-model="pin"
             label="Code de vérification"
             hint="4 à 6 chiffres"
@@ -21,19 +29,21 @@
             :error="pinError"
             required
             @blur="validatePin"
-          />
-
-          <DsfrButton
+            />
+            
+            <DsfrButton
             :label="loading ? 'Vérification…' : 'Valider le code'"
             variant="primary"
             fullWidth
             :loading="loading"
             :disabled="loading"
             @tap="submit"
-          />
+            />
+          </StackLayout>
         </StackLayout>
-      </StackLayout>
-    </ScrollView>
+      </ScrollView>
+      
+    </GridLayout>
   </Page>
 </template>
 

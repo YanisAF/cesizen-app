@@ -120,8 +120,19 @@ const recommendations = computed(() => {
   return map[level ?? 'FAIBLE']
 })
 
-function saveResult() {
-  saved.value = true
+async function saveResult() {
+  try {
+    const quizId = quizStore.currentQuiz?.id
+
+    if (!quizId) {
+      console.error('Aucun quiz en cours')
+      return
+    }
+    await quizStore.saveResult(quizId)
+    saved.value = true
+  } catch (e) {
+    console.error('Erreur lors de la sauvegarde', e)
+  }
 }
 
 function openSpecialistHelp() {

@@ -296,137 +296,138 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_ActivityIndicator = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActivityIndicator");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
                         title: "Mes diagnostics",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.goBack()))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CONTENT "),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            ($setup.quizStore.loading)
-                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
-                                    key: 0,
-                                    busy: "",
-                                    color: $setup.DSFR.colors.blueFranceSun,
-                                    horizontalAlignment: "center",
-                                    marginTop: "40",
-                                    accessibilityLabel: "Chargement de l'historique"
-                                }, null, 8 /* PROPS */, ["color"]))
-                                : ($setup.quizStore.error)
-                                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                        key: 1,
-                                        type: "error",
-                                        message: $setup.quizStore.error
-                                    }, null, 8 /* PROPS */, ["message"]))
-                                    : ($setup.quizStore.history.length === 0)
-                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 2 }, [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Liste vide "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { class: "empty-state" }, {
-                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "📋",
-                                                        class: "empty-icon",
-                                                        textAlign: "center"
-                                                    }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "Aucun diagnostic enregistré",
-                                                        class: "empty-title",
-                                                        textAlign: "center"
-                                                    }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                        text: "Effectuez un quiz pour obtenir votre premier bilan.",
-                                                        class: "empty-subtitle",
-                                                        textAlign: "center",
-                                                        textWrap: ""
-                                                    }),
-                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                                        label: "Voir les quiz",
-                                                        variant: "primary",
-                                                        marginTop: "20",
-                                                        onTap: _cache[1] || (_cache[1] = ($event) => ($setup.navigateTo('QuizList')))
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
+                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                    ($setup.quizStore.loading)
+                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ActivityIndicator, {
+                                            key: 0,
+                                            busy: "",
+                                            color: $setup.DSFR.colors.blueFranceSun,
+                                            horizontalAlignment: "center",
+                                            marginTop: "40",
+                                            accessibilityLabel: "Chargement de l'historique"
+                                        }, null, 8 /* PROPS */, ["color"]))
+                                        : ($setup.quizStore.error)
+                                            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                                key: 1,
+                                                type: "error",
+                                                message: $setup.quizStore.error
+                                            }, null, 8 /* PROPS */, ["message"]))
+                                            : ($setup.quizStore.history.length === 0)
+                                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 2 }, [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Liste vide "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { class: "empty-state" }, {
+                                                        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "📋",
+                                                                class: "empty-icon",
+                                                                textAlign: "center"
+                                                            }),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "Aucun diagnostic enregistré",
+                                                                class: "empty-title",
+                                                                textAlign: "center"
+                                                            }),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                text: "Effectuez un quiz pour obtenir votre premier bilan.",
+                                                                class: "empty-subtitle",
+                                                                textAlign: "center",
+                                                                textWrap: ""
+                                                            }),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                                label: "Voir les quiz",
+                                                                variant: "primary",
+                                                                marginTop: "20",
+                                                                onTap: _cache[1] || (_cache[1] = ($event) => ($setup.navigateTo('QuizList')))
+                                                            })
+                                                        ]),
+                                                        _: 1 /* STABLE */
                                                     })
-                                                ]),
-                                                _: 1 /* STABLE */
-                                            })
-                                        ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
-                                        : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 3 }, [
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Résultats "),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                text: `${$setup.quizStore.history.length} diagnostic(s) enregistré(s)`,
-                                                class: "count-label",
-                                                marginBottom: "16"
-                                            }, null, 8 /* PROPS */, ["text"]),
-                                            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.quizStore.history, (item) => {
-                                                return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
-                                                    key: item.id,
-                                                    class: "result-card",
-                                                    marginBottom: "12"
-                                                }, {
-                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { columns: "*, 90" }, {
+                                                ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
+                                                : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, { key: 3 }, [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Résultats "),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        text: `${$setup.quizStore.history.length} diagnostic(s) enregistré(s)`,
+                                                        class: "count-label",
+                                                        marginBottom: "16"
+                                                    }, null, 8 /* PROPS */, ["text"]),
+                                                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.quizStore.history, (item) => {
+                                                        return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
+                                                            key: item.id,
+                                                            class: "result-card",
+                                                            marginBottom: "12"
+                                                        }, {
                                                             default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { col: "0" }, {
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { columns: "*, 90" }, {
                                                                     default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                            text: `Quiz #${item.quizId}`,
-                                                                            class: "card-quiz-label"
-                                                                        }, null, 8 /* PROPS */, ["text"]),
-                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                            text: $setup.formatDate(item.id),
-                                                                            class: "card-date"
-                                                                        }, null, 8 /* PROPS */, ["text"])
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { col: "0" }, {
+                                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                                    text: `Quiz #${item.quizId}`,
+                                                                                    class: "card-quiz-label"
+                                                                                }, null, 8 /* PROPS */, ["text"]),
+                                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                                    text: $setup.formatDate(item.id),
+                                                                                    class: "card-date"
+                                                                                }, null, 8 /* PROPS */, ["text"])
+                                                                            ]),
+                                                                            _: 2 /* DYNAMIC */
+                                                                        }, 1024 /* DYNAMIC_SLOTS */),
+                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                                                            col: "1",
+                                                                            style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.riskBadgeStyle(item.riskLevel)),
+                                                                            class: "risk-pill"
+                                                                        }, {
+                                                                            default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                                    text: $setup.getRiskStyle(item.riskLevel).label,
+                                                                                    class: "risk-pill-text",
+                                                                                    textWrap: ""
+                                                                                }, null, 8 /* PROPS */, ["text"])
+                                                                            ]),
+                                                                            _: 2 /* DYNAMIC */
+                                                                        }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["style"])
                                                                     ]),
                                                                     _: 2 /* DYNAMIC */
                                                                 }, 1024 /* DYNAMIC_SLOTS */),
-                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                                                    col: "1",
-                                                                    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.riskBadgeStyle(item.riskLevel)),
-                                                                    class: "risk-pill"
-                                                                }, {
-                                                                    default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                            text: $setup.getRiskStyle(item.riskLevel).label,
-                                                                            class: "risk-pill-text",
-                                                                            textWrap: ""
-                                                                        }, null, 8 /* PROPS */, ["text"])
-                                                                    ]),
-                                                                    _: 2 /* DYNAMIC */
-                                                                }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["style"])
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: `Score : ${item.totalScore} pts`,
+                                                                    class: "card-score",
+                                                                    marginTop: "8"
+                                                                }, null, 8 /* PROPS */, ["text"]),
+                                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                                    text: item.message,
+                                                                    class: "card-message",
+                                                                    textWrap: "",
+                                                                    marginTop: "4"
+                                                                }, null, 8 /* PROPS */, ["text"])
                                                             ]),
                                                             _: 2 /* DYNAMIC */
-                                                        }, 1024 /* DYNAMIC_SLOTS */),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: `Score : ${item.totalScore} pts`,
-                                                            class: "card-score",
-                                                            marginTop: "8"
-                                                        }, null, 8 /* PROPS */, ["text"]),
-                                                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                            text: item.message,
-                                                            class: "card-message",
-                                                            textWrap: "",
-                                                            marginTop: "4"
-                                                        }, null, 8 /* PROPS */, ["text"])
-                                                    ]),
-                                                    _: 2 /* DYNAMIC */
-                                                }, 1024 /* DYNAMIC_SLOTS */));
-                                            }), 128 /* KEYED_FRAGMENT */))
-                                        ], 64 /* STABLE_FRAGMENT */))
+                                                        }, 1024 /* DYNAMIC_SLOTS */));
+                                                    }), 128 /* KEYED_FRAGMENT */))
+                                                ], 64 /* STABLE_FRAGMENT */))
+                                ]),
+                                _: 1 /* STABLE */
+                            })
                         ]),
                         _: 1 /* STABLE */
                     })

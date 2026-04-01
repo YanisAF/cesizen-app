@@ -1,10 +1,17 @@
 <template>
-  <Page>
-    <ActionBar>
-      <AppBar title="Mes diagnostics" showBack @back="goBack()" />
-    </ActionBar>
+ <Page actionBarHidden="true">
+  <GridLayout rows="56, *">
 
-    <ScrollView>
+    <!-- AppBar -->
+    <AppBar 
+      title="Mes diagnostics" 
+      showBack 
+      @back="goBack()" 
+    />
+  
+
+    <!-- CONTENT -->
+    <ScrollView row="1">
       <StackLayout padding="16">
 
         <ActivityIndicator
@@ -63,19 +70,39 @@
                 <Label :text="`Quiz #${item.quizId}`" class="card-quiz-label" />
                 <Label :text="formatDate(item.id)" class="card-date" />
               </StackLayout>
-              <StackLayout col="1" :style="riskBadgeStyle(item.riskLevel)" class="risk-pill">
-                <Label :text="getRiskStyle(item.riskLevel).label" class="risk-pill-text" textWrap />
+
+              <StackLayout
+                col="1"
+                :style="riskBadgeStyle(item.riskLevel)"
+                class="risk-pill"
+              >
+                <Label
+                  :text="getRiskStyle(item.riskLevel).label"
+                  class="risk-pill-text"
+                  textWrap
+                />
               </StackLayout>
             </GridLayout>
 
-            <Label :text="`Score : ${item.totalScore} pts`" class="card-score" marginTop="8" />
-            <Label :text="item.message" class="card-message" textWrap marginTop="4" />
+            <Label
+              :text="`Score : ${item.totalScore} pts`"
+              class="card-score"
+              marginTop="8"
+            />
+            <Label
+              :text="item.message"
+              class="card-message"
+              textWrap
+              marginTop="4"
+            />
           </StackLayout>
         </template>
 
       </StackLayout>
     </ScrollView>
-  </Page>
+
+  </GridLayout>
+</Page>
 </template>
 
 <script setup lang="ts">

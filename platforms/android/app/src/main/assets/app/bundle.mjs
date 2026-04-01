@@ -47,6 +47,7 @@ const viewMap = {
     QuizResult: () => __webpack_require__.e(/* import() */ "app_views_quiz_QuizResultView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/quiz/QuizResultView.vue")),
     DiagnosisHistory: () => __webpack_require__.e(/* import() */ "app_views_quiz_DiagnosisHistoryView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/quiz/DiagnosisHistoryView.vue")),
     Contact: () => __webpack_require__.e(/* import() */ "app_views_support_ContactView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/support/ContactView.vue")),
+    EditProfil: () => __webpack_require__.e(/* import() */ "app_views_user_EditProfilView_vue").then(__webpack_require__.bind(__webpack_require__, "./app/views/user/EditProfilView.vue")),
 };
 // global ref 
 const currentRoute = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('Home');
@@ -149,7 +150,7 @@ const authApi = {
 // ============================================================
 const userApi = {
     getProfile: (id) => request(`/users/profil?id=${id}`),
-    update: (id, data) => request(`/users/profil?id=${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    update: (id, data) => request(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
     delete: (id) => request(`/users/delete?id=${id}`, { method: 'DELETE' }),
     deactivate: (id) => request(`/users/deactivate?id=${id}`, { method: 'PATCH' })
 };
@@ -173,7 +174,7 @@ const pageApi = {
 // Categories — /api/v1/categories
 // ============================================================
 const categoryApi = {
-    getAll: () => request('/categories', {}, false)
+    getAll: () => request('/categories/list', {}, false)
 };
 // ============================================================
 // Quiz — /api/v1/
@@ -189,13 +190,14 @@ const quizApi = {
 // POST sans auth pour visiteur (résultat non persisté côté backend)
 // ============================================================
 const submissionApi = {
-    submit: (quizId, submission) => request(`/submit?quizId=${quizId}`, { method: 'POST', body: JSON.stringify(submission) })
+    submit: (quizId, submission) => request(`/submit?quizId=${quizId}`, { method: 'POST', body: JSON.stringify(submission) }),
+    save: (quizId, submission) => request(`/save-result?quizId=${quizId}`, { method: 'POST', body: JSON.stringify(submission) })
 };
 // ============================================================
 // Diagnosis Results — /api/v1/results (USER_PROFIL)
 // ============================================================
 const resultApi = {
-    getByUser: (userId) => request(`/results?userId=${userId}`)
+    getByUser: (userId) => request(`/get-history-quiz?userId=${userId}`)
 };
 
 
@@ -514,6 +516,23 @@ const useQuizStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('quiz', 
             loading.value = false;
         }
     }
+    async function saveResult(quizId) {
+        loading.value = true;
+        error.value = null;
+        try {
+            const submission = {
+                quizId,
+                answers: answers.value // directement la ref, pas de this
+            };
+            await _services_api__WEBPACK_IMPORTED_MODULE_2__.submissionApi.save(quizId, submission);
+        }
+        catch (e) {
+            error.value = e.message ?? 'Erreur lors de la sauvegarde';
+        }
+        finally {
+            loading.value = false;
+        }
+    }
     async function fetchHistory(userId) {
         loading.value = true;
         error.value = null;
@@ -542,7 +561,7 @@ const useQuizStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('quiz', 
     return {
         quizList, currentQuiz, currentResult, history, loading, error, answers,
         fetchAll, fetchById, setAnswer, isComplete, submitQuiz,
-        fetchHistory, searchQuiz, resetAnswers, clearError
+        fetchHistory, searchQuiz, resetAnswers, clearError, saveResult
     };
 });
 

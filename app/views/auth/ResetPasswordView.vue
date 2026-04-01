@@ -1,19 +1,27 @@
 <template>
-  <Page>
-    <ActionBar>
-      <AppBar title="Nouveau mot de passe" showBack @back="navigateTo('ResetVerify')" />
-    </ActionBar>
-    <ScrollView>
-      <StackLayout :style="containerStyle">
-        <StackLayout :style="headerStyle">
-          <Label text="Nouveau mot de passe" :style="titleStyle" accessibilityRole="header" />
-        </StackLayout>
-
-        <StackLayout :style="formStyle">
-          <AlertBanner v-if="error" :message="error" type="error" />
-          <AlertBanner v-if="success" message="Mot de passe modifié avec succès !" type="success" />
-
-          <DsfrInput
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
+      
+      <!-- APP BAR -->
+      <AppBar
+      row="0"
+      title="Nouveau mot de passe"
+      showBack
+      @back="navigateTo('ResetVerify')"
+      />
+      
+      <!-- CONTENU -->
+      <ScrollView row="1">
+        <StackLayout :style="containerStyle">
+          <StackLayout :style="headerStyle">
+            <Label text="Nouveau mot de passe" :style="titleStyle" accessibilityRole="header" />
+          </StackLayout>
+          
+          <StackLayout :style="formStyle">
+            <AlertBanner v-if="error" :message="error" type="error" />
+            <AlertBanner v-if="success" message="Mot de passe modifié avec succès !" type="success" />
+            
+            <DsfrInput
             v-model="newPassword"
             label="Nouveau mot de passe"
             hint="Au moins 6 caractères"
@@ -21,27 +29,29 @@
             :error="passwordError"
             required
             @blur="validatePwd"
-          />
-          <DsfrInput
+            />
+            <DsfrInput
             v-model="confirmPassword"
             label="Confirmer le mot de passe"
             :secure="true"
             :error="confirmError"
             required
             @blur="validateConfirm"
-          />
-
-          <DsfrButton
+            />
+            
+            <DsfrButton
             :label="loading ? 'Enregistrement…' : 'Enregistrer'"
             variant="primary"
             fullWidth
             :loading="loading"
             :disabled="loading || success"
             @tap="submit"
-          />
+            />
+          </StackLayout>
         </StackLayout>
-      </StackLayout>
-    </ScrollView>
+      </ScrollView>
+      
+    </GridLayout>
   </Page>
 </template>
 
@@ -56,6 +66,7 @@ import AppBar from '../../components/layout/AppBar.vue'
 import DsfrInput from '../../components/common/DsfrInput.vue'
 import DsfrButton from '../../components/common/DsfrButton.vue'
 import AlertBanner from '../../components/common/AlertBanner.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const { navigateTo } = useNavigation()
 const props = defineProps<{
@@ -73,6 +84,7 @@ const confirmError = ref('')
 const loading = ref(false)
 const error = ref('')
 const success = ref(false)
+const isAuthenticated = useAuthStore()
 
 function validatePwd() { passwordError.value = validators.password(newPassword.value).message }
 function validateConfirm() {
@@ -89,7 +101,13 @@ async function submit() {
   try {
     await resetApi.resetPassword({ jwt: jwt.value, newPassword: newPassword.value, channel: channel.value as any })
     success.value = true
-    setTimeout(() => navigateTo('Login'), 2000)
+    setTimeout(() => {
+      if (isAuthenticated.isAuthenticated) {
+        navigateTo('Home')
+      } else {
+        navigateTo('Login')
+      }
+    }, 2000)
   } catch (e: any) {
     error.value = e.message ?? 'Erreur lors de la réinitialisation'
   } finally {

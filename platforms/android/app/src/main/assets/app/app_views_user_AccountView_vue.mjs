@@ -38,6 +38,8 @@ const useUserStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('user', 
     const profile = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     const loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     const error = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    const saving = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    const authStore = (0,_auth__WEBPACK_IMPORTED_MODULE_3__.useAuthStore)();
     async function fetchProfile(id) {
         loading.value = true;
         error.value = null;
@@ -51,6 +53,22 @@ const useUserStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('user', 
         }
         finally {
             loading.value = false;
+        }
+    }
+    async function updateProfile(id, payload) {
+        saving.value = true;
+        error.value = null;
+        try {
+            const updated = await _services_api__WEBPACK_IMPORTED_MODULE_2__.userApi.update(id, payload);
+            authStore.setUser(updated);
+            return updated;
+        }
+        catch (err) {
+            error.value = err?.message ?? 'Une erreur est survenue lors de la mise à jour.';
+            throw err;
+        }
+        finally {
+            saving.value = false;
         }
     }
     async function deleteAccount(id) {
@@ -86,7 +104,7 @@ const useUserStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('user', 
         }
     }
     function clearError() { error.value = null; }
-    return { profile, loading, error, fetchProfile, deleteAccount, deactivateAccount, clearError };
+    return { profile, loading, error, fetchProfile, deleteAccount, deactivateAccount, clearError, updateProfile, saving };
 });
 
 
@@ -385,200 +403,195 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./node_modules/nativescript-vue/dist/index.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_ActionBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ActionBar");
     const _component_Label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Label");
     const _component_GridLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GridLayout");
     const _component_StackLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StackLayout");
     const _component_ScrollView = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ScrollView");
     const _component_Page = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Page");
-    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, null, {
+    return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Page, { actionBarHidden: "true" }, {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ActionBar, null, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
                         title: "Mon compte",
                         showBack: "",
                         onBack: _cache[0] || (_cache[0] = ($event) => ($setup.goBack()))
-                    })
-                ]),
-                _: 1 /* STABLE */
-            }),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, null, {
-                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
+                    }),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CONTENT "),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ScrollView, { row: "1" }, {
                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                            ($setup.userStore.error)
-                                ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
-                                    key: 0,
-                                    type: "error",
-                                    message: $setup.userStore.error,
-                                    onDismiss: _cache[1] || (_cache[1] = ($event) => ($setup.userStore.clearError()))
-                                }, null, 8 /* PROPS */, ["message"]))
-                                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" account infos "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                class: "section",
-                                marginBottom: "20"
-                            }, {
+                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, { padding: "16" }, {
                                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Informations du compte",
-                                        class: "section-title",
-                                        accessibilityRole: "header"
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                        columns: "120, *",
-                                        class: "info-row"
+                                    ($setup.userStore.error)
+                                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AlertBanner"], {
+                                            key: 0,
+                                            type: "error",
+                                            message: $setup.userStore.error,
+                                            onDismiss: _cache[1] || (_cache[1] = ($event) => ($setup.userStore.clearError()))
+                                        }, null, 8 /* PROPS */, ["message"]))
+                                        : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" account infos "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                        class: "section",
+                                        marginBottom: "20"
                                     }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "0",
-                                                text: "Identifiant",
-                                                class: "info-label"
+                                                text: "Informations du compte",
+                                                class: "section-title"
                                             }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "1",
-                                                text: $setup.authStore.user?.user_name ?? '—',
-                                                class: "info-value"
-                                            }, null, 8 /* PROPS */, ["text"])
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                columns: "120, *",
+                                                class: "info-row"
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "0",
+                                                        text: "Identifiant",
+                                                        class: "info-label"
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "1",
+                                                        text: $setup.authStore.user?.user_name ?? '—',
+                                                        class: "info-value"
+                                                    }, null, 8 /* PROPS */, ["text"])
+                                                ]),
+                                                _: 1 /* STABLE */
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                columns: "120, *",
+                                                class: "info-row"
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "0",
+                                                        text: "Adresse e-mail",
+                                                        class: "info-label"
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "1",
+                                                        text: $setup.authStore.user?.email ?? '—',
+                                                        class: "info-value"
+                                                    }, null, 8 /* PROPS */, ["text"])
+                                                ]),
+                                                _: 1 /* STABLE */
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                columns: "120, *",
+                                                class: "info-row"
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "0",
+                                                        text: "Téléphone",
+                                                        class: "info-label"
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "1",
+                                                        text: $setup.authStore.user?.phone ?? 'Non renseigné',
+                                                        class: "info-value"
+                                                    }, null, 8 /* PROPS */, ["text"])
+                                                ]),
+                                                _: 1 /* STABLE */
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
+                                                columns: "120, *",
+                                                class: "info-row"
+                                            }, {
+                                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "0",
+                                                        text: "Rôle",
+                                                        class: "info-label"
+                                                    }),
+                                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
+                                                        col: "1",
+                                                        text: $setup.roleLabel,
+                                                        class: "info-value"
+                                                    }, null, 8 /* PROPS */, ["text"])
+                                                ]),
+                                                _: 1 /* STABLE */
+                                            })
                                         ]),
                                         _: 1 /* STABLE */
                                     }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                        columns: "120, *",
-                                        class: "info-row"
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" update password "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                        class: "section",
+                                        marginBottom: "20"
                                     }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "0",
-                                                text: "Adresse e-mail",
-                                                class: "info-label"
+                                                text: "Sécurité",
+                                                class: "section-title"
                                             }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "1",
-                                                text: $setup.authStore.user?.email ?? '—',
-                                                class: "info-value"
-                                            }, null, 8 /* PROPS */, ["text"])
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: "Modifier mon mot de passe",
+                                                variant: "secondary",
+                                                onTap: _cache[2] || (_cache[2] = ($event) => ($setup.navigateTo('ResetRequest')))
+                                            })
                                         ]),
                                         _: 1 /* STABLE */
                                     }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                        columns: "120, *",
-                                        class: "info-row"
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" our diagnosis "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                        class: "section",
+                                        marginBottom: "20"
                                     }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "0",
-                                                text: "Téléphone",
-                                                class: "info-label"
+                                                text: "Mes diagnostics",
+                                                class: "section-title"
                                             }),
-                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "1",
-                                                text: $setup.authStore.user?.phone ?? 'Non renseigné',
-                                                class: "info-value"
-                                            }, null, 8 /* PROPS */, ["text"])
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: "Consulter mon historique",
+                                                variant: "secondary",
+                                                onTap: _cache[3] || (_cache[3] = ($event) => ($setup.navigateTo('DiagnosisHistory')))
+                                            })
                                         ]),
                                         _: 1 /* STABLE */
                                     }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, {
-                                        columns: "120, *",
-                                        class: "info-row"
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" RGPD "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
+                                        class: "section rgpd-section",
+                                        marginBottom: "20"
                                     }, {
                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "0",
-                                                text: "Rôle",
-                                                class: "info-label"
+                                                text: "Vos droits (RGPD)",
+                                                class: "section-title"
                                             }),
                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                col: "1",
-                                                text: $setup.roleLabel,
-                                                class: "info-value"
-                                            }, null, 8 /* PROPS */, ["text"])
+                                                text: "Conformément au Règlement Général sur la Protection des Données, vous pouvez à tout moment désactiver ou supprimer votre compte. Vos données seront anonymisées sous 30 jours.",
+                                                class: "rgpd-text",
+                                                textWrap: "",
+                                                marginBottom: "16"
+                                            }),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: "Désactiver mon compte",
+                                                variant: "secondary",
+                                                loading: $setup.userStore.loading,
+                                                marginBottom: "10",
+                                                onTap: $setup.confirmDeactivate
+                                            }, null, 8 /* PROPS */, ["loading"]),
+                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                                label: "Supprimer définitivement mon compte",
+                                                variant: "danger",
+                                                loading: $setup.userStore.loading,
+                                                onTap: $setup.confirmDelete
+                                            }, null, 8 /* PROPS */, ["loading"])
                                         ]),
                                         _: 1 /* STABLE */
+                                    }),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" deconnexion "),
+                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
+                                        label: "Se déconnecter",
+                                        variant: "tertiary",
+                                        onTap: $setup.logout
                                     })
                                 ]),
                                 _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" update password "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                class: "section",
-                                marginBottom: "20"
-                            }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Sécurité",
-                                        class: "section-title",
-                                        accessibilityRole: "header"
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: "Modifier mon mot de passe",
-                                        variant: "secondary",
-                                        onTap: _cache[2] || (_cache[2] = ($event) => ($setup.navigateTo('ResetRequest')))
-                                    })
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" our diagnosis "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                class: "section",
-                                marginBottom: "20"
-                            }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Mes diagnostics",
-                                        class: "section-title",
-                                        accessibilityRole: "header"
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: "Consulter mon historique",
-                                        variant: "secondary",
-                                        onTap: _cache[3] || (_cache[3] = ($event) => ($setup.navigateTo('DiagnosisHistory')))
-                                    })
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" RGPD "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StackLayout, {
-                                class: "section rgpd-section",
-                                marginBottom: "20"
-                            }, {
-                                default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Vos droits (RGPD)",
-                                        class: "section-title",
-                                        accessibilityRole: "header"
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                        text: "Conformément au Règlement Général sur la Protection des Données, vous pouvez à tout moment désactiver ou supprimer votre compte. Vos données seront anonymisées sous 30 jours.",
-                                        class: "rgpd-text",
-                                        textWrap: "",
-                                        marginBottom: "16"
-                                    }),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" desactived "),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: "Désactiver mon compte",
-                                        variant: "secondary",
-                                        loading: $setup.userStore.loading,
-                                        marginBottom: "10",
-                                        onTap: $setup.confirmDeactivate
-                                    }, null, 8 /* PROPS */, ["loading"]),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" delete "),
-                                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                        label: "Supprimer définitivement mon compte",
-                                        variant: "danger",
-                                        loading: $setup.userStore.loading,
-                                        onTap: $setup.confirmDelete
-                                    }, null, 8 /* PROPS */, ["loading"])
-                                ]),
-                                _: 1 /* STABLE */
-                            }),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" deconnexion "),
-                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DsfrButton"], {
-                                label: "Se déconnecter",
-                                variant: "tertiary",
-                                onTap: $setup.logout
                             })
                         ]),
                         _: 1 /* STABLE */
