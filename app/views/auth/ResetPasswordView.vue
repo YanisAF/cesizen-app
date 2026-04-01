@@ -66,6 +66,7 @@ import AppBar from '../../components/layout/AppBar.vue'
 import DsfrInput from '../../components/common/DsfrInput.vue'
 import DsfrButton from '../../components/common/DsfrButton.vue'
 import AlertBanner from '../../components/common/AlertBanner.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const { navigateTo } = useNavigation()
 const props = defineProps<{
@@ -83,6 +84,7 @@ const confirmError = ref('')
 const loading = ref(false)
 const error = ref('')
 const success = ref(false)
+const isAuthenticated = useAuthStore()
 
 function validatePwd() { passwordError.value = validators.password(newPassword.value).message }
 function validateConfirm() {
@@ -99,7 +101,13 @@ async function submit() {
   try {
     await resetApi.resetPassword({ jwt: jwt.value, newPassword: newPassword.value, channel: channel.value as any })
     success.value = true
-    setTimeout(() => navigateTo('Login'), 2000)
+    setTimeout(() => {
+      if (isAuthenticated.isAuthenticated) {
+        navigateTo('Home')
+      } else {
+        navigateTo('Login')
+      }
+    }, 2000)
   } catch (e: any) {
     error.value = e.message ?? 'Erreur lors de la réinitialisation'
   } finally {

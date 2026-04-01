@@ -174,7 +174,7 @@ const pageApi = {
 // Categories — /api/v1/categories
 // ============================================================
 const categoryApi = {
-    getAll: () => request('/categories', {}, false)
+    getAll: () => request('/categories/list', {}, false)
 };
 // ============================================================
 // Quiz — /api/v1/

@@ -126,7 +126,7 @@ export const pageApi = {
 // ============================================================
 export const categoryApi = {
   getAll: () =>
-    request<Category[]>('/categories', {}, false)
+    request<Category[]>('/categories/list', {}, false)
 }
 
 // ============================================================
