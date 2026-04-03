@@ -57,7 +57,6 @@ export const useAuthStore = defineStore('auth', () => {
     const res: JwtResponseLogin = await authApi.login(credentials)
     token.value = res.token
     persistToken(res.token)
-    // ✅ Ajoutez ces deux lignes
     user.value = res.user
     persistUser(res.user)
   } catch (e: any) {

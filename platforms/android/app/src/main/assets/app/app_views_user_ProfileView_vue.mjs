@@ -229,7 +229,7 @@ __webpack_require__.r(__webpack_exports__);
     __name: 'ProfileView',
     setup(__props, { expose: __expose }) {
         __expose();
-        const { navigateTo, goBack } = (0,_composables_useNavigation__WEBPACK_IMPORTED_MODULE_1__.useNavigation)();
+        const { navigateTo } = (0,_composables_useNavigation__WEBPACK_IMPORTED_MODULE_1__.useNavigation)();
         const authStore = (0,_stores_auth__WEBPACK_IMPORTED_MODULE_2__.useAuthStore)();
         const userStore = (0,_stores_user__WEBPACK_IMPORTED_MODULE_3__.useUserStore)();
         const user = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => authStore.user);
@@ -317,7 +317,7 @@ __webpack_require__.r(__webpack_exports__);
         const loaderStyle = { margin: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing['2xl'] };
         const rgpdStyle = { backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey100, padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg };
         const rgpdTextStyle = { fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.sizeSm, color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.grey625 };
-        const __returned__ = { navigateTo, goBack, authStore, userStore, user, initials, infos, confirmDesactivate, confirmDelete, containerStyle, profileHeaderStyle, avatarStyle, nameStyle, emailStyle, roleBadgeStyle, sectionStyle, sectionTitleStyle, infoRowStyle, infoLabelStyle, infoValueStyle, dangerZoneStyle, dangerTitleStyle, loaderStyle, rgpdStyle, rgpdTextStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], BottomMenu: _components_layout_BottomMenu_vue__WEBPACK_IMPORTED_MODULE_6__["default"], DsfrButton: _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_7__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
+        const __returned__ = { navigateTo, authStore, userStore, user, initials, infos, confirmDesactivate, confirmDelete, containerStyle, profileHeaderStyle, avatarStyle, nameStyle, emailStyle, roleBadgeStyle, sectionStyle, sectionTitleStyle, infoRowStyle, infoLabelStyle, infoValueStyle, dangerZoneStyle, dangerTitleStyle, loaderStyle, rgpdStyle, rgpdTextStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], BottomMenu: _components_layout_BottomMenu_vue__WEBPACK_IMPORTED_MODULE_6__["default"], DsfrButton: _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_7__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }

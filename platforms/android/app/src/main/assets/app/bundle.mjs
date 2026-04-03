@@ -151,8 +151,8 @@ const authApi = {
 const userApi = {
     getProfile: (id) => request(`/users/profil?id=${id}`),
     update: (id, data) => request(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
-    delete: (id) => request(`/users/delete?id=${id}`, { method: 'DELETE' }),
-    deactivate: (id) => request(`/users/deactivate?id=${id}`, { method: 'PATCH' })
+    deactivate: (id) => request(`/auth/deactivate?id=${id}`, { method: 'PATCH' }),
+    delete: (id) => request(`/users/delete?id=${id}`, { method: 'DELETE' })
 };
 // ============================================================
 // Reset password — /api/v1/
@@ -274,7 +274,6 @@ const useAuthStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('auth', 
             const res = await _services_api__WEBPACK_IMPORTED_MODULE_2__.authApi.login(credentials);
             token.value = res.token;
             persistToken(res.token);
-            // ✅ Ajoutez ces deux lignes
             user.value = res.user;
             persistUser(res.user);
         }
@@ -506,7 +505,7 @@ const useQuizStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('quiz', 
             };
             const result = await _services_api__WEBPACK_IMPORTED_MODULE_2__.submissionApi.submit(currentQuiz.value.id, submission);
             currentResult.value = result;
-            return result; // On retourne ici le résultat pour le récupérer dans le composant
+            return result;
         }
         catch (e) {
             error.value = e.message ?? 'Erreur lors de la soumission du quiz';
@@ -522,7 +521,7 @@ const useQuizStore = (0,pinia__WEBPACK_IMPORTED_MODULE_0__.defineStore)('quiz', 
         try {
             const submission = {
                 quizId,
-                answers: answers.value // directement la ref, pas de this
+                answers: answers.value
             };
             await _services_api__WEBPACK_IMPORTED_MODULE_2__.submissionApi.save(quizId, submission);
         }

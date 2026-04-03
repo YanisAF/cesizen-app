@@ -249,6 +249,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_common_DsfrInput_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/components/common/DsfrInput.vue");
 /* harmony import */ var _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./app/components/common/DsfrButton.vue");
 /* harmony import */ var _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("./app/components/common/AlertBanner.vue");
+/* harmony import */ var _stores_auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("./app/stores/auth.ts");
+
 
 
 
@@ -278,6 +280,7 @@ __webpack_require__.r(__webpack_exports__);
         const loading = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
         const error = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
         const success = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+        const isAuthenticated = (0,_stores_auth__WEBPACK_IMPORTED_MODULE_9__.useAuthStore)();
         function validatePwd() { passwordError.value = _utils_validators__WEBPACK_IMPORTED_MODULE_3__.validators.password(newPassword.value).message; }
         function validateConfirm() {
             console.log('new:', JSON.stringify(newPassword.value));
@@ -295,7 +298,14 @@ __webpack_require__.r(__webpack_exports__);
             try {
                 await _services_api__WEBPACK_IMPORTED_MODULE_2__.resetApi.resetPassword({ jwt: jwt.value, newPassword: newPassword.value, channel: channel.value });
                 success.value = true;
-                setTimeout(() => navigateTo('Login'), 2000);
+                setTimeout(() => {
+                    if (isAuthenticated.isAuthenticated) {
+                        navigateTo('Home');
+                    }
+                    else {
+                        navigateTo('Login');
+                    }
+                }, 2000);
             }
             catch (e) {
                 error.value = e.message ?? 'Erreur lors de la réinitialisation';
@@ -308,7 +318,7 @@ __webpack_require__.r(__webpack_exports__);
         const headerStyle = { backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.blueFrance, padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xl };
         const titleStyle = { color: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white, fontSize: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.size2xl, fontWeight: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.typography.weightBold };
         const formStyle = { backgroundColor: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.colors.white, padding: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.xl, margin: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.spacing.lg, borderRadius: _utils_design__WEBPACK_IMPORTED_MODULE_4__.DSFR.radius.md };
-        const __returned__ = { navigateTo, props, jwt, channel, newPassword, confirmPassword, passwordError, confirmError, loading, error, success, validatePwd, validateConfirm, submit, containerStyle, headerStyle, titleStyle, formStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], DsfrInput: _components_common_DsfrInput_vue__WEBPACK_IMPORTED_MODULE_6__["default"], DsfrButton: _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_7__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
+        const __returned__ = { navigateTo, props, jwt, channel, newPassword, confirmPassword, passwordError, confirmError, loading, error, success, isAuthenticated, validatePwd, validateConfirm, submit, containerStyle, headerStyle, titleStyle, formStyle, AppBar: _components_layout_AppBar_vue__WEBPACK_IMPORTED_MODULE_5__["default"], DsfrInput: _components_common_DsfrInput_vue__WEBPACK_IMPORTED_MODULE_6__["default"], DsfrButton: _components_common_DsfrButton_vue__WEBPACK_IMPORTED_MODULE_7__["default"], AlertBanner: _components_common_AlertBanner_vue__WEBPACK_IMPORTED_MODULE_8__["default"] };
         Object.defineProperty(__returned__, '__isScriptSetup', { enumerable: false, value: true });
         return __returned__;
     }
