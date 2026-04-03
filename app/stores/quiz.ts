@@ -78,7 +78,7 @@ export const useQuizStore = defineStore('quiz', () => {
       
       const result = await submissionApi.submit(currentQuiz.value.id, submission)
       currentResult.value = result
-      return result // On retourne ici le résultat pour le récupérer dans le composant
+      return result 
     } catch (e: any) {
       error.value = e.message ?? 'Erreur lors de la soumission du quiz'
       return null
@@ -93,7 +93,7 @@ export const useQuizStore = defineStore('quiz', () => {
     try {
       const submission: QuizSubmissionDto = {
         quizId,
-        answers: answers.value  // directement la ref, pas de this
+        answers: answers.value
       }
       await submissionApi.save(quizId, submission)
     } catch (e: any) {

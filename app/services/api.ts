@@ -4,6 +4,7 @@ import type {
   Category, Page, Quiz, QuizSubmissionDto, ApiError,
   ResultDtoResponse,
   JwtResponseLogin,
+  DeactivateResponseDto,
 } from '../types'
 
 // ============================================================
@@ -85,12 +86,12 @@ export const userApi = {
   
   update: (id: number, data: Partial<User>) =>
     request<User>(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
+
+  deactivate: (id: number) =>
+  request<DeactivateResponseDto>(`/auth/deactivate?id=${id}`, { method: 'PATCH' }),
   
   delete: (id: number) =>
-    request<void>(`/users/delete?id=${id}`, { method: 'DELETE' }),
-  
-  deactivate: (id: number) =>
-    request<void>(`/users/deactivate?id=${id}`, { method: 'PATCH' })
+    request<void>(`/users/delete?id=${id}`, { method: 'DELETE' })
 }
 
 // ============================================================

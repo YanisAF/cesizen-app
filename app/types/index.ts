@@ -147,3 +147,10 @@ export type AppRoute =
   | 'ResetNewPassword'
   | 'Contact'
   | 'AccountSettings'
+
+  // Dto reçu lors de la désactivation du compte:
+export interface DeactivateResponseDto {
+  id: number
+  message: string
+  isActive: boolean
+}

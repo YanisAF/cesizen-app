@@ -112,7 +112,7 @@ import DsfrButton from '../../components/common/DsfrButton.vue'
 import AlertBanner from '../../components/common/AlertBanner.vue'
 
 
-const { navigateTo, goBack } = useNavigation()
+const { navigateTo } = useNavigation()
 const authStore = useAuthStore()
 const userStore = useUserStore()
 
