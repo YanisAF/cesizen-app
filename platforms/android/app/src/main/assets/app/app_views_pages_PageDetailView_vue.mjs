@@ -363,7 +363,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GridLayout, { rows: "56, *" }, {
                 default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar custom "),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" AppBar "),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AppBar"], {
                         row: "0",
                         title: $setup.page?.title ?? 'Ressource',
@@ -429,7 +429,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                     ]),
                                                     _: 1 /* STABLE */
                                                 }),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sauvegarde "),
                                                 ($setup.authStore.isAuthenticated)
                                                     ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
                                                         key: 0,
@@ -446,7 +445,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                         _: 1 /* STABLE */
                                                     }))
                                                     : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenu "),
+                                                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content "),
                                                 ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.page.content, (section, i) => {
                                                     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_StackLayout, {
                                                         key: i,
@@ -454,24 +453,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                                     }, {
                                                         default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                                                             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                text: "Article",
+                                                                text: section.name,
                                                                 style: $setup.sectionTitleStyle,
-                                                                accessibilityRole: "header"
-                                                            }),
-                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Label, {
-                                                                text: section.description,
-                                                                style: $setup.descriptionStyle,
+                                                                accessibilityRole: "header",
                                                                 textWrap: "true"
                                                             }, null, 8 /* PROPS */, ["text"]),
+                                                            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content "),
                                                             (section.itemUrl)
                                                                 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Label, {
                                                                     key: 0,
-                                                                    text: '🔗  ' + section.itemUrl,
-                                                                    style: $setup.linkStyle,
-                                                                    onTap: ($event) => ($setup.openLink(section.itemUrl)),
-                                                                    accessibilityRole: "link",
-                                                                    accessibilityLabel: 'Ouvrir le lien : ' + section.name
-                                                                }, null, 8 /* PROPS */, ["text", "onTap", "accessibilityLabel"]))
+                                                                    text: section.itemUrl,
+                                                                    style: $setup.descriptionStyle,
+                                                                    textWrap: "true"
+                                                                }, null, 8 /* PROPS */, ["text"]))
                                                                 : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
                                                         ]),
                                                         _: 2 /* DYNAMIC */

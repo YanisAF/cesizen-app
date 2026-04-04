@@ -22,7 +22,8 @@ class HttpError extends Error {
 async function request<T>(
   path: string,
   options: RequestInit = {},
-  withAuth = true
+  withAuth = true,
+  timeout?: number
 ): Promise<T> {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -41,6 +42,10 @@ async function request<T>(
   })
   
   if (!res.ok) {
+     if (res.status === 401) {
+      _onUnauthorized()
+      throw new HttpError(401, 'Session expirée, veuillez vous reconnecter')
+    }
     let msg = `Erreur ${res.status}`
     try {
       const err: ApiError = await res.json()
@@ -61,6 +66,12 @@ async function request<T>(
 let _getToken: () => string | null = () => null
 export function setTokenGetter(fn: () => string | null) {
   _getToken = fn
+}
+
+// Handler pour les 401, à configurer depuis le store Pinia pour déconnexion automatique
+let _onUnauthorized: () => void = () => {}
+export function setUnauthorizedHandler(fn: () => void) {
+  _onUnauthorized = fn
 }
 
 // ============================================================
@@ -85,7 +96,7 @@ export const userApi = {
     request<User>(`/users/profil?id=${id}`),
   
   update: (id: number, data: Partial<User>) =>
-    request<User>(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
+    request<User>(`/users/update-profil?id=${id}`, { method: 'PATCH', body: JSON.stringify(data) }, true, 10000),
 
   deactivate: (id: number) =>
   request<DeactivateResponseDto>(`/auth/deactivate?id=${id}`, { method: 'PATCH' }),

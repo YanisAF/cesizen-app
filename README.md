@@ -176,3 +176,9 @@ Les tokens de design sont définis dans `app/utils/design.ts` :
 |------|-------|
 | **Visiteur** | Accueil, ressources, catégories, quiz (sans sauvegarde) |
 | **ROLE_USER** | Tout + sauvegarde quiz, historique, gestion compte
+
+## Lancer l'application
+
+Ouvrir un terminal de commande powershell et lacner la commande
+
+``` cmd /c .\run.bat ```
