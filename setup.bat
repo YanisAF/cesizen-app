@@ -29,6 +29,6 @@ echo [CesiZen] OK wrapper patche
 echo.
 echo ============================================
 echo  Setup termine !
-echo  Lance maintenant : run.bat
+echo  Maintenant lance : run.bat
 echo ============================================
 pause
