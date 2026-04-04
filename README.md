@@ -53,31 +53,11 @@ cesizen-app/
 │       │   └── DiagnosisHistoryView.vue # Historique des diagnostics (connecté)
 │       ├── user/
 │       │   ├── ProfileView.vue      # Profil utilisateur
+|       |   ├── EditProfilView.vue   # Modification utilisateur
 │       │   └── AccountView.vue      # Gestion compte (RGPD : désactivation/suppression)
 │       └── support/
 │           └── ContactView.vue      # Formulaire de contact + liens urgence
 └── tests/
-    ├── __mocks__/
-    │   ├── nativescript-core.ts     # Mock ApplicationSettings, Dialogs, Utils
-    │   ├── nativescript-vue-router.ts
-    │   └── nativescript-vue.ts
-    ├── stores/
-    │   ├── auth.spec.ts             # Tests store auth (login, register, logout)
-    │   ├── quiz.spec.ts             # Tests store quiz (fetch, submit, historique)
-    │   ├── pages.spec.ts            # Tests store pages (search, filter, favoris)
-    │   └── user.spec.ts             # Tests store user (profil, suppression)
-    ├── services/
-    │   └── api.spec.ts              # Tests client HTTP (tous les endpoints)
-    ├── utils/
-    │   ├── validators.spec.ts       # Tests validateurs (tous les champs)
-    │   └── design.spec.ts           # Tests tokens DSFR et getRiskStyle
-    └── views/
-        ├── LoginView.spec.ts
-        ├── RegisterView.spec.ts
-        ├── QuizDetailView.spec.ts
-        ├── HomeAndProfileView.spec.ts
-        ├── ResetFlow.spec.ts
-        └── AccountAndContactView.spec.ts
 ```
 
 ---
@@ -93,7 +73,7 @@ npm install -g @nativescript/cli
 
 # Préparer les plateformes
 ns platform add android
-ns platform add ios   # macOS uniquement
+ns platform add ios
 ```
 
 ---
@@ -113,8 +93,6 @@ npm run dev:ios
 ## 🧪 Tests
 
 ```bash
-# Tous les tests
-npm test
 
 # Mode watch
 npm run test:watch
@@ -132,7 +110,7 @@ Modifier l'URL de base dans `app/services/api.ts` :
 ```typescript
 const BASE_URL = 'http://localhost:8080/api/v1'
 // Production :
-// const BASE_URL = 'https://votre-api.fr/api/v1'
+// const BASE_URL = 'https://mon-api.fr/api/v1'
 ```
 
 ---
@@ -198,3 +176,9 @@ Les tokens de design sont définis dans `app/utils/design.ts` :
 |------|-------|
 | **Visiteur** | Accueil, ressources, catégories, quiz (sans sauvegarde) |
 | **ROLE_USER** | Tout + sauvegarde quiz, historique, gestion compte
+
+## Lancer l'application
+
+Ouvrir un terminal de commande powershell et lacner la commande
+
+``` cmd /c .\run.bat ```

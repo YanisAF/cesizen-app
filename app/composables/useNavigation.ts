@@ -1,4 +1,5 @@
 import { getCurrentInstance, ref } from 'vue'
+import { useAuthStore } from '../stores/auth'
 
 const viewMap: Record<string, () => Promise<any>> = {
   Home:             () => import('../views/home/HomeView.vue'),
@@ -8,6 +9,7 @@ const viewMap: Record<string, () => Promise<any>> = {
   ResetVerify:      () => import('../views/auth/ResetVerifyView.vue'),
   ResetPassword:    () => import('../views/auth/ResetPasswordView.vue'),
   Profile:          () => import('../views/user/ProfileView.vue'),
+  EditProfil:       () => import('../views/user/EditProfilView.vue'),
   Account:          () => import('../views/user/AccountView.vue'),
   PageList:         () => import('../views/pages/PageListView.vue'),
   PageDetail:       () => import('../views/pages/PageDetailView.vue'),
@@ -17,9 +19,17 @@ const viewMap: Record<string, () => Promise<any>> = {
   QuizResult:       () => import('../views/quiz/QuizResultView.vue'),
   DiagnosisHistory: () => import('../views/quiz/DiagnosisHistoryView.vue'),
   Contact:          () => import('../views/support/ContactView.vue'),
+  BackendDown:       () => import('../views/BackendDownView.vue'),
 }
 
-// ref globale pour la route actuelle
+// Routes qui nécessitent un token valide
+const protectedRoutes = new Set([
+  'Profile',
+  'Account',
+  'EditProfil',
+  'DiagnosisHistory',
+])
+
 const currentRoute = ref('Home')
 
 export function useNavigation() {
@@ -29,14 +39,17 @@ export function useNavigation() {
   async function navigateTo(routeName: string, props: Record<string, any> = {}) {
     const loader = viewMap[routeName]
     if (!loader || !$nav) return
-    const module = await loader()
 
-    currentRoute.value = routeName  // <-- mise à jour de la route active
+    // Protection : redirige vers Login si token expiré ou absent
+    if (protectedRoutes.has(routeName)) {
+      const auth = useAuthStore()
+      if (!auth.isAuthenticated) {
+        await _navigate($nav, 'Login', {})
+        return
+      }
+    }
 
-    $nav.$navigateTo(module.default, {
-      props,
-      transition: { name: 'slide', duration: 200, curve: 'ease' }
-    })
+    await _navigate($nav, routeName, props)
   }
 
   function goBack() {
@@ -44,4 +57,15 @@ export function useNavigation() {
   }
 
   return { navigateTo, goBack, currentRoute }
+}
+
+async function _navigate($nav: any, routeName: string, props: Record<string, any>) {
+  const loader = viewMap[routeName]
+  if (!loader) return
+  const module = await loader()
+  currentRoute.value = routeName
+  $nav.$navigateTo(module.default, {
+    props,
+    transition: { name: 'slide', duration: 200, curve: 'ease' }
+  })
 }

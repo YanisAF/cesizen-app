@@ -128,10 +128,18 @@ export const A11Y = {
 // ============================================================
 export function getRiskStyle(riskLevel: string) {
   const map: Record<string, { color: string; bg: string; label: string }> = {
+    // Français
     FAIBLE:   { color: DSFR.colors.riskFaible,   bg: DSFR.colors.successLight, label: 'Risque faible' },
     MODERE:   { color: DSFR.colors.riskModere,   bg: DSFR.colors.warningLight, label: 'Risque modéré' },
     ELEVE:    { color: DSFR.colors.riskEleve,    bg: DSFR.colors.errorLight,   label: 'Risque élevé' },
-    CRITIQUE: { color: DSFR.colors.riskCritique, bg: '#f9e5e7',                label: 'Risque critique' }
+    CRITIQUE: { color: DSFR.colors.riskCritique, bg: '#f9e5e7',                label: 'Risque critique' },
+    // Anglais (backend)
+    LOW:      { color: DSFR.colors.riskFaible,   bg: DSFR.colors.successLight, label: 'Risque faible' },
+    MODERATE: { color: DSFR.colors.riskModere,   bg: DSFR.colors.warningLight, label: 'Risque modéré' },
+    HIGH:     { color: DSFR.colors.riskEleve,    bg: DSFR.colors.errorLight,   label: 'Risque élevé' },
+    CRITICAL: { color: DSFR.colors.riskCritique, bg: '#f9e5e7',                label: 'Risque critique' }
   }
-  return map[riskLevel] ?? map['FAIBLE']
+
+  const normalized = (riskLevel ?? '').toUpperCase()
+  return map[normalized] ?? map['LOW']
 }

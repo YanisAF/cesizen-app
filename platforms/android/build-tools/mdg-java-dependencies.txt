@@ -53,4 +53,3 @@ C:\Users\yaani\CESIZen\cesizen-app\platforms\android\build\exploded-dependencies
 C:\Users\yaani\CESIZen\cesizen-app\platforms\android\build\exploded-dependencies\f041e208a65cc7670714a120bdb487d4\vectordrawable-1.1.0-api.jar
 C:\Users\yaani\CESIZen\cesizen-app\platforms\android\build\exploded-dependencies\fd7d4e094cbbf6031dbf606b941ae382\jetified-lifecycle-viewmodel-savedstate-2.6.2-api.jar
 C:\Users\yaani\CESIZen\cesizen-app\platforms\android\build\exploded-dependencies\fddf6972da8aae2f08623020bae851c0\jetified-annotation-jvm-1.6.0.jar
-C:\Users\yaani\CESIZen\cesizen-app\platforms\android\app\build\intermediates\javac\debug

@@ -1,95 +1,101 @@
 <template>
-  <Page>
-    <!-- AppBar -->
-    <ActionBar>
-      <AppBar title="Quiz" showBack @back="navigateTo('Home')" />
-    </ActionBar>
-    
-    <DockLayout stretchLastChild="true">
-      <!-- Bottom Menu -->
-      <BottomMenu dock="bottom" />
+  <Page actionBarHidden="true">
+    <GridLayout rows="56, *">
       
-      <!-- Pagination -->
-      <StackLayout
-      dock="bottom"
-      orientation="horizontal"
-      horizontalAlignment="center"
-      margin="8"
-      spacing="8"
-      >
-      <Button text="« Prev" :isEnabled="currentPage > 1" @tap="prevPage" />
-        <Label :text="`Page ${currentPage} / ${totalPages}`" verticalAlignment="center" />
-        <Button text="Next »" :isEnabled="currentPage < totalPages" @tap="nextPage" />
-      </StackLayout>
+      <!-- AppBar -->
+      <AppBar
+      row="0"
+      title="Quiz"
+      showBack
+      @back="navigateTo('Home')"
+      />
       
-      <!-- Contenu principal -->
-      <GridLayout rows="auto, *" :style="containerStyle">
-        <!-- HEADER (fixe) -->
-        <StackLayout row="0" :style="searchBarContainer">
-          <SearchBar v-model="searchQuery" hint="Rechercher un quiz…" />
-          
-          <!-- Page size -->
-          <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="8">
-            <Label
-            v-for="size in pageSizes"
-            :key="size"
-            :text="`${size}`"
-            :style="pageSizeChip(size === pageSize)"
-            @tap="setPageSize(size)"
-            />
-          </StackLayout>
+      <DockLayout row="1" stretchLastChild="true">
+        <!-- Bottom Menu -->
+        <BottomMenu dock="bottom" />
+        
+        <!-- Pagination -->
+        <StackLayout
+        dock="bottom"
+        orientation="horizontal"
+        horizontalAlignment="center"
+        margin="8"
+        spacing="8"
+        >
+        <Button text="« Prev" :isEnabled="currentPage > 1" @tap="prevPage" />
+          <Label :text="`Page ${currentPage} / ${totalPages}`" verticalAlignment="center" />
+          <Button text="Next »" :isEnabled="currentPage < totalPages" @tap="nextPage" />
         </StackLayout>
         
-        <!-- LISTE -->
-        <ListView
-        row="1"
-        :items="paginatedQuizzes"
-        @itemTap="onQuizTap"
-        >
-        <template #default="{ item }">
-          <StackLayout :style="cardStyle">
-            <GridLayout columns="*, auto">
-              <Label col="0" :text="item.title" :style="cardTitleStyle" textWrap="true" />
+        <!-- Contenu principal -->
+        <GridLayout rows="auto, *" :style="containerStyle">
+          <!-- HEADER (fixe) -->
+          <StackLayout row="0" :style="searchBarContainer">
+            <SearchBar v-model="searchQuery" hint="Rechercher un quiz…" />
+            
+            <!-- Page size -->
+            <StackLayout orientation="horizontal" horizontalAlignment="center" marginTop="8">
               <Label
-              col="1"
-              :text="(item.questionList?.length ?? 0) + ' Q'"
-              :style="countStyle"
+              v-for="size in pageSizes"
+              :key="size"
+              :text="`${size}`"
+              :style="pageSizeChip(size === pageSize)"
+              @tap="setPageSize(size)"
               />
-            </GridLayout>
-            <Label :text="item.description" :style="descStyle" textWrap="true" maxLines="2" />
-            <Label text="Commencer le quiz ›" :style="ctaStyle" />
+            </StackLayout>
           </StackLayout>
-        </template>
-      </ListView>
+          
+          <!-- LISTE -->
+          <ListView
+          row="1"
+          :items="paginatedQuizzes"
+          @itemTap="onQuizTap"
+          >
+          <template #default="{ item }">
+            <StackLayout :style="cardStyle">
+              <GridLayout columns="*, auto">
+                <Label col="0" :text="item.title" :style="cardTitleStyle" textWrap="true" />
+                <Label
+                col="1"
+                :text="(item.questionList?.length ?? 0) + ' Q'"
+                :style="countStyle"
+                />
+              </GridLayout>
+              <Label :text="item.description" :style="descStyle" textWrap="true" maxLines="2" />
+              <Label text="Commencer le quiz ›" :style="ctaStyle" />
+            </StackLayout>
+          </template>
+        </ListView>
+        
+      </GridLayout>
       
-    </GridLayout>
-    
-    <!-- Loader -->
-    <ActivityIndicator v-if="quizStore.loading" :busy="true" :style="loaderStyle" />
-    
-    <!-- Empty -->
-    <Label
-    v-if="!quizStore.loading && filteredQuizzes.length === 0"
-    text="Aucun quiz disponible."
-    :style="emptyStyle"
-    />
-    
-    <!-- Bandeau visiteur -->
-    <StackLayout v-if="!authStore.isAuthenticated" :style="visitorBannerStyle">
+      <!-- Loader -->
+      <ActivityIndicator v-if="quizStore.loading" :busy="true" :style="loaderStyle" />
+      
+      <!-- Empty -->
       <Label
-      text="ℹ️  En tant que visiteur, vous pouvez réaliser les quiz mais vos résultats ne seront pas sauvegardés."
-      textWrap="true"
-      :style="visitorBannerTextStyle"
+      v-if="!quizStore.loading && filteredQuizzes.length === 0"
+      text="Aucun quiz disponible."
+      :style="emptyStyle"
       />
-      <DsfrButton
-      label="Créer un compte pour sauvegarder"
-      variant="secondary"
-      fullWidth
-      @tap="navigateTo('Register')"
-      />
-    </StackLayout>
-    
-  </DockLayout>
+      
+      <!-- Bandeau visiteur -->
+      <StackLayout v-if="!authStore.isAuthenticated" :style="visitorBannerStyle">
+        <Label
+        text="ℹ️  En tant que visiteur, vous pouvez réaliser les quiz mais vos résultats ne seront pas sauvegardés."
+        textWrap="true"
+        :style="visitorBannerTextStyle"
+        />
+        <DsfrButton
+        label="Créer un compte pour sauvegarder"
+        variant="secondary"
+        fullWidth
+        @tap="navigateTo('Register')"
+        />
+      </StackLayout>
+      
+    </DockLayout>
+  </GridLayout>
 </Page>
 </template>
 
